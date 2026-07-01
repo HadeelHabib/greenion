@@ -441,6 +441,21 @@ body {
 }
 
 @media (max-width: 520px) {
+  .gi-hero-section {
+    min-height: 70vh !important;
+    padding-top: 88px !important;
+    padding-bottom: 40px !important;
+  }
+
+  .gi-hero-video-layer {
+    inset: 0 0 auto 0 !important;
+    height: 72vh !important;
+  }
+
+  .gi-hero-video {
+    object-position: center center !important;
+  }
+
   .gi-footer-grid {
     grid-template-columns: 1fr !important;
   }

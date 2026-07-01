@@ -464,16 +464,17 @@ function Hero({ lang, c }) {
   const overlayA2 = Math.min(0.94, Math.max(0.12, overlayA1 * 0.94));
   const heroPos = layout.heroFocus === "left" ? "left center" : "right center";
   return (
-    <section id="home" style={{ minHeight: "100vh", background: "transparent", position: "relative", zIndex: 0, direction: c.dir, overflow: "hidden", padding: "clamp(96px,14vw,132px) clamp(16px,4vw,32px) clamp(56px,10vw,80px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+    <section id="home" className="gi-hero-section" style={{ minHeight: "100vh", background: "transparent", position: "relative", zIndex: 0, direction: c.dir, overflow: "hidden", padding: "clamp(96px,14vw,132px) clamp(16px,4vw,32px) clamp(56px,10vw,80px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
         {/* Background pattern */}
         <div style={{ position: "absolute", inset: 0, backgroundImage: `radial-gradient(circle, rgba(118,196,66,0.08) 1px, transparent 1px)`, backgroundSize: "40px 40px", pointerEvents: "none" }} />
         {/* Large circle glow */}
         <div style={{ position: "absolute", top: "-5%", [isAr ? "left" : "right"]: "-10%", width: 700, height: 700, borderRadius: "50%", background: "radial-gradient(ellipse, rgba(118,196,66,0.12), transparent 70%)", pointerEvents: "none" }} />
         <div style={{ position: "absolute", bottom: "-5%", [isAr ? "right" : "left"]: "-5%", width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(ellipse, rgba(27,94,32,0.06), transparent 70%)", pointerEvents: "none" }} />
         {/* Hero background video */}
-        <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0 }}>
+        <div className="gi-hero-video-layer" style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0 }}>
           <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
             <video
+              className="gi-hero-video"
               src={HERO_BG_VIDEO}
               autoPlay
               muted
@@ -497,14 +498,14 @@ function Hero({ lang, c }) {
             </h1>
             {c.hero.sub ? <p style={{ fontSize: "clamp(15px,2vw,18px)", color: tk.white, lineHeight: 1.9, margin: "0 0 44px", maxWidth: 540, fontFamily: fBody, opacity: on ? 1 : 0, transform: on ? "translateY(0)" : "translateY(18px)", transition: `all 0.7s ${tk.ease} 0.16s` }}>{c.hero.sub}</p> : null}
             <div className="gi-hero-actions" style={{ opacity: on ? 1 : 0, transform: on ? "translateY(0)" : "translateY(14px)", transition: `all 0.7s ${tk.ease} 0.24s` }}>
-              <button style={{ padding: "15px 34px", borderRadius: 8, background: tk.forest, color: tk.white, border: "none", cursor: "pointer", fontSize: 14, fontWeight: 700, fontFamily: fHead, boxShadow: `0 6px 28px rgba(27,94,32,0.35)`, display: "flex", alignItems: "center", gap: 8, transition: "all 0.2s" }}
+              <button style={{ padding: "15px 34px", borderRadius: 8, background: tk.forest, color: tk.white, border: "none", cursor: "pointer", fontSize: 14, fontWeight: 700, fontFamily: fHead, boxShadow: `0 6px 28px rgba(27,94,32,0.35)`, display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center", gap: 8, transition: "all 0.2s" }}
                 onClick={() => window.location.hash = "contact"}
                 onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = `0 10px 36px rgba(27,94,32,0.45)`; }}
                 onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = `0 6px 28px rgba(27,94,32,0.35)`; }}
               >
                 {c.hero.cta1} <Arrow dir={c.dir} color={tk.white} />
               </button>
-              <button style={{ padding: "15px 26px", borderRadius: 8, background: tk.white, color: tk.forest, border: `1.5px solid ${tk.borderDk}`, cursor: "pointer", fontSize: 14, fontFamily: fBody, fontWeight: 500, boxShadow: tk.shadow, transition: "all 0.2s" }}
+              <button style={{ padding: "15px 26px", borderRadius: 8, background: tk.white, color: tk.forest, border: `1.5px solid ${tk.borderDk}`, cursor: "pointer", fontSize: 14, fontFamily: fBody, fontWeight: 500, boxShadow: tk.shadow, transition: "all 0.2s", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center" }}
                 onClick={() => window.location.hash = "how-it-works"}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = tk.lime; e.currentTarget.style.color = tk.forestMid; }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = tk.borderDk; e.currentTarget.style.color = tk.forest; }}
@@ -555,20 +556,17 @@ function HowItWorks({ lang, c }) {
 
   return (
     <section id="how-it-works" ref={ref} style={{ background: tk.bgMid, padding: "clamp(64px,10vw,100px) clamp(16px,4vw,32px)", direction: c.dir, position: "relative", overflow: "hidden" }}>
-      {/* Background image on the left side with 50% opacity */}
-      <div className="gi-section-bg" style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: "45%", opacity: 0.5, pointerEvents: "none" }}>
+      {/* Full section background image */}
+      <div className="gi-section-bg" style={{ position: "absolute", inset: 0, opacity: 0.3, pointerEvents: "none" }}>
         <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
           <Image
-            src={bg1}
+            src={hero}
             alt=""
             fill
-            sizes="45vw"
+            sizes="100vw"
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
         </div>
-        {/* Soft gradient masks to blend the images into the section's background color */}
-        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(90deg, transparent 60%, ${tk.bgMid} 100%)` }} />
-        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(180deg, ${tk.bgMid} 0%, transparent 15%, transparent 85%, ${tk.bgMid} 100%)` }} />
       </div>
 
       <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1 }}>
@@ -750,6 +748,90 @@ function Products({ lang, c }) {
 /* ═══════════════════════════════════════════════════════════════
    WHY US
 ═══════════════════════════════════════════════════════════════ */
+function WhyUsFeatureIcon({ index }) {
+  const iconWrap = {
+    width: 62,
+    height: 62,
+    borderRadius: "50%",
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    border: `1.5px solid rgba(118,196,66,0.55)`,
+    background: "rgba(8,33,18,0.72)",
+    boxShadow: "0 0 0 6px rgba(118,196,66,0.08)",
+    flexShrink: 0,
+  };
+  const iconProps = {
+    width: "24",
+    height: "24",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: tk.lime,
+    strokeWidth: "1.8",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+  };
+
+  if (index === 0) {
+    return (
+      <span style={iconWrap} aria-hidden="true">
+        <svg {...iconProps}>
+          <circle cx="12" cy="12" r="7" />
+          <path d="M12 5V2.5M12 21.5V19M19 12h2.5M2.5 12H5M16.95 7.05l1.8-1.8M5.25 18.75l1.8-1.8M16.95 16.95l1.8 1.8M5.25 5.25l1.8 1.8" />
+          <circle cx="12" cy="12" r="2.5" />
+        </svg>
+      </span>
+    );
+  }
+
+  if (index === 1) {
+    return (
+      <span style={iconWrap} aria-hidden="true">
+        <svg {...iconProps}>
+          <rect x="7" y="4" width="9" height="16" rx="2" />
+          <path d="M10.5 9.5h3l-2 5h2" />
+          <path d="M10 2h4" />
+        </svg>
+      </span>
+    );
+  }
+
+  if (index === 2) {
+    return (
+      <span style={iconWrap} aria-hidden="true">
+        <svg {...iconProps}>
+          <path d="M12 14c2.5 0 4.5-2.13 4.5-4.75S14.5 4.5 12 4.5 7.5 6.63 7.5 9.25 9.5 14 12 14Z" />
+          <path d="M5 19.5c1.65-2.33 4.15-3.5 7-3.5s5.35 1.17 7 3.5" />
+          <path d="M4.5 6.5 2.75 8.25 4.5 10M19.5 6.5l1.75 1.75L19.5 10" />
+        </svg>
+      </span>
+    );
+  }
+
+  if (index === 3) {
+    return (
+      <span style={iconWrap} aria-hidden="true">
+        <svg {...iconProps}>
+          <path d="M5 18.5 18.5 5a1.41 1.41 0 0 1 2 2L7 20.5 3.5 21.5 5 18.5Z" />
+          <path d="M14.5 5.5 18.5 9.5" />
+          <path d="M4 4h7" />
+          <path d="M4 8h4" />
+        </svg>
+      </span>
+    );
+  }
+
+  return (
+    <span style={iconWrap} aria-hidden="true">
+      <svg {...iconProps}>
+        <path d="M8 4h8v2.5A4 4 0 0 0 20 10v1c0 3.35-2.5 6.2-6 6.82V21h3" />
+        <path d="M16 4H8v2.5A4 4 0 0 1 4 10v1c0 3.35 2.5 6.2 6 6.82V21H7" />
+        <path d="M9.5 10.5 12 8.5l2.5 2-1 3h-3l-1-3Z" />
+      </svg>
+    </span>
+  );
+}
+
 function WhyUs({ lang, c }) {
   const [ref, vis] = useInView();
   const isAr = lang === "ar";
@@ -757,48 +839,51 @@ function WhyUs({ lang, c }) {
   const fB = isAr ? tk.ff.bodyAr : tk.ff.bodyEn;
   const w = c.whyus;
   return (
-    <section ref={ref} style={{ background: tk.bgMid, padding: "clamp(64px,10vw,100px) clamp(16px,4vw,32px)", direction: c.dir, position: "relative", overflow: "hidden" }}>
+    <section ref={ref} style={{ background: "linear-gradient(135deg, #062a1a 0%, #07341f 50%, #0a3c26 100%)", padding: "clamp(64px,10vw,100px) clamp(16px,4vw,32px)", direction: c.dir, position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
-        <Image
-          src={hero}
-          alt=""
-          fill
-          sizes="100vw"
-          style={{ objectFit: "cover", objectPosition: "center", opacity: 0.62, transform: "scale(1.03)" }}
-        />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(247,249,244,0.34) 0%, rgba(238,243,232,0.42) 100%)" }} />
-        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at top right, rgba(118,196,66,0.08), transparent 28%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at top right, rgba(118,196,66,0.18), transparent 24%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "radial-gradient(circle at bottom left, rgba(118,196,66,0.12), transparent 26%)" }} />
+        <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(102deg, rgba(255,255,255,0.035) 0 2px, transparent 2px 44px)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(2,14,10,0.12) 0%, rgba(2,14,10,0.18) 100%)" }} />
       </div>
-      <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1 }}>
-        {/* Centered Header */}
-        <div style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", marginBottom: 52, opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(20px)", transition: "all 0.7s ease" }}>
-          <Chip>{w.chip}</Chip>
-          <h2 style={{ fontFamily: fH, fontSize: "clamp(24px,3.5vw,44px)", fontWeight: 900, color: tk.ink, margin: "18px 0 16px", letterSpacing: isAr ? "-0.01em" : "-0.04em", lineHeight: 1.15, textAlign: "center" }}>
+      <div style={{ maxWidth: 1120, margin: "0 auto", position: "relative", zIndex: 1 }}>
+        <div style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", marginBottom: 56, opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(20px)", transition: "all 0.7s ease" }}>
+          <Chip style={{ color: tk.lime, border: "1px solid rgba(118,196,66,0.38)", background: "rgba(118,196,66,0.08)" }}>{w.chip}</Chip>
+          <h2 style={{ fontFamily: fH, fontSize: "clamp(26px,3.8vw,46px)", fontWeight: 900, color: tk.white, margin: "18px 0 16px", letterSpacing: isAr ? "-0.01em" : "-0.04em", lineHeight: 1.15, textAlign: "center" }}>
             {w.h2a}<br /><span style={{ color: tk.forestMid }}>{w.h2b}</span>
           </h2>
-          <p style={{ fontSize: 15, color: tk.body, fontFamily: fB, margin: 0, maxWidth: 600, lineHeight: 1.9, textAlign: "center" }}>{w.sub}</p>
+          <p style={{ fontSize: 15.5, color: "rgba(255,255,255,0.78)", fontFamily: fB, margin: 0, maxWidth: 760, lineHeight: 1.95, textAlign: "center" }}>{w.sub}</p>
         </div>
 
-        <div className="gi-grid-split" style={{ gap: 48, alignItems: "center" }}>
-          {/* stats */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 32, alignItems: "center", textAlign: "center", opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(20px)", transition: "all 0.7s ease 0.05s" }}>
-            {[[w.stat1n, w.stat1l], [w.stat2n, w.stat2l]].map(([n, l]) => (
-              <div key={l}>
-                <div style={{ fontFamily: fH, fontSize: 44, fontWeight: 900, color: tk.forest }}>{n}</div>
-                <div style={{ fontSize: 14, color: tk.muted, fontFamily: fB, marginTop: 4 }}>{l}</div>
+        <div className="gi-grid-2" style={{ columnGap: "clamp(28px,5vw,64px)", rowGap: 28 }}>
+          {w.cards.map((card, i) => (
+            <div
+              key={card.title}
+              style={{
+                borderTop: "1px solid rgba(255,255,255,0.16)",
+                paddingTop: 26,
+                display: "grid",
+                gridTemplateColumns: isAr ? "1fr auto" : "auto 1fr",
+                gap: 18,
+                alignItems: "start",
+                opacity: vis ? 1 : 0,
+                transform: vis ? "translateY(0)" : "translateY(16px)",
+                transition: `all 0.55s ease ${0.1 + i * 0.08}s`,
+              }}
+            >
+              <div style={{ order: isAr ? 1 : 2, textAlign: isAr ? "right" : "left" }}>
+                <h3 style={{ fontFamily: fH, fontSize: "clamp(20px,2.1vw,28px)", fontWeight: 900, color: tk.ink, margin: "0 0 12px", lineHeight: 1.4 }}>
+                  {card.title}
+                </h3>
+                <p style={{ fontSize: "clamp(14px,1.5vw,16px)", color: "rgba(255,255,255,0.76)", fontFamily: fB, margin: 0, lineHeight: 2 }}>
+                  {card.desc}
+                </p>
               </div>
-            ))}
-          </div>
-          {/* cards */}
-          <div className="gi-grid-2" style={{ gap: 12, opacity: vis ? 1 : 0, transform: vis ? "translateX(0)" : c.dir === "rtl" ? "translateX(-24px)" : "translateX(24px)", transition: "all 0.7s ease 0.1s" }}>
-            {w.cards.map((card, i) => (
-              <div key={card.title} style={{ padding: "20px 18px", background: tk.bgCard, borderRadius: 12, border: `1.5px solid ${tk.border}`, boxShadow: "0 2px 10px rgba(27,94,32,0.05)", opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(12px)", transition: `all 0.5s ease ${0.15 + i * 0.07}s`, textAlign: isAr ? "right" : "left" }}>
-                <div style={{ fontSize: 22, marginBottom: 10 }}>{card.icon}</div>
-                <h4 style={{ fontFamily: fH, fontSize: 13, fontWeight: 800, color: tk.ink, margin: "0 0 6px" }}>{card.title}</h4>
-                <p style={{ fontSize: 12.5, color: tk.muted, fontFamily: fB, margin: 0, lineHeight: 1.75 }}>{card.desc}</p>
+              <div style={{ order: isAr ? 2 : 1, paddingTop: 2 }}>
+                <WhyUsFeatureIcon index={i} />
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -899,10 +984,9 @@ function Contact({ lang, c }) {
     <section id="contact" ref={ref} style={{ background: tk.bg, padding: "clamp(64px,10vw,100px) clamp(16px,4vw,32px)", direction: c.dir }}>
       <div style={{ maxWidth: 1020, margin: "0 auto" }}>
         {/* CTA Banner */}
-        <div className="gi-contact-banner" style={{ borderRadius: 16, background: `linear-gradient(135deg,${tk.forest} 0%,${tk.forestMid} 100%)`, padding: "clamp(26px,5vw,52px) clamp(22px,5vw,56px)", boxShadow: `0 12px 48px rgba(27,94,32,0.25)`, marginBottom: 72, opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(20px)", transition: "all 0.7s ease" }}>
+        <div className="gi-contact-banner" style={{ borderRadius: 16, background: "linear-gradient(135deg, #062a1a 0%, #07341f 50%, #0a3c26 100%)", padding: "clamp(26px,5vw,52px) clamp(22px,5vw,56px)", boxShadow: `0 12px 48px rgba(27,94,32,0.25)`, marginBottom: 72, opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(20px)", transition: "all 0.7s ease" }}>
           <div className="gi-contact-banner-copy" style={{ textAlign: isAr ? "right" : "left" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
-              <span style={{ fontSize: 20 }}>⚡</span>
               <span style={{ fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn, fontSize: 11, color: tk.lime, letterSpacing: "0.1em", textTransform: "uppercase" }}>{ct.slots}</span>
             </div>
             <h2 style={{ fontFamily: fH, fontSize: "clamp(20px,3vw,38px)", fontWeight: 900, color: tk.white, margin: "0 0 12px", letterSpacing: isAr ? "-0.01em" : "-0.04em", lineHeight: 1.15 }}>

@@ -17,7 +17,6 @@ export const metadata: Metadata = {
   title: "Green Ion | Solar Energy Solutions",
   description: "Green Ion landing page for solar installations, monitoring, calculator insights, and solar energy solutions.",
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
