@@ -5,7 +5,10 @@ import Link from "next/link";
 import logo from "@/app/assets/LOGO_.png"
 import hero from "@/app/assets/hero.png"
 import bg1 from "@/app/assets/bg1.png"
+import panel650 from "@/app/assets/2u.png"
+import inverterImage from "@/app/assets/inverter.png"
 import { LANDING_COPY } from "@/app/content/site-copy";
+import { PriceWithRiyal, SaudiRiyalIcon, extractMoneyAmount } from "@/app/components/SaudiRiyalIcon";
 /* ═══════════════════════════════════════════════════════════════
    DESIGN TOKENS — Green Ion Light Theme
 ═══════════════════════════════════════════════════════════════ */
@@ -45,13 +48,18 @@ const tk = {
     headEn: "'Montserrat', system-ui, sans-serif",
     bodyEn: "'Source Sans 3', system-ui, sans-serif",
     monoEn: "'DM Mono', monospace",
-    headAr: "'Cairo', 'Noto Kufi Arabic', sans-serif",
-    bodyAr: "'Cairo', sans-serif",
-    monoAr: "'Cairo', sans-serif",
+    headAr: "'Alyamama', 'Cairo', 'Noto Kufi Arabic', sans-serif",
+    bodyAr: "'Alyamama', 'Cairo', sans-serif",
+    monoAr: "'Alyamama', 'Cairo', sans-serif",
   },
 };
 
-const HERO_BG_VIDEO = "https://res.cloudinary.com/dbjdq8ztb/video/upload/v1782502425/proj3_v5votz.mp4";
+const HERO_BG_VIDEO = "https://res.cloudinary.com/dbjdq8ztb/video/upload/v1783011650/green_ion_stgygv.mp4";
+
+const productImages = {
+  "/eco-panel-650w.png": panel650,
+  "/invt-inverter.png": inverterImage,
+};
 
 const STORAGE_KEYS = {
   overrides: "giLandingOverrides",
@@ -63,6 +71,7 @@ const DEFAULT_SECTIONS = {
   hero: true,
   stats: true,
   solutions: true,
+  services: true,
   "how-it-works": true,
   calculator: true,
   projects: true,
@@ -138,7 +147,7 @@ const BrandLogo = ({ width = 190, alt = "Green Ion logo" }) => (
    SHARED UI
 ═══════════════════════════════════════════════════════════════ */
 const Chip = ({ children, style }) => (
-  <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: tk.forestMid, padding: "5px 14px", border: `1px solid ${tk.borderG}`, borderRadius: 20, background: `rgba(118,196,66,0.1)`, fontWeight: 700, ...style }}>{children}</span>
+  <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: tk.forestMid, padding: "5px 14px", border: `1px solid ${tk.borderG}`, borderRadius: "10px", background: `rgba(118,196,66,0.1)`, fontWeight: 700, ...style }}>{children}</span>
 );
 
 const Arrow = ({ dir, color = tk.forest }) => (
@@ -150,7 +159,7 @@ const Arrow = ({ dir, color = tk.forest }) => (
 function LangToggle({ lang, onToggle, c }) {
   return (
     <button onClick={onToggle} style={{
-      padding: "7px 18px", borderRadius: 20, cursor: "pointer",
+      padding: "7px 18px", borderRadius: "10px", cursor: "pointer",
       background: tk.bgMid, border: `1.5px solid ${tk.borderDk}`,
       color: tk.forest, fontSize: 12, fontWeight: 800,
       fontFamily: lang === "ar" ? tk.ff.headAr : tk.ff.headEn,
@@ -171,31 +180,22 @@ function SolutionCard({ card, c, isAr, fH, fB, vis, delayMs }) {
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
-        padding: "32px 28px",
-        background: card.highlight ? `linear-gradient(145deg,${tk.forest},${tk.forestMid})` : hov ? tk.bgMid : tk.bgCard,
-        border: `1.5px solid ${card.highlight ? "transparent" : hov ? tk.borderG : tk.border}`,
-        borderRadius: 12,
+        padding: "20px 10px 12px",
+        background: hov ? "rgba(255,255,255,0.45)" : "transparent",
+        borderTop: `1px solid ${tk.border}`,
         cursor: "pointer",
         position: "relative",
         opacity: vis ? 1 : 0,
-        transform: vis ? "translateY(0)" : "translateY(24px)",
-        transition: `opacity 0.6s ease ${delayMs}ms, transform 0.6s ease ${delayMs}ms, background 0.3s, border 0.3s`,
-        boxShadow: card.highlight ? `0 8px 40px rgba(27,94,32,0.25)` : hov ? tk.shadow : "0 2px 12px rgba(27,94,32,0.06)",
+        transform: vis ? (hov ? "translateY(-2px)" : "translateY(0)") : "translateY(24px)",
+        transition: `opacity 0.6s ease ${delayMs}ms, transform 0.6s ease ${delayMs}ms, background 0.3s`,
       }}
     >
-      {card.badge && <div style={{ position: "absolute", top: 18, [c.dir === "rtl" ? "left" : "right"]: 18, background: tk.lime, color: tk.forest, fontSize: 10, fontWeight: 800, fontFamily: fH, padding: "3px 10px", borderRadius: 20 }}>{card.badge}</div>}
-      <div style={{ fontSize: 32, marginBottom: 18 }}>{card.icon}</div>
-      <h3 style={{ fontFamily: fH, fontSize: 19, fontWeight: 800, color: card.highlight ? tk.white : tk.ink, margin: "0 0 10px", letterSpacing: isAr ? "-0.01em" : "-0.03em" }}>{card.title}</h3>
-      <p style={{ fontSize: 14, color: card.highlight ? "rgba(255,255,255,0.75)" : tk.muted, lineHeight: 1.8, margin: "0 0 20px", fontFamily: fB }}>{card.desc}</p>
-      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        {card.items.map(item => (
-          <div key={item} style={{ display: "flex", alignItems: "flex-start", gap: 10, fontSize: 13, color: card.highlight ? "rgba(255,255,255,0.8)" : "rgba(58,78,53,0.8)", fontFamily: fB }}>
-            <span style={{ color: tk.lime, marginTop: 2, flexShrink: 0 }}>✓</span>{item}
-          </div>
-        ))}
-      </div>
-      <div style={{ marginTop: 26, display: "flex", alignItems: "center", gap: 6, fontSize: 13, color: card.highlight ? tk.lime : tk.forestMid, fontFamily: fB, fontWeight: 600 }}>
-        {isAr ? <><Arrow dir={c.dir} color={card.highlight ? tk.lime : tk.forestMid} /> اعرف المزيد</> : <>Learn more <Arrow dir={c.dir} color={card.highlight ? tk.lime : tk.forestMid} /></>}
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 14, textAlign: "center", minHeight: "100%" }}>
+        <div>
+          <h3 style={{ fontFamily: fH, fontSize: "clamp(11px,0.95vw,14px)", fontWeight: 800, color: tk.ink, margin: 0, letterSpacing: isAr ? "-0.01em" : "-0.02em", lineHeight: 1.6, whiteSpace: "nowrap" }}>
+            {card.desc}
+          </h3>
+        </div>
       </div>
     </div>
   );
@@ -217,7 +217,7 @@ function ProjectCard({ p, span, c, pr, isAr, fH, fB, vis, delayMs }) {
         flexDirection: "column",
         gridColumn: span,
         minHeight: 100,
-        borderRadius: 15,
+        borderRadius: "10px",
         background: tk.bgCard,
         border: `1.5px solid ${hov ? tk.borderG : tk.border}`,
         position: "relative",
@@ -243,7 +243,7 @@ function ProjectCard({ p, span, c, pr, isAr, fH, fB, vis, delayMs }) {
           />
         ) : null}
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(15,39,16,0.08) 0%, rgba(15,39,16,0.18) 100%)" }} />
-        {p.tag && <div style={{ position: "absolute", top: 14, [c.dir === "rtl" ? "left" : "right"]: 14, background: tk.lime, color: tk.forest, fontSize: 10, fontWeight: 800, fontFamily: fH, padding: "4px 10px", borderRadius: 20 }}>{p.tag}</div>}
+        {p.tag && <div style={{ position: "absolute", top: 14, [c.dir === "rtl" ? "left" : "right"]: 14, background: tk.lime, color: tk.forest, fontSize: 10, fontWeight: 800, fontFamily: fH, padding: "4px 10px", borderRadius: "10px" }}>{p.tag}</div>}
       </div>
       <div style={{ padding: "18px 18px 20px", display: "grid", gap: 10 }}>
         {meta ? <div style={{ fontSize: 11, color: tk.forestMid, fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn, letterSpacing: isAr ? 0 : "0.08em", textTransform: isAr ? "none" : "uppercase" }}>{meta}</div> : null}
@@ -262,6 +262,9 @@ function ProjectCard({ p, span, c, pr, isAr, fH, fB, vis, delayMs }) {
 
 function ProductCard({ item, c, pr, isAr, fH, fB, vis, delayMs }) {
   const [hov, setHov] = useState(false);
+  const productImage = item.image ? productImages[item.image] : null;
+  const contactHref = isAr ? "/#contact" : "/?lang=en#contact";
+  const amount = extractMoneyAmount(item.price);
 
   return (
     <div
@@ -272,7 +275,7 @@ function ProductCard({ item, c, pr, isAr, fH, fB, vis, delayMs }) {
         padding: "28px 24px",
         background: hov ? tk.bgMid : tk.bgCard,
         border: `1.5px solid ${hov ? tk.borderG : tk.border}`,
-        borderRadius: 12,
+        borderRadius: "10px",
         position: "relative",
         opacity: vis ? 1 : 0,
         transform: vis ? "translateY(0)" : "translateY(18px)",
@@ -281,16 +284,31 @@ function ProductCard({ item, c, pr, isAr, fH, fB, vis, delayMs }) {
         cursor: "pointer",
       }}
     >
-      {item.tag && <div style={{ position: "absolute", top: 16, [c.dir === "rtl" ? "left" : "right"]: 16, background: item.tag === "New" || item.tag === "جديد" ? tk.forestMid : tk.lime, color: item.tag === "New" || item.tag === "جديد" ? tk.white : tk.forest, fontSize: 10, fontWeight: 800, fontFamily: fH, padding: "3px 10px", borderRadius: 20 }}>{item.tag}</div>}
-      <div style={{ fontSize: 32, marginBottom: 16 }}>{item.icon}</div>
+      {item.tag && <div style={{ position: "absolute", top: 16, [c.dir === "rtl" ? "left" : "right"]: 16, background: item.tag === "New" || item.tag === "جديد" ? tk.forestMid : tk.lime, color: item.tag === "New" || item.tag === "جديد" ? tk.white : tk.forest, fontSize: 10, fontWeight: 800, fontFamily: fH, padding: "3px 10px", borderRadius: "10px" }}>{item.tag}</div>}
+      <div style={{ width: "100%", height: 160, marginBottom: 16, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        {productImage ? (
+          <Image
+            src={productImage}
+            alt={item.name}
+            style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain", width: "auto", height: "auto" }}
+          />
+        ) : null}
+      </div>
       <h3 style={{ fontFamily: fH, fontSize: 15, fontWeight: 800, color: tk.ink, margin: "0 0 6px" }}>{item.name}</h3>
       <p style={{ fontSize: 12, color: tk.muted, fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn, margin: "0 0 20px" }}>{item.spec}</p>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <span style={{ fontFamily: fH, fontSize: 18, fontWeight: 900, color: tk.forest }}>{item.price}</span>
-        <button style={{ padding: "7px 14px", borderRadius: 8, background: tk.forest, color: tk.white, border: "none", cursor: "pointer", fontSize: 12, fontFamily: fB, fontWeight: 600, transition: "all 0.2s" }}
+        <PriceWithRiyal
+          amount={amount}
+          color={tk.forest}
+          iconSize={16}
+          style={{ fontFamily: fH, fontSize: 18, fontWeight: 900 }}
+        />
+        <Link
+          href={contactHref}
+          style={{ padding: "7px 14px", borderRadius: "10px", background: tk.forest, color: tk.white, border: "none", cursor: "pointer", fontSize: 12, fontFamily: fB, fontWeight: 600, transition: "all 0.2s", textDecoration: "none", display: "inline-flex", alignItems: "center", justifyContent: "center" }}
           onMouseEnter={e => { e.currentTarget.style.background = tk.forestMid; }}
           onMouseLeave={e => { e.currentTarget.style.background = tk.forest; }}
-        >{pr.getQuote}</button>
+        >{pr.getQuote}</Link>
       </div>
     </div>
   );
@@ -303,7 +321,7 @@ function Nav({ lang, onToggle, c }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const isAr = lang === "ar";
-  const navHrefs = ["#home", isAr ? "/about?lang=ar" : "/about?lang=en", "#how-it-works", "#projects", "#calculator", "#contact"];
+  const navHrefs = ["#home", isAr ? "/about?lang=ar" : "/about?lang=en", `/services?lang=${lang}`, "#how-it-works", "#projects", "#calculator", "#contact"];
   const fHead = isAr ? tk.ff.headAr : tk.ff.headEn;
   const fBody = isAr ? tk.ff.bodyAr : tk.ff.bodyEn;
   useEffect(() => {
@@ -346,7 +364,7 @@ function Nav({ lang, onToggle, c }) {
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <LangToggle lang={lang} onToggle={onToggle} c={c} />
           <button className="gi-nav-cta" style={{
-            padding: "10px 22px", borderRadius: 8, background: tk.forest, color: tk.white,
+            padding: "10px 22px", borderRadius: "10px", background: tk.forest, color: tk.white,
             border: "none", cursor: "pointer", fontSize: 13, fontWeight: 700,
             fontFamily: fHead, boxShadow: `0 4px 16px rgba(27,94,32,0.3)`, transition: "all 0.2s",
           }}
@@ -363,7 +381,7 @@ function Nav({ lang, onToggle, c }) {
             style={{
               width: 42,
               height: 42,
-              borderRadius: 10,
+              borderRadius: "10px",
               background: tk.white,
               border: `1.5px solid ${tk.borderDk}`,
               color: tk.forest,
@@ -407,7 +425,7 @@ function Nav({ lang, onToggle, c }) {
                   fontSize: 14,
                   color: tk.ink,
                   padding: "10px 12px",
-                  borderRadius: 10,
+                  borderRadius: "10px",
                   border: `1.5px solid ${tk.border}`,
                   background: tk.bgCard,
                 }}
@@ -420,7 +438,7 @@ function Nav({ lang, onToggle, c }) {
               onClick={() => { setOpen(false); window.location.hash = "contact"; }}
               style={{
                 padding: "12px 14px",
-                borderRadius: 10,
+                borderRadius: "10px",
                 background: tk.forest,
                 color: tk.white,
                 border: "none",
@@ -498,14 +516,14 @@ function Hero({ lang, c }) {
             </h1>
             {c.hero.sub ? <p style={{ fontSize: "clamp(15px,2vw,18px)", color: tk.white, lineHeight: 1.9, margin: "0 0 44px", maxWidth: 540, fontFamily: fBody, opacity: on ? 1 : 0, transform: on ? "translateY(0)" : "translateY(18px)", transition: `all 0.7s ${tk.ease} 0.16s` }}>{c.hero.sub}</p> : null}
             <div className="gi-hero-actions" style={{ opacity: on ? 1 : 0, transform: on ? "translateY(0)" : "translateY(14px)", transition: `all 0.7s ${tk.ease} 0.24s` }}>
-              <button style={{ padding: "15px 34px", borderRadius: 8, background: tk.forest, color: tk.white, border: "none", cursor: "pointer", fontSize: 14, fontWeight: 700, fontFamily: fHead, boxShadow: `0 6px 28px rgba(27,94,32,0.35)`, display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center", gap: 8, transition: "all 0.2s" }}
+              <button style={{ padding: "15px 34px", borderRadius: "10px", background: tk.forest, color: tk.white, border: "none", cursor: "pointer", fontSize: 14, fontWeight: 700, fontFamily: fHead, boxShadow: `0 6px 28px rgba(27,94,32,0.35)`, display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center", gap: 8, transition: "all 0.2s" }}
                 onClick={() => window.location.hash = "contact"}
                 onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = `0 10px 36px rgba(27,94,32,0.45)`; }}
                 onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = `0 6px 28px rgba(27,94,32,0.35)`; }}
               >
                 {c.hero.cta1} <Arrow dir={c.dir} color={tk.white} />
               </button>
-              <button style={{ padding: "15px 26px", borderRadius: 8, background: tk.white, color: tk.forest, border: `1.5px solid ${tk.borderDk}`, cursor: "pointer", fontSize: 14, fontFamily: fBody, fontWeight: 500, boxShadow: tk.shadow, transition: "all 0.2s", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center" }}
+              <button style={{ padding: "15px 26px", borderRadius: "10px", background: tk.white, color: tk.forest, border: `1.5px solid ${tk.borderDk}`, cursor: "pointer", fontSize: 14, fontFamily: fBody, fontWeight: 500, boxShadow: tk.shadow, transition: "all 0.2s", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center" }}
                 onClick={() => window.location.hash = "how-it-works"}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = tk.lime; e.currentTarget.style.color = tk.forestMid; }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = tk.borderDk; e.currentTarget.style.color = tk.forest; }}
@@ -518,26 +536,183 @@ function Hero({ lang, c }) {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SOLUTIONS
+   SERVICES (CHANGED FROM SOLUTIONS)
 ═══════════════════════════════════════════════════════════════ */
-function Solutions({ lang, c }) {
+function Services({ lang, c }) {
   const [ref, vis] = useInView();
   const isAr = lang === "ar";
   const fH = isAr ? tk.ff.headAr : tk.ff.headEn;
   const fB = isAr ? tk.ff.bodyAr : tk.ff.bodyEn;
-  const s = c.solutions;
+  const s = c.services;
+  const { useRouter } = require('next/navigation');
+  const router = useRouter();
+  const displayedPackages = s.packages.slice(0, 3);
+  
   return (
-    <section id="solutions" ref={ref} style={{ background: tk.bg, padding: "clamp(64px,10vw,100px) clamp(16px,4vw,32px)", direction: c.dir, position: "relative", zIndex: 1 }}>
-      <div style={{ maxWidth: 1160, margin: "0 auto" }}>
+    <section id="services" ref={ref} style={{ background: tk.bg, padding: "clamp(64px,10vw,100px) clamp(16px,4vw,32px)", direction: c.dir, position: "relative", zIndex: 1 }}>
+      <div style={{ maxWidth: 1240, margin: "0 auto" }}>
         <div style={{ marginBottom: 64, display: "flex", flexDirection: "column", gap: 14, alignItems: "center", textAlign: "center" }}>
           <Chip>{s.chip}</Chip>
           <h2 style={{ fontFamily: fH, fontSize: "clamp(30px,5vw,54px)", fontWeight: 900, color: tk.ink, margin: 0, letterSpacing: isAr ? "-0.01em" : "-0.04em", lineHeight: 1.1, textAlign: "center" }}>
             {s.h2a}<br /><span style={{ color: tk.lime }}>{s.h2b}</span>
           </h2>
-          <p style={{ fontSize: 16, color: tk.muted, fontFamily: fB, margin: "0 auto", maxWidth: 500, lineHeight: 1.85, textAlign: "center" }}>{s.sub}</p>
+          {s.sub && <p style={{ fontSize: 16, color: tk.muted, fontFamily: fB, lineHeight: 1.85, maxWidth: 600, margin: "8px 0 0", textAlign: "center" }}>{s.sub}</p>}
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: 16 }}>
-          {s.cards.map((card, i) => <SolutionCard key={card.title} card={card} c={c} isAr={isAr} fH={fH} fB={fB} vis={vis} delayMs={i * 90} />)}
+
+        <div style={{ 
+          display: "grid", 
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", 
+          gap: 20 
+        }}>
+          {displayedPackages.map((pkg, i) => (
+            <div 
+              key={pkg.id}
+              onClick={() => router.push(`/services/${pkg.id}?lang=${lang}`)}
+              style={{
+                background: tk.white,
+                borderRadius: "10px",
+                border: `1.5px solid ${tk.border}`,
+                padding: "28px 24px",
+                boxShadow: tk.shadow,
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+                opacity: vis ? 1 : 0,
+                transform: vis ? "translateY(0)" : "translateY(20px)",
+                transitionDelay: `${i * 80}ms`,
+                display: "flex",
+                flexDirection: "column",
+                gap: 14,
+                textAlign: isAr ? "right" : "left"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-4px)";
+                e.currentTarget.style.boxShadow = tk.shadowLg;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = tk.shadow;
+              }}
+            >
+              <div style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: 8
+              }}>
+                <h3 style={{
+                  fontFamily: fH,
+                  fontSize: "clamp(20px, 2.1vw, 26px)",
+                  fontWeight: 900,
+                  color: tk.ink,
+                  margin: 0
+                }}>{pkg.title}</h3>
+                {pkg.badge && (
+                  <span style={{
+                    fontSize: 11,
+                    padding: "4px 12px",
+                    borderRadius: "10px",
+                    background: `rgba(118,196,66,0.12)`,
+                    color: tk.forestMid,
+                    fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.06em",
+                    border: `1px solid ${tk.borderG}`
+                  }}>{pkg.badge}</span>
+                )}
+              </div>
+
+              <p style={{
+                fontSize: 14,
+                color: tk.body,
+                fontFamily: fB,
+                lineHeight: 1.75,
+                margin: 0
+              }}>{pkg.summary}</p>
+
+              <div style={{
+                marginTop: "auto",
+                paddingTop: 16,
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center"
+              }}>
+                <div style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: isAr ? "flex-end" : "flex-start"
+                }}>
+                  <span style={{
+                    fontSize: 28,
+                    fontWeight: 900,
+                    color: tk.forest,
+                    fontFamily: fH
+                  }}>{pkg.price}</span>
+                  <span style={{
+                    fontSize: 12,
+                    color: tk.muted,
+                    fontFamily: fB
+                  }}>
+                    <SaudiRiyalIcon
+                      size={12}
+                      color={tk.muted}
+                      title={isAr ? "ريال سعودي" : "Saudi Riyal"}
+                    />
+                  </span>
+                </div>
+                
+                <Link
+                  href={isAr ? "/#contact" : "/?lang=en#contact"}
+                  onClick={(e) => e.stopPropagation()}
+                  style={{
+                    padding: "12px 24px",
+                    borderRadius: "10px",
+                    background: tk.forest,
+                    color: tk.white,
+                    border: "none",
+                    cursor: "pointer",
+                    fontSize: 13,
+                    fontWeight: 700,
+                    fontFamily: fH,
+                    boxShadow: `0 4px 16px rgba(27,94,32,0.25)`,
+                    transition: "all 0.2s ease",
+                    textDecoration: "none"
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.background = tk.forestMid}
+                  onMouseLeave={(e) => e.currentTarget.style.background = tk.forest}
+                >{pkg.cta}</Link>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        <div style={{ marginTop: 48, textAlign: "center" }}>
+          <button 
+            onClick={() => router.push(`/services?lang=${lang}`)}
+            style={{
+              padding: 0,
+              borderRadius: 0,
+              background: "transparent",
+              color: tk.forest,
+              border: "none",
+              cursor: "pointer",
+              fontSize: 16,
+              fontWeight: 800,
+              fontFamily: fH,
+              boxShadow: "none",
+              transition: "all 0.2s ease",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-2px)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0)";
+            }}
+          >
+            {isAr ? "عرض المزيد" : "View More"} <Arrow dir={c.dir} color={tk.forest} />
+          </button>
         </div>
       </div>
     </section>
@@ -553,6 +728,7 @@ function HowItWorks({ lang, c }) {
   const fH = isAr ? tk.ff.headAr : tk.ff.headEn;
   const fB = isAr ? tk.ff.bodyAr : tk.ff.bodyEn;
   const h = c.howit;
+  const processLabel = isAr ? "منهجية التنفيذ" : "Execution Framework";
 
   return (
     <section id="how-it-works" ref={ref} style={{ background: tk.bgMid, padding: "clamp(64px,10vw,100px) clamp(16px,4vw,32px)", direction: c.dir, position: "relative", overflow: "hidden" }}>
@@ -579,9 +755,7 @@ function HowItWorks({ lang, c }) {
           {h.steps.map((s, i) => (
             <div key={s.title} style={{ padding: "32px 26px", background: tk.bgCard, borderRadius: 12, border: `1.5px solid ${tk.border}`, boxShadow: "0 2px 16px rgba(27,94,32,0.06)", opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(20px)", transition: `all 0.6s ease ${i * 100}ms`, position: "relative", textAlign: isAr ? "right" : "left" }}>
               {/* Step number accent */}
-              <div style={{ position: "absolute", top: 20, [c.dir === "rtl" ? "left" : "right"]: 20, fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn, fontSize: 28, fontWeight: 900, color: `rgba(118,196,66,0.15)`, lineHeight: 1 }}>{s.n}</div>
-              <div style={{ width: 48, height: 48, borderRadius: 12, background: `rgba(27,94,32,0.08)`, border: `1.5px solid ${tk.borderG}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, marginBottom: 18 }}>{s.icon}</div>
-              <h3 style={{ fontFamily: fH, fontSize: 17, fontWeight: 800, color: tk.ink, margin: "0 0 10px", letterSpacing: isAr ? "-0.01em" : "-0.02em" }}>{s.title}</h3>
+             <h3 style={{ fontFamily: fH, fontSize: 17, fontWeight: 800, color: tk.ink, margin: "0 0 10px", letterSpacing: isAr ? "-0.01em" : "-0.02em" }}>{s.title}</h3>
               <p style={{ fontSize: 13.5, color: tk.muted, lineHeight: 1.85, margin: 0, fontFamily: fB }}>{s.desc}</p>
             </div>
           ))}
@@ -610,7 +784,19 @@ function Calculator({ lang, c }) {
   const payback = (systemKw * 6500 / annualSave).toFixed(1);
 
   const results = [
-    { label: cc.rows[0], val: `${isAr ? "ريال" : "SAR"} ${annualSave.toLocaleString()}`, sub: cc.units[0], hi: true },
+    {
+      label: cc.rows[0],
+      val: (
+        <PriceWithRiyal
+          amount={annualSave.toLocaleString()}
+          color={tk.lime}
+          iconSize={16}
+          style={{ fontFamily: fH, fontSize: 18, fontWeight: 900 }}
+        />
+      ),
+      sub: cc.units[0],
+      hi: true
+    },
     { label: cc.rows[1], val: `${annualGen.toLocaleString()} kWh`, sub: cc.units[1], hi: false },
     { label: cc.rows[2], val: `${co2} ${isAr ? "طن" : "t"}`, sub: cc.units[2], hi: false },
     { label: cc.rows[3], val: `${payback} ${isAr ? "سنة" : "yrs"}`, sub: cc.units[3], hi: false },
@@ -624,13 +810,23 @@ function Calculator({ lang, c }) {
           <h2 style={{ fontFamily: fH, fontSize: "clamp(26px,4vw,46px)", fontWeight: 900, color: tk.ink, margin: "18px 0 12px", letterSpacing: isAr ? "-0.01em" : "-0.04em", textAlign: "center" }}>{cc.h2}</h2>
           <p style={{ fontSize: 15, color: tk.muted, fontFamily: fB, lineHeight: 1.85, textAlign: "center" }}>{cc.sub}</p>
         </div>
-        <div style={{ background: tk.bgCard, borderRadius: 16, border: `1.5px solid ${tk.border}`, overflow: "hidden", boxShadow: tk.shadowLg, opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(24px)", transition: "all 0.7s ease" }}>
+        <div style={{ background: tk.bgCard, borderRadius: "10px", border: `1.5px solid ${tk.border}`, overflow: "hidden", boxShadow: tk.shadowLg, opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(24px)", transition: "all 0.7s ease" }}>
           <div className="gi-grid-2">
             {/* Inputs */}
             <div className="gi-no-border-mobile" style={{ padding: "clamp(22px,5vw,44px) clamp(18px,5vw,40px)", borderInlineEnd: `1.5px solid ${tk.border}`, order: isAr ? 2 : 1, textAlign: isAr ? "right" : "left" }}>
               <h3 style={{ fontFamily: fH, fontSize: 16, fontWeight: 800, color: tk.ink, margin: "0 0 32px" }}>{isAr ? "بياناتك" : "Your Details"}</h3>
               {[
-                { label: cc.billLabel, val: bill, setter: setBill, min: 100, max: 2000, step: 50, lo: `${isAr ? "ريال" : "SAR"} 100`, hi: `${isAr ? "ريال" : "SAR"} 2000`, dispVal: `${isAr ? "ريال" : "SAR"} ${bill}` },
+                {
+                  label: cc.billLabel,
+                  val: bill,
+                  setter: setBill,
+                  min: 100,
+                  max: 2000,
+                  step: 50,
+                  lo: <PriceWithRiyal amount="100" color={tk.mutedLt} iconSize={11} style={{ fontSize: 11, fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn }} />,
+                  hi: <PriceWithRiyal amount="2000" color={tk.mutedLt} iconSize={11} style={{ fontSize: 11, fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn }} />,
+                  dispVal: <PriceWithRiyal amount={bill} color={tk.forestMid} iconSize={13} style={{ fontSize: 13, fontWeight: 700, fontFamily: fH }} />
+                },
                 { label: cc.areaLabel, val: area, setter: setArea, min: 20, max: 500, step: 10, lo: "20 m²", hi: "500 m²", dispVal: `${area} m²` },
               ].map(sl => (
                 <div key={sl.label} style={{ marginBottom: 32 }}>
@@ -642,7 +838,7 @@ function Calculator({ lang, c }) {
                   <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6, fontSize: 11, color: tk.mutedLt, fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn }}><span>{sl.lo}</span><span>{sl.hi}</span></div>
                 </div>
               ))}
-              <div style={{ padding: "16px 18px", background: `rgba(27,94,32,0.05)`, borderRadius: 10, border: `1.5px solid ${tk.borderG}` }}>
+              <div style={{ padding: "16px 18px", background: `rgba(27,94,32,0.05)`, borderRadius: "10px", border: `1.5px solid ${tk.borderG}` }}>
                 <div style={{ fontSize: 11, color: tk.forestMid, fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn, letterSpacing: "0.08em", marginBottom: 6, textTransform: "uppercase" }}>{cc.sys}</div>
                 <div style={{ fontFamily: fH, fontSize: 28, fontWeight: 900, color: tk.forest }}>{systemKw} kWp</div>
                 <div style={{ fontSize: 13, color: tk.muted, fontFamily: fB, marginTop: 4 }}>{cc.sysDesc} {Math.ceil(systemKw / 0.55)} {cc.panels}</div>
@@ -653,14 +849,14 @@ function Calculator({ lang, c }) {
               <h3 style={{ fontFamily: fH, fontSize: 16, fontWeight: 800, color: tk.ink, margin: "0 0 32px" }}>{cc.results}</h3>
               <div className="gi-grid-2" style={{ gap: 12, marginBottom: 24 }}>
                 {results.map(r => (
-                  <div key={r.label} style={{ padding: "18px 16px", borderRadius: 10, background: r.hi ? tk.forest : tk.bgCard, border: `1.5px solid ${r.hi ? "transparent" : tk.border}`, boxShadow: r.hi ? `0 4px 20px rgba(27,94,32,0.2)` : "none" }}>
+                  <div key={r.label} style={{ padding: "18px 16px", borderRadius: "10px", background: r.hi ? tk.forest : tk.bgCard, border: `1.5px solid ${r.hi ? "transparent" : tk.border}`, boxShadow: r.hi ? `0 4px 20px rgba(27,94,32,0.2)` : "none" }}>
                     <div style={{ fontSize: 11, color: r.hi ? "rgba(255,255,255,0.7)" : tk.muted, fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn, letterSpacing: "0.06em", marginBottom: 8, textTransform: "uppercase" }}>{r.label}</div>
                     <div style={{ fontFamily: fH, fontSize: 18, fontWeight: 900, color: r.hi ? tk.lime : tk.ink }}>{r.val}</div>
                     <div style={{ fontSize: 11, color: r.hi ? "rgba(255,255,255,0.6)" : tk.muted, fontFamily: fB, marginTop: 4 }}>{r.sub}</div>
                   </div>
                 ))}
               </div>
-              <button style={{ width: "100%", padding: "14px", borderRadius: 10, background: tk.forest, color: tk.white, border: "none", cursor: "pointer", fontSize: 13.5, fontWeight: 700, fontFamily: fH, boxShadow: `0 4px 20px rgba(27,94,32,0.3)`, transition: "all 0.2s" }}
+              <button style={{ width: "100%", padding: "14px", borderRadius: "10px", background: tk.forest, color: tk.white, border: "none", cursor: "pointer", fontSize: 13.5, fontWeight: 700, fontFamily: fH, boxShadow: `0 4px 20px rgba(27,94,32,0.3)`, transition: "all 0.2s" }}
                 onMouseEnter={e => { e.currentTarget.style.background = tk.forestMid; }}
                 onMouseLeave={e => { e.currentTarget.style.background = tk.forest; }}
               >{cc.btn}</button>
@@ -704,7 +900,7 @@ function Projects({ lang, c }) {
           </div>
           <div style={{ display: cats.length > 1 ? "flex" : "none", gap: 8, flexWrap: "wrap", justifyContent: "center" }}>
             {cats.map((cat, i) => (
-              <button key={cat} onClick={() => setActive(i)} style={{ padding: "7px 16px", borderRadius: 20, background: active === i ? tk.forest : "transparent", color: active === i ? tk.white : tk.muted, border: `1.5px solid ${active === i ? tk.forest : tk.borderDk}`, cursor: "pointer", fontSize: 12, fontFamily: fB, fontWeight: 600, transition: "all 0.2s" }}>{cat}</button>
+              <button key={cat} onClick={() => setActive(i)} style={{ padding: "7px 16px", borderRadius: "10px", background: active === i ? tk.forest : "transparent", color: active === i ? tk.white : tk.muted, border: `1.5px solid ${active === i ? tk.forest : tk.borderDk}`, cursor: "pointer", fontSize: 12, fontFamily: fB, fontWeight: 600, transition: "all 0.2s" }}>{cat}</button>
             ))}
           </div>
         </div>
@@ -733,9 +929,6 @@ function Products({ lang, c }) {
             <Chip>{pr.chip}</Chip>
             <h2 style={{ fontFamily: fH, fontSize: "clamp(24px,4vw,44px)", fontWeight: 900, color: tk.ink, margin: "16px 0 0", letterSpacing: isAr ? "-0.01em" : "-0.04em", textAlign: "center" }}>{pr.h2}</h2>
           </div>
-          <a href="#" style={{ fontSize: 13, color: tk.forestMid, fontFamily: fB, display: "flex", alignItems: "center", gap: 6, textDecoration: "none", fontWeight: 600 }}>
-            {isAr ? <><Arrow dir={c.dir} color={tk.forestMid} /> {pr.viewAll}</> : <>{pr.viewAll} <Arrow dir={c.dir} color={tk.forestMid} /></>}
-          </a>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: 14 }}>
           {pr.items.map((item, i) => <ProductCard key={item.name} item={item} c={c} pr={pr} isAr={isAr} fH={fH} fB={fB} vis={vis} delayMs={i * 90} />)}
@@ -850,7 +1043,7 @@ function WhyUs({ lang, c }) {
         <div style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", marginBottom: 56, opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(20px)", transition: "all 0.7s ease" }}>
           <Chip style={{ color: tk.lime, border: "1px solid rgba(118,196,66,0.38)", background: "rgba(118,196,66,0.08)" }}>{w.chip}</Chip>
           <h2 style={{ fontFamily: fH, fontSize: "clamp(26px,3.8vw,46px)", fontWeight: 900, color: tk.white, margin: "18px 0 16px", letterSpacing: isAr ? "-0.01em" : "-0.04em", lineHeight: 1.15, textAlign: "center" }}>
-            {w.h2a}<br /><span style={{ color: tk.forestMid }}>{w.h2b}</span>
+            {w.h2a}<br /><span style={{ color: tk.lime }}>{w.h2b}</span>
           </h2>
           <p style={{ fontSize: 15.5, color: "rgba(255,255,255,0.78)", fontFamily: fB, margin: 0, maxWidth: 760, lineHeight: 1.95, textAlign: "center" }}>{w.sub}</p>
         </div>
@@ -872,7 +1065,7 @@ function WhyUs({ lang, c }) {
               }}
             >
               <div style={{ order: isAr ? 1 : 2, textAlign: isAr ? "right" : "left" }}>
-                <h3 style={{ fontFamily: fH, fontSize: "clamp(20px,2.1vw,28px)", fontWeight: 900, color: tk.ink, margin: "0 0 12px", lineHeight: 1.4 }}>
+                <h3 style={{ fontFamily: fH, fontSize: "clamp(20px,2.1vw,28px)", fontWeight: 900, color: tk.lime, margin: "0 0 12px", lineHeight: 1.4 }}>
                   {card.title}
                 </h3>
                 <p style={{ fontSize: "clamp(14px,1.5vw,16px)", color: "rgba(255,255,255,0.76)", fontFamily: fB, margin: 0, lineHeight: 2 }}>
@@ -911,7 +1104,7 @@ function Testimonials({ lang, c }) {
           <Chip>{tm.chip}</Chip>
           <h2 style={{ fontFamily: fH, fontSize: "clamp(24px,4vw,44px)", fontWeight: 900, color: tk.ink, margin: "18px 0 0", letterSpacing: isAr ? "-0.01em" : "-0.04em", textAlign: "center" }}>{tm.h2}</h2>
         </div>
-        <div style={{ background: tk.bgCard, borderRadius: 16, border: `1.5px solid ${tk.border}`, padding: "clamp(24px,5vw,44px) clamp(20px,5vw,48px)", position: "relative", opacity: vis ? 1 : 0, transition: "opacity 0.7s ease", boxShadow: tk.shadowLg, textAlign: isAr ? "right" : "left" }}>
+        <div style={{ background: tk.bgCard, borderRadius: "10px", border: `1.5px solid ${tk.border}`, padding: "clamp(24px,5vw,44px) clamp(20px,5vw,48px)", position: "relative", opacity: vis ? 1 : 0, transition: "opacity 0.7s ease", boxShadow: tk.shadowLg, textAlign: isAr ? "right" : "left" }}>
           <div style={{ fontSize: 72, color: tk.lime, opacity: 0.25, position: "absolute", top: 14, [c.dir === "rtl" ? "right" : "left"]: 32, lineHeight: 1, fontFamily: fH }}>{isAr ? "\u201C" : '"'}</div>
           <p style={{ fontSize: 17, color: tk.body, lineHeight: 1.9, fontFamily: fB, fontStyle: "italic", margin: "0 0 32px", position: "relative" }}>{cur.quote}</p>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
@@ -923,7 +1116,7 @@ function Testimonials({ lang, c }) {
               </div>
             </div>
             <div style={{ display: "flex", gap: 8 }}>
-              {tm.items.map((_, i) => <button key={i} onClick={() => setIdx(i)} style={{ width: i === idx ? 28 : 8, height: 8, borderRadius: 4, background: i === idx ? tk.forest : tk.borderDk, border: "none", cursor: "pointer", padding: 0, transition: "all 0.35s ease" }} />)}
+              {tm.items.map((_, i) => <button key={i} onClick={() => setIdx(i)} style={{ width: i === idx ? 28 : 8, height: 8, borderRadius: "10px", background: i === idx ? tk.forest : tk.borderDk, border: "none", cursor: "pointer", padding: 0, transition: "all 0.35s ease" }} />)}
             </div>
           </div>
         </div>
@@ -984,7 +1177,7 @@ function Contact({ lang, c }) {
     <section id="contact" ref={ref} style={{ background: tk.bg, padding: "clamp(64px,10vw,100px) clamp(16px,4vw,32px)", direction: c.dir }}>
       <div style={{ maxWidth: 1020, margin: "0 auto" }}>
         {/* CTA Banner */}
-        <div className="gi-contact-banner" style={{ borderRadius: 16, background: "linear-gradient(135deg, #062a1a 0%, #07341f 50%, #0a3c26 100%)", padding: "clamp(26px,5vw,52px) clamp(22px,5vw,56px)", boxShadow: `0 12px 48px rgba(27,94,32,0.25)`, marginBottom: 72, opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(20px)", transition: "all 0.7s ease" }}>
+        <div className="gi-contact-banner" style={{ borderRadius: "10px", background: "linear-gradient(135deg, #062a1a 0%, #07341f 50%, #0a3c26 100%)", padding: "clamp(26px,5vw,52px) clamp(22px,5vw,56px)", boxShadow: `0 12px 48px rgba(27,94,32,0.25)`, marginBottom: 72, opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(20px)", transition: "all 0.7s ease" }}>
           <div className="gi-contact-banner-copy" style={{ textAlign: isAr ? "right" : "left" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
               <span style={{ fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn, fontSize: 11, color: tk.lime, letterSpacing: "0.1em", textTransform: "uppercase" }}>{ct.slots}</span>
@@ -994,7 +1187,7 @@ function Contact({ lang, c }) {
             </h2>
             <p style={{ fontSize: 14, color: "rgba(255,255,255,0.7)", fontFamily: fB, margin: 0, lineHeight: 1.8 }}>{ct.bannerSub}</p>
           </div>
-          <button className="gi-contact-banner-button" style={{ padding: "14px 32px", borderRadius: 10, background: tk.lime, color: tk.forest, border: "none", cursor: "pointer", fontSize: 14, fontWeight: 800, fontFamily: fH, whiteSpace: "nowrap", boxShadow: `0 4px 20px rgba(118,196,66,0.4)`, transition: "all 0.2s" }}
+          <button className="gi-contact-banner-button" style={{ padding: "14px 32px", borderRadius: "10px", background: tk.lime, color: tk.forest, border: "none", cursor: "pointer", fontSize: 14, fontWeight: 800, fontFamily: fH, whiteSpace: "nowrap", boxShadow: `0 4px 20px rgba(118,196,66,0.4)`, transition: "all 0.2s" }}
             onMouseEnter={e => { e.currentTarget.style.background = tk.limeLt; e.currentTarget.style.transform = "translateY(-2px)"; }}
             onMouseLeave={e => { e.currentTarget.style.background = tk.lime; e.currentTarget.style.transform = "translateY(0)"; }}
           >{ct.bannerCta}</button>
@@ -1008,7 +1201,7 @@ function Contact({ lang, c }) {
             <p style={{ fontSize: 14, color: tk.muted, fontFamily: fB, margin: "0 0 32px", lineHeight: 1.85 }}>{ct.sub}</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               {ct.contactItems.map(([icon, val]) => (
-                <div key={val} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 14px", background: tk.bgCard, borderRadius: 10, border: `1px solid ${tk.border}` }}>
+                <div key={val} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 14px", background: tk.bgCard, borderRadius: "10px", border: `1px solid ${tk.border}` }}>
                   <span style={{ fontSize: 16 }}>{icon}</span>
                   <span style={{ fontSize: 13.5, color: tk.body, fontFamily: fB }}>{val}</span>
                 </div>
@@ -1017,7 +1210,7 @@ function Contact({ lang, c }) {
           </div>
 
           {sent ? (
-            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: isAr ? "flex-end" : "center", gap: 14, padding: "40px 0", background: tk.bgCard, borderRadius: 16, border: `1.5px solid ${tk.border}`, order: isAr ? 1 : 2, textAlign: isAr ? "right" : "center" }}>
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: isAr ? "flex-end" : "center", gap: 14, padding: "40px 0", background: tk.bgCard, borderRadius: "10px", border: `1.5px solid ${tk.border}`, order: isAr ? 1 : 2, textAlign: isAr ? "right" : "center" }}>
               <div style={{ fontSize: 52 }}>🌿</div>
               <h3 style={{ fontFamily: fH, fontSize: 22, color: tk.forestMid, margin: 0 }}>{ct.sentTitle}</h3>
               <p style={{ fontSize: 14, color: tk.muted, fontFamily: fB, textAlign: "center", lineHeight: 1.8, maxWidth: 280 }}>{ct.sentMsg}</p>
@@ -1045,7 +1238,7 @@ function Contact({ lang, c }) {
                   {ct.types.map(o => <option key={o}>{o}</option>)}
                 </select>
               </div>
-              <button onClick={() => setSent(true)} style={{ marginTop: 8, padding: "14px", borderRadius: 10, background: tk.forest, color: tk.white, border: "none", cursor: "pointer", fontSize: 14, fontWeight: 700, fontFamily: fH, boxShadow: `0 4px 20px rgba(27,94,32,0.25)`, transition: "all 0.2s" }}
+              <button onClick={() => setSent(true)} style={{ marginTop: 8, padding: "14px", borderRadius: "10px", background: tk.forest, color: tk.white, border: "none", cursor: "pointer", fontSize: 14, fontWeight: 700, fontFamily: fH, boxShadow: `0 4px 20px rgba(27,94,32,0.25)`, transition: "all 0.2s" }}
                 onMouseEnter={e => { e.currentTarget.style.background = tk.forestMid; e.currentTarget.style.transform = "translateY(-1px)"; }}
                 onMouseLeave={e => { e.currentTarget.style.background = tk.forest; e.currentTarget.style.transform = "translateY(0)"; }}
               >{ct.btn}</button>
@@ -1153,7 +1346,7 @@ export default function GreenIonSite() {
       <Nav lang={lang} onToggle={toggle} c={c} />
       {sectionsEnabled.hero && <Hero lang={lang} c={c} />}
       <div style={{ position: "relative", zIndex: 1, background: tk.bg }}>
-        {sectionsEnabled.solutions && <Solutions lang={lang} c={c} />}
+        {sectionsEnabled.services && <Services lang={lang} c={c} />}
         {sectionsEnabled["how-it-works"] && <HowItWorks lang={lang} c={c} />}
         {sectionsEnabled.calculator && <Calculator lang={lang} c={c} />}
         {sectionsEnabled.projects && <Projects lang={lang} c={c} />}

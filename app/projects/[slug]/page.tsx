@@ -25,9 +25,9 @@ const tk = {
     headEn: "'Montserrat', system-ui, sans-serif",
     bodyEn: "'Source Sans 3', system-ui, sans-serif",
     monoEn: "'DM Mono', monospace",
-    headAr: "'Cairo', 'Noto Kufi Arabic', sans-serif",
-    bodyAr: "'Cairo', sans-serif",
-    monoAr: "'Cairo', sans-serif",
+    headAr: "'Alyamama', 'Cairo', 'Noto Kufi Arabic', sans-serif",
+    bodyAr: "'Alyamama', 'Cairo', sans-serif",
+    monoAr: "'Alyamama', 'Cairo', sans-serif",
   },
 };
 

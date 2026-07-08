@@ -5,7 +5,7 @@ export const LANDING_COPY = {
     langAlt: "عربي",
     brand: "Green Ion",
     nav: {
-      links: ["Home", "About Us", "How It Works", "Projects", "Calculator", "Contact"],
+      links: ["Home", "About Us", "Our Services", "How It Works", "Projects", "Calculator", "Contact"],
       cta: "Book Assessment Appointment",
     },
     hero: {
@@ -35,6 +35,159 @@ export const LANDING_COPY = {
         { icon: "🌾", title: "Agricultural Solar", badge: null, highlight: false, desc: "Power farms, irrigation, and processing facilities with reliable off-grid solutions.", items: ["Ground-mount & tracker systems", "Pump & irrigation power", "Off-grid capability", "Rugged weather-proof hardware", "Seasonal performance tuning"] },
         { icon: "🔋", title: "Battery Storage", badge: null, highlight: false, desc: "Store excess energy and use it when you need it most — day or night, rain or shine.", items: ["LiFePO4 battery banks", "Whole-home backup", "Time-of-use optimization", "EV charging integration", "Smart load management"] },
       ],
+    },
+    services: {
+      chip: "Our Services",
+      h2a: "Our Packages",
+      h2b: "",
+      sub: "High-quality solar energy systems with comprehensive warranties",
+      packages: [
+        { 
+          id: "50kw",
+          title: "50 kWp", 
+          badge: "High Quality Solutions", 
+          price: "80,000", 
+          priceUnit: "SAR", 
+          summary: "Complete solar pumping system installation with 50 kW capacity, 92 panels of 650W, and 50 kW inverter (INVT) with 10 years warranty on inverter and 25 years on panels",
+          cta: "Order Now",
+          components: [
+            ["Solar Panels", "92 panels × 650W", "78,000"],
+            ["Inverter", "INVT 50kW 380V 3PH", "15,000"],
+            ["Steel Structure", "8 steel sets (ZAM)", "15,000"],
+            ["DC + AC Cables", "High-quality cables", "8,000"],
+            ["Installation & Commissioning", "Certified technical team", "4,000"]
+          ],
+          warranties: [
+            ["Panel Performance Warranty", "10 years"],
+            ["Inverter Warranty", "10 years"],
+            ["Steel Structure Warranty", "25 years"],
+            ["Installation Warranty", "2 years"]
+          ],
+          quantities: [
+            ["Number of Panels", "92 panels"],
+            ["Number of Inverters", "1 inverter"],
+            ["Number of Structure Sets", "8 sets"],
+            ["Number of Cables", "As needed"],
+            ["Installation Team", "1 team"]
+          ]
+        },
+        { 
+          id: "60kw",
+          title: "60 kWp", 
+          badge: "High Quality Solutions", 
+          price: "95,000", 
+          priceUnit: "SAR", 
+          summary: "Complete solar pumping system installation with 60 kW capacity, 110 panels of 650W, and 60 kW inverter (INVT) with 10 years warranty on inverter and 25 years on panels",
+          cta: "Order Now",
+          components: [
+            ["Solar Panels", "110 panels × 650W", "92,000"],
+            ["Inverter", "INVT 60kW 380V 3PH", "18,000"],
+            ["Steel Structure", "10 steel sets (ZAM)", "18,000"],
+            ["DC + AC Cables", "High-quality cables", "9,000"],
+            ["Installation & Commissioning", "Certified technical team", "4,000"]
+          ],
+          warranties: [
+            ["Panel Performance Warranty", "10 years"],
+            ["Inverter Warranty", "10 years"],
+            ["Steel Structure Warranty", "25 years"],
+            ["Installation Warranty", "2 years"]
+          ],
+          quantities: [
+            ["Number of Panels", "110 panels"],
+            ["Number of Inverters", "1 inverter"],
+            ["Number of Structure Sets", "10 sets"],
+            ["Number of Cables", "As needed"],
+            ["Installation Team", "1 team"]
+          ]
+        },
+        { 
+          id: "150kw",
+          title: "150 kWp", 
+          badge: "High Quality Solutions", 
+          price: "230,000", 
+          priceUnit: "SAR", 
+          summary: "Complete solar pumping system installation with 150 kW capacity, 277 panels of 650W, and 150 kW inverter (INVT) with 10 years warranty on inverter and 25 years on panels",
+          cta: "Order Now",
+          components: [
+            ["Solar Panels", "277 panels × 650W", "220,000"],
+            ["Inverter", "INVT 150kW 380V 3PH", "40,000"],
+            ["Steel Structure", "25 steel sets (ZAM)", "40,000"],
+            ["DC + AC Cables", "High-quality cables", "20,000"],
+            ["Installation & Commissioning", "Certified technical team", "10,000"]
+          ],
+          warranties: [
+            ["Panel Performance Warranty", "10 years"],
+            ["Inverter Warranty", "10 years"],
+            ["Steel Structure Warranty", "25 years"],
+            ["Installation Warranty", "2 years"]
+          ],
+          quantities: [
+            ["Number of Panels", "277 panels"],
+            ["Number of Inverters", "1 inverter"],
+            ["Number of Structure Sets", "25 sets"],
+            ["Number of Cables", "As needed"],
+            ["Installation Team", "1 team"]
+          ]
+        },
+        { 
+          id: "200kw",
+          title: "200 kWp", 
+          badge: "High Quality Solutions", 
+          price: "320,000", 
+          priceUnit: "SAR", 
+          summary: "Complete solar pumping system installation with 200 kW capacity, 369 panels of 650W, and 200 kW inverter (INVT) with 10 years warranty on inverter and 25 years on panels",
+          cta: "Order Now",
+          components: [
+            ["Solar Panels", "369 panels × 650W", "300,000"],
+            ["Inverter", "INVT 200kW 380V 3PH", "55,000"],
+            ["Steel Structure", "32 steel sets (ZAM)", "55,000"],
+            ["DC + AC Cables", "High-quality cables", "25,000"],
+            ["Installation & Commissioning", "Certified technical team", "15,000"]
+          ],
+          warranties: [
+            ["Panel Performance Warranty", "10 years"],
+            ["Inverter Warranty", "10 years"],
+            ["Steel Structure Warranty", "25 years"],
+            ["Installation Warranty", "2 years"]
+          ],
+          quantities: [
+            ["Number of Panels", "369 panels"],
+            ["Number of Inverters", "1 inverter"],
+            ["Number of Structure Sets", "32 sets"],
+            ["Number of Cables", "As needed"],
+            ["Installation Team", "1 team"]
+          ]
+        },
+        { 
+          id: "350kw",
+          title: "350 kWp", 
+          badge: "High Quality Solutions", 
+          price: "550,000", 
+          priceUnit: "SAR", 
+          summary: "Complete solar pumping system installation with 350 kW capacity, 646 panels of 650W, and 350 kW inverter (INVT) with 10 years warranty on inverter and 25 years on panels",
+          cta: "Order Now",
+          components: [
+            ["Solar Panels", "646 panels × 650W", "520,000"],
+            ["Inverter", "INVT 350kW 380V 3PH", "90,000"],
+            ["Steel Structure", "55 steel sets (ZAM)", "90,000"],
+            ["DC + AC Cables", "High-quality cables", "40,000"],
+            ["Installation & Commissioning", "Certified technical team", "30,000"]
+          ],
+          warranties: [
+            ["Panel Performance Warranty", "10 years"],
+            ["Inverter Warranty", "10 years"],
+            ["Steel Structure Warranty", "25 years"],
+            ["Installation Warranty", "2 years"]
+          ],
+          quantities: [
+            ["Number of Panels", "646 panels"],
+            ["Number of Inverters", "1 inverter"],
+            ["Number of Structure Sets", "55 sets"],
+            ["Number of Cables", "As needed"],
+            ["Installation Team", "1 team"]
+          ]
+        }
+      ]
     },
     howit: {
       chip: "The Process",
@@ -76,13 +229,10 @@ export const LANDING_COPY = {
     products: {
       chip: "Hardware",
       h2: "Premium-grade equipment",
-      viewAll: "View full catalogue",
       getQuote: "Get Quote",
       items: [
-        { name: "SunCore 550W Panel", spec: "Mono PERC · 22.4% Efficiency", price: "SAR 680", tag: "Best Value", icon: "🔲" },
-        { name: "Solara 10kW Inverter", spec: "String inverter · MPPT · WiFi", price: "SAR 4,200", tag: null, icon: "⚡" },
-        { name: "PowerVault 15kWh", spec: "LiFePO4 · 6000 cycles · IP65", price: "SAR 18,500", tag: "New", icon: "🔋" },
-        { name: "Smart Monitor Pro", spec: "Real-time · Cloud · API", price: "SAR 950", tag: null, icon: "📊" },
+        { name: "Eco 650W Panel", spec: "High-efficiency mono panel", price: "SAR 680", tag: "Best Value", image: "/eco-panel-650w.png" },
+        { name: "INVT Inverter", spec: "String inverter with MPPT", price: "SAR 4,200", tag: null, image: "/invt-inverter.png" },
       ],
     },
     whyus: {
@@ -148,9 +298,8 @@ export const LANDING_COPY = {
       copyright: "© 2026 Green Ion Energy Co. All rights reserved.",
       badge: "⚡ POWERING A GREENER FUTURE",
       cols: [
-        { h: "Solutions", ls: ["Residential Solar", "Commercial Solar", "Agricultural Solar", "Battery Storage", "Solar Carports"] },
-        { h: "Company", ls: ["About Us", "Projects", "Careers", "Press", "Partners"] },
-        { h: "Support", ls: ["FAQ", "Documentation", "Warranty Claims", "Monitoring App", "Contact"] },
+        { h: "Company", ls: ["About Us", "Projects"] },
+        { h: "Support", ls: ["FAQ"] },
       ],
     },
   },
@@ -160,7 +309,7 @@ export const LANDING_COPY = {
     langAlt: "EN",
     brand: "جرين أيون",
     nav: {
-      links: ["الرئيسية", "من نحن", "كيف نعمل", "المشاريع", "الحاسبة", "تواصل"],
+      links: ["الرئيسية", "من نحن", "خدماتنا", "كيف نعمل", "المشاريع", "الحاسبة", "تواصل"],
       cta: "احجز موعد للتقييم",
     },
     hero: {
@@ -190,6 +339,159 @@ export const LANDING_COPY = {
         { icon: "🌾", title: "طاقة زراعية", badge: null, highlight: false, desc: "أنظمة تخزين الطاقة الذكية", items: ["أنظمة تتبع الشمس", "طاقة الضخ والري", "قدرة على العمل المستقل", "أجهزة مقاومة للطقس", "ضبط الأداء الموسمي"] },
         { icon: "🔋", title: "تخزين الطاقة", badge: null, highlight: false, desc: "التشغيل والصيانة والمراقبة عن بعد", items: ["بنوك بطاريات LiFePO4", "طاقة احتياطية للمنزل كله", "تحسين التوقيت الذروي", "تكامل مع شحن السيارات الكهربائية", "إدارة ذكية للأحمال"] },
       ],
+    },
+    services: {
+      chip: "خدماتنا",
+      h2a: "باقاتنا",
+      h2b: "",
+      sub: "أنظمة طاقة شمسية بجودة عالية وضمانات شاملة",
+      packages: [
+        { 
+          id: "50kw",
+          title: "50 kWp", 
+          badge: "حلول عالية الجودة", 
+          price: "80,000", 
+          priceUnit: "ريال", 
+          summary: "كائنة تركيب نظام ضخ الطاقة الشمسية بمقدرة 50 كيلو واط مع 92 لوح 650 واط وحمولة 50 كيلو واط (INVT) مع 10 سنوات ضمان على المحول و25 على الألواح",
+          cta: "اطلب الان",
+          components: [
+            ["الألواح الشمسية", "92 لوح × 650 واط", "78,000"],
+            ["المحول (Inverter)", "INVT 50kW 380V 3PH", "15,000"],
+            ["الهيكل الحديدي", "8 مجموعة حديدية (ZAM)", "15,000"],
+            ["كبلات DC + AC", "كبلات عالية الجودة", "8,000"],
+            ["أعمال التركيب والتشغيل", "فريق فني معتمد", "4,000"]
+          ],
+          warranties: [
+            ["ضمان أداء الألواح", "10 سنوات"],
+            ["ضمان محول الطاقة", "10 سنوات"],
+            ["ضمان هيكل الحديد", "25 سنوات"],
+            ["ضمان على التركيب", "2 سنوات"]
+          ],
+          quantities: [
+            ["عدد الألواح", "92 لوح"],
+            ["عدد المحولات", "1 محول"],
+            ["عدد مجموعات الهيكل", "8 مجموعات"],
+            ["عدد الكبلات", "حسب الحاجة"],
+            ["فريق التركيب", "فريق واحد"]
+          ]
+        },
+        { 
+          id: "60kw",
+          title: "60 kWp", 
+          badge: "حلول عالية الجودة", 
+          price: "95,000", 
+          priceUnit: "ريال", 
+          summary: "كائنة تركيب نظام ضخ الطاقة الشمسية بمقدرة 60 كيلو واط مع 110 لوح 650 واط وحمولة 60 كيلو واط (INVT) مع 10 سنوات ضمان على المحول و25 على الألواح",
+          cta: "اطلب الان",
+          components: [
+            ["الألواح الشمسية", "110 لوح × 650 واط", "92,000"],
+            ["المحول (Inverter)", "INVT 60kW 380V 3PH", "18,000"],
+            ["الهيكل الحديدي", "10 مجموعة حديدية (ZAM)", "18,000"],
+            ["كبلات DC + AC", "كبلات عالية الجودة", "9,000"],
+            ["أعمال التركيب والتشغيل", "فريق فني معتمد", "4,000"]
+          ],
+          warranties: [
+            ["ضمان أداء الألواح", "10 سنوات"],
+            ["ضمان محول الطاقة", "10 سنوات"],
+            ["ضمان هيكل الحديد", "25 سنوات"],
+            ["ضمان على التركيب", "2 سنوات"]
+          ],
+          quantities: [
+            ["عدد الألواح", "110 لوح"],
+            ["عدد المحولات", "1 محول"],
+            ["عدد مجموعات الهيكل", "10 مجموعات"],
+            ["عدد الكبلات", "حسب الحاجة"],
+            ["فريق التركيب", "فريق واحد"]
+          ]
+        },
+        { 
+          id: "150kw",
+          title: "150 kWp", 
+          badge: "حلول عالية الجودة", 
+          price: "230,000", 
+          priceUnit: "ريال", 
+          summary: "كائنة تركيب نظام ضخ الطاقة الشمسية بمقدرة 150 كيلو واط مع 277 لوح 650 واط وحمولة 150 كيلو واط (INVT) مع 10 سنوات ضمان على المحول و25 على الألواح",
+          cta: "اطلب الان",
+          components: [
+            ["الألواح الشمسية", "277 لوح × 650 واط", "220,000"],
+            ["المحول (Inverter)", "INVT 150kW 380V 3PH", "40,000"],
+            ["الهيكل الحديدي", "25 مجموعة حديدية (ZAM)", "40,000"],
+            ["كبلات DC + AC", "كبلات عالية الجودة", "20,000"],
+            ["أعمال التركيب والتشغيل", "فريق فني معتمد", "10,000"]
+          ],
+          warranties: [
+            ["ضمان أداء الألواح", "10 سنوات"],
+            ["ضمان محول الطاقة", "10 سنوات"],
+            ["ضمان هيكل الحديد", "25 سنوات"],
+            ["ضمان على التركيب", "2 سنوات"]
+          ],
+          quantities: [
+            ["عدد الألواح", "277 لوح"],
+            ["عدد المحولات", "1 محول"],
+            ["عدد مجموعات الهيكل", "25 مجموعات"],
+            ["عدد الكبلات", "حسب الحاجة"],
+            ["فريق التركيب", "فريق واحد"]
+          ]
+        },
+        { 
+          id: "200kw",
+          title: "200 kWp", 
+          badge: "حلول عالية الجودة", 
+          price: "320,000", 
+          priceUnit: "ريال", 
+          summary: "كائنة تركيب نظام ضخ الطاقة الشمسية بمقدرة 200 كيلو واط مع 369 لوح 650 واط وحمولة 200 كيلو واط (INVT) مع 10 سنوات ضمان على المحول و25 على الألواح",
+          cta: "اطلب الان",
+          components: [
+            ["الألواح الشمسية", "369 لوح × 650 واط", "300,000"],
+            ["المحول (Inverter)", "INVT 200kW 380V 3PH", "55,000"],
+            ["الهيكل الحديدي", "32 مجموعة حديدية (ZAM)", "55,000"],
+            ["كبلات DC + AC", "كبلات عالية الجودة", "25,000"],
+            ["أعمال التركيب والتشغيل", "فريق فني معتمد", "15,000"]
+          ],
+          warranties: [
+            ["ضمان أداء الألواح", "10 سنوات"],
+            ["ضمان محول الطاقة", "10 سنوات"],
+            ["ضمان هيكل الحديد", "25 سنوات"],
+            ["ضمان على التركيب", "2 سنوات"]
+          ],
+          quantities: [
+            ["عدد الألواح", "369 لوح"],
+            ["عدد المحولات", "1 محول"],
+            ["عدد مجموعات الهيكل", "32 مجموعات"],
+            ["عدد الكبلات", "حسب الحاجة"],
+            ["فريق التركيب", "فريق واحد"]
+          ]
+        },
+        { 
+          id: "350kw",
+          title: "350 kWp", 
+          badge: "حلول عالية الجودة", 
+          price: "550,000", 
+          priceUnit: "ريال", 
+          summary: "كائنة تركيب نظام ضخ الطاقة الشمسية بمقدرة 350 كيلو واط مع 646 لوح 650 واط وحمولة 350 كيلو واط (INVT) مع 10 سنوات ضمان على المحول و25 على الألواح",
+          cta: "اطلب الان",
+          components: [
+            ["الألواح الشمسية", "646 لوح × 650 واط", "520,000"],
+            ["المحول (Inverter)", "INVT 350kW 380V 3PH", "90,000"],
+            ["الهيكل الحديدي", "55 مجموعة حديدية (ZAM)", "90,000"],
+            ["كبلات DC + AC", "كبلات عالية الجودة", "40,000"],
+            ["أعمال التركيب والتشغيل", "فريق فني معتمد", "30,000"]
+          ],
+          warranties: [
+            ["ضمان أداء الألواح", "10 سنوات"],
+            ["ضمان محول الطاقة", "10 سنوات"],
+            ["ضمان هيكل الحديد", "25 سنوات"],
+            ["ضمان على التركيب", "2 سنوات"]
+          ],
+          quantities: [
+            ["عدد الألواح", "646 لوح"],
+            ["عدد المحولات", "1 محول"],
+            ["عدد مجموعات الهيكل", "55 مجموعات"],
+            ["عدد الكبلات", "حسب الحاجة"],
+            ["فريق التركيب", "فريق واحد"]
+          ]
+        }
+      ]
     },
     howit: {
       chip: "كيف نعمل",
@@ -246,13 +548,10 @@ export const LANDING_COPY = {
     products: {
       chip: "المعدات",
       h2: "أجهزة عالية الجودة",
-      viewAll: "عرض الكتالوج كاملاً",
       getQuote: "اطلب عرضاً",
       items: [
-        { name: "لوح SunCore 550W", spec: "Mono PERC · كفاءة 22.4%", price: "680 ريال", tag: "الأفضل قيمة", icon: "🔲" },
-        { name: "عاكس GreenIon 10kW", spec: "عاكس سلسلة · MPPT · واي فاي", price: "4,200 ريال", tag: null, icon: "⚡" },
-        { name: "بطارية PowerVault 15kWh", spec: "LiFePO4 · 6000 دورة · IP65", price: "18,500 ريال", tag: "جديد", icon: "🔋" },
-        { name: "مراقب ذكي Pro", spec: "فوري · سحابي · API", price: "950 ريال", tag: null, icon: "📊" },
+        { name: "الواح ايكو 650 واط", spec: "لوح أحادي عالي الكفاءة", price: "680 ريال", tag: "الأفضل قيمة", image: "/eco-panel-650w.png" },
+        { name: "محول invt", spec: "عاكس سلسلة مع MPPT", price: "4,200 ريال", tag: null, image: "/invt-inverter.png" },
       ],
     },
     whyus: {
@@ -318,9 +617,8 @@ export const LANDING_COPY = {
       copyright: "© 2026 شركة جرين أيون للطاقة. جميع الحقوق محفوظة.",
       badge: "نحو مستقبل مشرق ومستدام بطاقة الشمس",
       cols: [
-        { h: "الحلول", ls: ["طاقة سكنية", "طاقة تجارية", "طاقة زراعية", "تخزين الطاقة", "مظلات سيارات شمسية"] },
-        { h: "الشركة", ls: ["من نحن", "المشاريع", "الوظائف", "الصحافة", "الشركاء"] },
-        { h: "الدعم", ls: ["الأسئلة الشائعة", "التوثيق", "طلبات الضمان", "تطبيق المراقبة", "تواصل معنا"] },
+        { h: "الشركة", ls: ["من نحن", "المشاريع"] },
+        { h: "الدعم", ls: ["الأسئلة الشائعة", "تواصل معنا"] },
       ],
     },
   },
@@ -334,6 +632,7 @@ export const ABOUT_COPY = {
       links: [
         ["Home", "/?lang=en#home"],
         ["About Us", "/about?lang=en"],
+        ["Our Services", "/services?lang=en"],
         ["How It Works", "/?lang=en#how-it-works"],
         ["Projects", "/?lang=en#projects"],
         ["Calculator", "/?lang=en#calculator"],
@@ -391,6 +690,16 @@ export const ABOUT_COPY = {
       "From feasibility study to monitoring and long-term maintenance, Green Ion delivers a complete renewable energy journey tailored to your project.",
     ctaPrimary: "Contact Us",
     tagline: "Green Ion .. Towards a Bright and Sustainable Future with Solar Power",
+    footer: {
+      tagline: "Making clean, affordable solar energy accessible to every home and business in Saudi Arabia.",
+      locations: "Riyadh · Jeddah · Dammam",
+      copyright: "© 2026 Green Ion Energy Co. All rights reserved.",
+      badge: "⚡ POWERING A GREENER FUTURE",
+      cols: [
+        { h: "Company", ls: ["About Us", "Projects"] },
+        { h: "Support", ls: ["FAQ"] },
+      ],
+    },
   },
   ar: {
     dir: "rtl" as const,
@@ -399,6 +708,7 @@ export const ABOUT_COPY = {
       links: [
         ["الرئيسية", "/#home"],
         ["من نحن", "/about?lang=ar"],
+        ["خدماتنا", "/services?lang=ar"],
         ["كيف نعمل", "/#how-it-works"],
         ["المشاريع", "/#projects"],
         ["الحاسبة", "/#calculator"],
@@ -451,11 +761,21 @@ export const ABOUT_COPY = {
       ["حضور محلي قوي", "نفهم الأنظمة والظروف المناخية ومتطلبات التشغيل داخل المملكة."],
       ["شراكة طويلة المدى", "نستمر معك عبر المراقبة والصيانة والتحسين المستمر."],
     ] as const,
-    ctaTitle: "ابدأ مستقبلك الشمسي مع جرين ايون",
+    ctaTitle: "ابدأ مستقبلك الشمسي مع جرين أيون",
     ctaSub:
-      "من دراسة الجدوى وحتى المراقبة والصيانة طويلة المدى، تقدم جرين ايون رحلة متكاملة للطاقة المتجددة مصممة حسب احتياج مشروعك.",
+      "من دراسة الجدوى وحتى المراقبة والصيانة طويلة المدى، تقدم جرين أيون رحلة متكاملة للطاقة المتجددة مصممة حسب احتياج مشروعك.",
     ctaPrimary: "تواصل معنا",
-    tagline: "جرين ايون .. نحو مستقبل مشرق ومستدام بطاقة الشمس",
+    tagline: "جرين أيون .. نحو مستقبل مشرق ومستدام بطاقة الشمس",
+    footer: {
+      tagline: "نجعل الطاقة الشمسية النظيفة والمعقولة التكلفة متاحةً لكل منزل ومنشأة في المملكة العربية السعودية.",
+      locations: "الرياض · جدة · الدمام",
+      copyright: "© 2026 شركة جرين أيون للطاقة. جميع الحقوق محفوظة.",
+      badge: "نحو مستقبل مشرق ومستدام بطاقة الشمس",
+      cols: [
+        { h: "الشركة", ls: ["من نحن", "المشاريع"] },
+        { h: "الدعم", ls: ["الأسئلة الشائعة", "تواصل معنا"] },
+      ],
+    },
   },
 } as const;
 

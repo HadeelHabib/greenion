@@ -31,9 +31,9 @@ const tk = {
     headEn: "'Montserrat', system-ui, sans-serif",
     bodyEn: "'Source Sans 3', system-ui, sans-serif",
     monoEn: "'DM Mono', monospace",
-    headAr: "'Cairo', 'Noto Kufi Arabic', sans-serif",
-    bodyAr: "'Cairo', sans-serif",
-    monoAr: "'Cairo', sans-serif",
+    headAr: "'Alyamama', 'Cairo', 'Noto Kufi Arabic', sans-serif",
+    bodyAr: "'Alyamama', 'Cairo', sans-serif",
+    monoAr: "'Alyamama', 'Cairo', sans-serif",
   },
 };
 
@@ -125,6 +125,8 @@ export default async function AboutPage({
             maxWidth: 1200,
             margin: "0 auto",
             minHeight: 68,
+            display: "flex",
+            alignItems: "center",
             gap: 16,
           }}
         >
@@ -221,7 +223,7 @@ export default async function AboutPage({
         style={{
           position: "relative",
           overflow: "hidden",
-          paddingTop: 68,
+          paddingTop: 80,
           background: tk.ink,
         }}
       >
@@ -349,6 +351,36 @@ export default async function AboutPage({
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer style={{ background: "#1A3A1A", borderTop: "1px solid rgba(255,255,255,0.06)", padding: "clamp(40px,7vw,64px) clamp(16px,4vw,32px) clamp(24px,5vw,36px)", direction: c.dir }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div style={{ gap: 48, marginBottom: 52 }}>
+            <div style={{ textAlign: isAr ? "right" : "left" }}>
+              <div style={{ marginBottom: 16 }}>
+                <BrandLogo width={150} alt={c.brand} />
+              </div>
+              <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.5)", fontFamily: fBody, lineHeight: 1.85, maxWidth: 260, margin: "0 0 20px" }}>{c.footer.tagline}</p>
+              <p style={{ fontSize: 12, color: tk.lime, fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn, letterSpacing: "0.06em", opacity: 0.7 }}>{c.footer.locations}</p>
+            </div>
+            {c.footer.cols.map(col => (
+              <div key={col.h} style={{ textAlign: isAr ? "right" : "left" }}>
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.25)", fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 18 }}>{col.h}</div>
+                {col.ls.map(l => (
+                  <div key={l} style={{ marginBottom: 10 }}>
+                    <Link href={l === "About Us" ? "/about?lang=en" : l === "من نحن" ? "/about?lang=ar" : "/#contact"} style={{ fontSize: 13.5, color: "rgba(255,255,255,0.5)", fontFamily: fBody, textDecoration: "none", transition: "color 0.2s" }}>{l}</Link>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+          <div style={{ height: 1, background: "linear-gradient(90deg,transparent,rgba(118,196,66,0.3),transparent)", margin: "0 0 24px" }} />
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
+            <span style={{ fontSize: 13, color: "rgba(255,255,255,0.25)", fontFamily: fBody }}>{c.footer.copyright}</span>
+            <span style={{ fontSize: 11, color: tk.lime, fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn, letterSpacing: "0.06em", opacity: 0.6 }}>{c.footer.badge}</span>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
