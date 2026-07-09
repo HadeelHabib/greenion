@@ -548,6 +548,7 @@ function Services({ lang, c }) {
   const router = useRouter();
   const displayedPackages = s.packages.slice(0, 3);
   
+  
   return (
     <section id="services" ref={ref} style={{ background: tk.bg, padding: "clamp(64px,10vw,100px) clamp(16px,4vw,32px)", direction: c.dir, position: "relative", zIndex: 1 }}>
       <div style={{ maxWidth: 1240, margin: "0 auto" }}>
