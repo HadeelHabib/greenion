@@ -172,7 +172,7 @@ export default async function ServiceDetail({
             alignItems: "center",
             gap: 10,
           }}>
-            <Link href={isAr ? `/services/${params.id}?lang=en` : `/services/${params.id}?lang=ar`} style={{
+            <Link href={isAr ? `/services/${id}?lang=en` : `/services/${id}?lang=ar`} style={{
               padding: "7px 18px",
               borderRadius: 20,
               textDecoration: "none",
@@ -509,7 +509,7 @@ export default async function ServiceDetail({
       </section>
 
       {/* Footer */}
-      <footer style={{ background: tk.bgDark, borderTop: `1px solid rgba(255,255,255,0.06)`, padding: "clamp(40px,7vw,64px) clamp(16px,4vw,32px) clamp(24px,5vw,36px)", direction: c.dir }}>
+      <footer style={{ background: tk.bgMid, borderTop: `1px solid rgba(255,255,255,0.06)`, padding: "clamp(40px,7vw,64px) clamp(16px,4vw,32px) clamp(24px,5vw,36px)", direction: c.dir }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 48, marginBottom: 52 }}>
             <div style={{ textAlign: isAr ? "right" : "left" }}>
