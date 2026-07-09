@@ -358,7 +358,7 @@ export default async function AboutPage({
           <div style={{ gap: 48, marginBottom: 52 }}>
             <div style={{ textAlign: isAr ? "right" : "left" }}>
               <div style={{ marginBottom: 16 }}>
-                <BrandLogo width={150} alt={c.brand} />
+                <BrandLogo width={150} alt={c.brandSub}/>
               </div>
               <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.5)", fontFamily: fBody, lineHeight: 1.85, maxWidth: 260, margin: "0 0 20px" }}>{c.footer.tagline}</p>
               <p style={{ fontSize: 12, color: tk.lime, fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn, letterSpacing: "0.06em", opacity: 0.7 }}>{c.footer.locations}</p>
