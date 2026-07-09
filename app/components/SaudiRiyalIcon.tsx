@@ -80,7 +80,7 @@ export function PriceWithRiyal({
       <SaudiRiyalIcon
         size={iconSize}
         color={color}
-        style={{ transform: "translateY(1px)" }}
+       
         {...(iconStyle ? { style: { transform: "translateY(1px)", ...iconStyle } } : {})}
       />
     </span>
