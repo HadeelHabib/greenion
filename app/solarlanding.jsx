@@ -729,36 +729,155 @@ function HowItWorks({ lang, c }) {
   const isAr = lang === "ar";
   const fH = isAr ? tk.ff.headAr : tk.ff.headEn;
   const fB = isAr ? tk.ff.bodyAr : tk.ff.bodyEn;
+  const fM = isAr ? tk.ff.monoAr : tk.ff.monoEn;
   const h = c.howit;
-  const processLabel = isAr ? "منهجية التنفيذ" : "Execution Framework";
+  const steps = h.steps;
+  const n = steps.length;
 
   return (
     <section id="how-it-works" ref={ref} style={{ background: tk.bgMid, padding: "clamp(64px,10vw,100px) clamp(16px,4vw,32px)", direction: c.dir, position: "relative", overflow: "hidden" }}>
-      {/* Full section background image */}
       <div className="gi-section-bg" style={{ position: "absolute", inset: 0, opacity: 0.3, pointerEvents: "none" }}>
         <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
-          <Image
-            src={hero}
-            alt=""
-            fill
-            sizes="100vw"
-            style={{ objectFit: "cover", objectPosition: "center" }}
-          />
+          <Image src={hero} alt="" fill sizes="100vw" style={{ objectFit: "cover", objectPosition: "center" }} />
         </div>
       </div>
 
+      {/* soft glow accents, matching hero */}
+      <div style={{ position: "absolute", top: "8%", [isAr ? "left" : "right"]: "-8%", width: 460, height: 460, borderRadius: "50%", background: "radial-gradient(ellipse, rgba(118,196,66,0.10), transparent 70%)", pointerEvents: "none" }} />
+
       <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1 }}>
-        <div style={{ textAlign: "center", marginBottom: 72, display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div style={{ textAlign: "center", marginBottom: 72, display: "flex", flexDirection: "column", alignItems: "center", opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(16px)", transition: `all 0.7s ${tk.ease}` }}>
           <Chip>{h.chip}</Chip>
           <h2 style={{ fontFamily: fH, fontSize: "clamp(26px,4.5vw,50px)", fontWeight: 900, color: tk.ink, margin: "18px 0 14px", letterSpacing: isAr ? "-0.01em" : "-0.04em", textAlign: "center" }}>{h.h2}</h2>
           <p style={{ fontSize: 16, color: tk.muted, fontFamily: fB, maxWidth: 480, margin: "0 auto", lineHeight: 1.85, textAlign: "center" }}>{h.sub}</p>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 14 }}>
-          {h.steps.map((s, i) => (
-            <div key={s.title} style={{ padding: "32px 26px", background: tk.bgCard, borderRadius: 12, border: `1.5px solid ${tk.border}`, boxShadow: "0 2px 16px rgba(27,94,32,0.06)", opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(20px)", transition: `all 0.6s ease ${i * 100}ms`, position: "relative", textAlign: isAr ? "right" : "left" }}>
-              {/* Step number accent */}
-             <h3 style={{ fontFamily: fH, fontSize: 17, fontWeight: 800, color: tk.ink, margin: "0 0 10px", letterSpacing: isAr ? "-0.01em" : "-0.02em" }}>{s.title}</h3>
-              <p style={{ fontSize: 13.5, color: tk.muted, lineHeight: 1.85, margin: 0, fontFamily: fB }}>{s.desc}</p>
+
+        {/* ── Circular layout (tablet/desktop) ── */}
+        <div
+          className="gi-howit-circle"
+          style={{ position: "relative", width: "min(600px, 90vw)", aspectRatio: "1 / 1", margin: "0 auto" }}
+        >
+          <svg viewBox="0 0 100 100" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none" }}>
+            <defs>
+              <linearGradient id="giRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor={tk.forest} stopOpacity="0.55" />
+                <stop offset="100%" stopColor={tk.lime} stopOpacity="0.55" />
+              </linearGradient>
+            </defs>
+            {/* base track */}
+            <circle cx="50" cy="50" r="37" fill="none" stroke={tk.border} strokeWidth="0.5" />
+            {/* animated progress ring */}
+            <circle
+              cx="50" cy="50" r="37" fill="none" stroke="url(#giRingGrad)" strokeWidth="0.7" strokeLinecap="round"
+              strokeDasharray="232.5"
+              strokeDashoffset={vis ? 0 : 232.5}
+              style={{ transition: `stroke-dashoffset 1.4s ${tk.ease} 0.3s`, transform: "rotate(-90deg)", transformOrigin: "50% 50%" }}
+            />
+            {/* spokes to each node */}
+            {steps.map((s, i) => {
+              const angle = (2 * Math.PI * i) / n - Math.PI / 2;
+              const x2 = 50 + 30 * Math.cos(angle);
+              const y2 = 50 + 30 * Math.sin(angle);
+              return (
+                <line
+                  key={s.title}
+                  x1="50" y1="50" x2={x2} y2={y2}
+                  stroke={tk.borderG} strokeWidth="0.4"
+                  style={{ opacity: vis ? 0.7 : 0, transition: `opacity 0.6s ease ${0.5 + i * 0.1}s` }}
+                />
+              );
+            })}
+          </svg>
+
+          {/* center hub */}
+          <div style={{
+            position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)",
+            opacity: vis ? 1 : 0, transition: `all 0.6s ${tk.ease} 0.2s`,
+          }}>
+            <div style={{
+              width: 96, height: 96, borderRadius: "50%",
+              background: `linear-gradient(145deg, ${tk.forest}, ${tk.forestMid})`,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              boxShadow: `0 8px 32px rgba(27,94,32,0.35)`, textAlign: "center", padding: 12,
+              border: `1px solid rgba(118,196,66,0.4)`,
+            }}>
+              <span style={{ fontFamily: fH, fontSize: 11.5, fontWeight: 800, color: tk.lime, letterSpacing: "0.06em", textTransform: isAr ? "none" : "uppercase", lineHeight: 1.4 }}>
+                {isAr ? "منهجية العمل" : "Our Process"}
+              </span>
+            </div>
+          </div>
+
+          {steps.map((s, i) => {
+            const angle = (2 * Math.PI * i) / n - Math.PI / 2;
+            const r = 37;
+            const x = 50 + r * Math.cos(angle);
+            const y = 50 + r * Math.sin(angle);
+            return (
+              <div
+                key={s.title}
+                className="gi-howit-node"
+                style={{
+                  position: "absolute",
+                  left: `${x}%`,
+                  top: `${y}%`,
+                  transform: "translate(-50%,-50%)",
+                  width: "clamp(108px, 24vw, 176px)",
+                  textAlign: "center",
+                  opacity: vis ? 1 : 0,
+                  transition: `all 0.6s ${tk.ease} ${0.55 + i * 0.12}s`,
+                }}
+              >
+                <div style={{
+                  width: 50, height: 50, borderRadius: "50%", margin: "0 auto 12px",
+                  background: tk.bgCard, border: `1.5px solid ${tk.borderG}`,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  boxShadow: tk.shadow, position: "relative",
+                }}>
+                  <span style={{ fontFamily: fM, fontWeight: 700, fontSize: 12, color: tk.forestMid, letterSpacing: "0.02em" }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <div style={{
+                  background: tk.bgCard, borderRadius: 12, border: `1.5px solid ${tk.border}`,
+                  padding: "14px 14px 16px", boxShadow: "0 2px 12px rgba(27,94,32,0.06)",
+                }}>
+                  <h3 style={{ fontFamily: fH, fontSize: 13.5, fontWeight: 800, color: tk.ink, margin: "0 0 6px", letterSpacing: isAr ? "-0.01em" : "-0.02em", lineHeight: 1.3 }}>
+                    {s.title}
+                  </h3>
+                  <p style={{ fontSize: 11.5, color: tk.muted, lineHeight: 1.6, margin: 0, fontFamily: fB }}>
+                    {s.desc}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* ── Vertical timeline fallback (mobile) ── */}
+        <div className="gi-howit-timeline" style={{ display: "none" }}>
+          {steps.map((s, i) => (
+            <div key={s.title} style={{
+              display: "flex", gap: 16, alignItems: "flex-start",
+              opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(14px)",
+              transition: `all 0.55s ${tk.ease} ${i * 100}ms`,
+              position: "relative", paddingBottom: i < n - 1 ? 28 : 0,
+            }}>
+              {i < n - 1 && (
+                <div style={{ position: "absolute", [isAr ? "right" : "left"]: 19, top: 40, bottom: 0, width: 1.5, background: `linear-gradient(180deg, ${tk.borderG}, transparent)` }} />
+              )}
+              <div style={{
+                width: 40, height: 40, borderRadius: "50%", flexShrink: 0,
+                background: tk.bgCard, border: `1.5px solid ${tk.borderG}`,
+                display: "flex", alignItems: "center", justifyContent: "center", boxShadow: tk.shadow,
+              }}>
+                <span style={{ fontFamily: fM, fontWeight: 700, fontSize: 11, color: tk.forestMid }}>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </div>
+              <div style={{ background: tk.bgCard, borderRadius: 12, border: `1.5px solid ${tk.border}`, padding: "14px 16px", boxShadow: "0 2px 12px rgba(27,94,32,0.06)", flex: 1, textAlign: isAr ? "right" : "left" }}>
+                <h3 style={{ fontFamily: fH, fontSize: 14.5, fontWeight: 800, color: tk.ink, margin: "0 0 6px" }}>{s.title}</h3>
+                <p style={{ fontSize: 12.5, color: tk.muted, lineHeight: 1.7, margin: 0, fontFamily: fB }}>{s.desc}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -766,7 +885,6 @@ function HowItWorks({ lang, c }) {
     </section>
   );
 }
-
 /* ═══════════════════════════════════════════════════════════════
    CALCULATOR
 ═══════════════════════════════════════════════════════════════ */

@@ -259,7 +259,10 @@ body {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
 }
-
+@media (max-width: 640px) {
+  .gi-howit-circle { display: none; }
+  .gi-howit-timeline { display: flex !important; flex-direction: column; }
+}
 .gi-hero-shell {
   width: 100%;
   max-width: 1200px;
@@ -292,7 +295,11 @@ body {
   flex: 1 1 420px;
   min-width: 0;
 }
-
+@keyframes giWaPulse {
+  0% { transform: scale(1); opacity: 0.5; }
+  70% { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
 .gi-about-hero {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
