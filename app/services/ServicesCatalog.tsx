@@ -15,6 +15,7 @@ type ServicePackage = {
   cta: string;
 };
 
+
 type ServicesCatalogProps = {
   lang: "ar" | "en";
   packages: readonly ServicePackage[];
