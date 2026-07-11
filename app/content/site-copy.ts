@@ -40,151 +40,347 @@ export const LANDING_COPY = {
       chip: "Our Services",
       h2a: "Our Packages",
       h2b: "",
-      sub: "High-quality solar energy systems with comprehensive warranties",
+      sub: "Five ready solar pumping offers built from the attached technical and financial sheets.",
       packages: [
         { 
-          id: "50kw",
-          title: "50 kWp", 
-          badge: "High Quality Solutions", 
-          price: "80,000", 
+          id: "30hp",
+          title: "30 HP", 
+          badge: "Solar Pumping", 
+          price: "50,000", 
           priceUnit: "SAR", 
-          summary: "Complete solar pumping system installation with 50 kW capacity, 92 panels of 650W, and 50 kW inverter (INVT) with 10 years warranty on inverter and 25 years on panels",
+          summary: "Solar pumping offer for a 30 HP pump with 96 panels of 650W, an INVT 30kW inverter, and 4 ZAM structure sets for dependable agricultural water pumping.",
           cta: "Order Now",
           components: [
-            ["Solar Panels", "92 panels × 650W", "78,000"],
-            ["Inverter", "INVT 50kW 380V 3PH", "15,000"],
-            ["Steel Structure", "8 steel sets (ZAM)", "15,000"],
-            ["DC + AC Cables", "High-quality cables", "8,000"],
-            ["Installation & Commissioning", "Certified technical team", "4,000"]
+            ["Solar Panels", "650W panels, quantity 96, selected for stable pumping performance.", "—"],
+            ["Inverter", "INVT 30kW 380V 3PH inverter for solar pumping applications.", "—"],
+            ["Steel Structure", "4 ZAM steel sets for outdoor mounting and corrosion resistance.", "—"],
+            ["DC + AC Cables", "Type C DC cable with suitable outdoor AC cable and accessories.", "—"],
+            ["Installation & Commissioning", "Specialized engineering and technical team for installation and startup.", "—"]
           ],
           warranties: [
-            ["Panel Performance Warranty", "10 years"],
-            ["Inverter Warranty", "10 years"],
-            ["Steel Structure Warranty", "25 years"],
-            ["Installation Warranty", "2 years"]
+            ["Free Maintenance", "3 years"],
+            ["Steel Structure Anti-Rust Warranty", "10 years"],
+            ["Panel Manufacturing Warranty", "25 years"],
+            ["Panel Performance Warranty", "90% for 10 years"],
+            ["Panel Performance Warranty", "80% for 25 years"],
+            ["Inverter Warranty", "2 years"]
           ],
           quantities: [
-            ["Number of Panels", "92 panels"],
-            ["Number of Inverters", "1 inverter"],
-            ["Number of Structure Sets", "8 sets"],
-            ["Number of Cables", "As needed"],
-            ["Installation Team", "1 team"]
+            ["Pump Capacity", "30 HP"],
+            ["Inverter Capacity", "30 kW (INVT)"],
+            ["Panel Count", "96 panels"],
+            ["Panel Type", "650W"],
+            ["System Type", "Solar water pumping"]
+          ]
+        },
+        { 
+          id: "50kw",
+          title: "50 HP", 
+          badge: "Solar Pumping", 
+          price: "75,000", 
+          priceUnit: "SAR", 
+          summary: "Solar pumping offer for a 50 HP pump with 96 Aiko 650W panels, an INVT 55kW inverter, and a galvanized ZAM structure for reliable agricultural water pumping.",
+          cta: "Order Now",
+          components: [
+            ["Solar Panels", "Aiko 650W panels, quantity 96, with high conversion efficiency and strong field performance.", "—"],
+            ["Inverter", "INVT 55kW 380V 3PH inverter with advanced control for solar water pumping.", "—"],
+            ["Steel Structure", "6 ZAM steel sets for outdoor mounting and wind resistance up to 100 km/h.", "—"],
+            ["DC + AC Cables", "TOP CABLE DC cabling with outdoor-rated AC cable and clean routing accessories.", "—"],
+            ["Installation & Commissioning", "Specialized engineering team for installation, testing, and startup handover.", "—"]
+          ],
+          warranties: [
+            ["Free Maintenance", "3 years"],
+            ["Steel Structure Anti-Rust Warranty", "10 years"],
+            ["Panel Manufacturing Warranty", "25 years"],
+            ["Panel Performance Warranty", "90% for 10 years"],
+            ["Panel Performance Warranty", "80% for 25 years"],
+            ["Inverter Warranty", "2 years"]
+          ],
+          quantities: [
+            ["Pump Capacity", "50 HP"],
+            ["Inverter Capacity", "55 kW (INVT)"],
+            ["Panel Count", "96 panels"],
+            ["Panel Type", "Aiko 650W"],
+            ["System Type", "Solar water pumping"]
           ]
         },
         { 
           id: "60kw",
-          title: "60 kWp", 
-          badge: "High Quality Solutions", 
-          price: "95,000", 
+          title: "60 HP", 
+          badge: "Solar Pumping", 
+          price: "100,000", 
           priceUnit: "SAR", 
-          summary: "Complete solar pumping system installation with 60 kW capacity, 110 panels of 650W, and 60 kW inverter (INVT) with 10 years warranty on inverter and 25 years on panels",
+          summary: "Solar pumping offer for a 60 HP pump with 128 Aiko 650W panels, an INVT 55kW inverter, and a galvanized ZAM structure tailored for stable field operation.",
           cta: "Order Now",
           components: [
-            ["Solar Panels", "110 panels × 650W", "92,000"],
-            ["Inverter", "INVT 60kW 380V 3PH", "18,000"],
-            ["Steel Structure", "10 steel sets (ZAM)", "18,000"],
-            ["DC + AC Cables", "High-quality cables", "9,000"],
-            ["Installation & Commissioning", "Certified technical team", "4,000"]
+            ["Solar Panels", "Aiko 650W panels, quantity 128, selected for efficient pumping output.", "—"],
+            ["Inverter", "INVT 55kW 380V 3PH inverter with industrial-grade protection.", "—"],
+            ["Steel Structure", "8 ZAM steel sets with corrosion resistance and outdoor durability.", "—"],
+            ["DC + AC Cables", "TOP CABLE DC cabling with matching AC cable for external use.", "—"],
+            ["Installation & Commissioning", "Professional engineering and technical team for turnkey delivery.", "—"]
           ],
           warranties: [
-            ["Panel Performance Warranty", "10 years"],
-            ["Inverter Warranty", "10 years"],
-            ["Steel Structure Warranty", "25 years"],
-            ["Installation Warranty", "2 years"]
+            ["Free Maintenance", "3 years"],
+            ["Steel Structure Anti-Rust Warranty", "10 years"],
+            ["Panel Manufacturing Warranty", "25 years"],
+            ["Panel Performance Warranty", "90% for 10 years"],
+            ["Panel Performance Warranty", "80% for 25 years"],
+            ["Inverter Warranty", "2 years"]
           ],
           quantities: [
-            ["Number of Panels", "110 panels"],
-            ["Number of Inverters", "1 inverter"],
-            ["Number of Structure Sets", "10 sets"],
-            ["Number of Cables", "As needed"],
-            ["Installation Team", "1 team"]
+            ["Pump Capacity", "60 HP"],
+            ["Inverter Capacity", "55 kW (INVT)"],
+            ["Panel Count", "128 panels"],
+            ["Panel Type", "Aiko 650W"],
+            ["System Type", "Solar water pumping"]
+          ]
+        },
+        { 
+          id: "100hp",
+          title: "100 HP", 
+          badge: "Solar Pumping", 
+          price: "150,000", 
+          priceUnit: "SAR", 
+          summary: "Solar pumping offer for a 100 HP pump with 192 Aiko 650W panels, an INVT 90kW inverter, and 18 ZAM structure sets for efficient field operation.",
+          cta: "Order Now",
+          components: [
+            ["Solar Panels", "Aiko 650W panels, quantity 192, with high efficiency and reliable output.", "—"],
+            ["Inverter", "INVT 90kW 380V 3PH inverter with stable industrial performance.", "—"],
+            ["Steel Structure", "18 ZAM steel sets for outdoor durability and wind resistance.", "—"],
+            ["DC + AC Cables", "TOP CABLE DC cable with suitable AC cable for agricultural sites.", "—"],
+            ["Installation & Commissioning", "Professional installation, testing, and system handover by a specialized team.", "—"]
+          ],
+          warranties: [
+            ["Free Maintenance", "3 years"],
+            ["Steel Structure Anti-Rust Warranty", "10 years"],
+            ["Panel Manufacturing Warranty", "25 years"],
+            ["Panel Performance Warranty", "90% for 10 years"],
+            ["Panel Performance Warranty", "80% for 25 years"],
+            ["Inverter Warranty", "2 years"]
+          ],
+          quantities: [
+            ["Pump Capacity", "100 HP"],
+            ["Inverter Capacity", "90 kW (INVT)"],
+            ["Panel Count", "192 panels"],
+            ["Panel Type", "Aiko 650W"],
+            ["System Type", "Solar water pumping"]
+          ]
+        },
+        { 
+          id: "125hp",
+          title: "125 HP", 
+          badge: "Solar Pumping", 
+          price: "185,000", 
+          priceUnit: "SAR", 
+          summary: "Solar pumping offer for a 125 HP pump with 240 Aiko 650W panels, an INVT 110kW inverter, and 18 ZAM structure sets for stable agricultural pumping.",
+          cta: "Order Now",
+          components: [
+            ["Solar Panels", "Aiko 650W panels, quantity 240, configured for strong solar pumping output.", "—"],
+            ["Inverter", "INVT 110kW 380V 3PH inverter for high-capacity pumping systems.", "—"],
+            ["Steel Structure", "18 ZAM steel sets designed for outdoor stability and anti-corrosion performance.", "—"],
+            ["DC + AC Cables", "TOP CABLE DC cable with AC cable for external agricultural use.", "—"],
+            ["Installation & Commissioning", "Specialized engineering team for installation, startup, and final handover.", "—"]
+          ],
+          warranties: [
+            ["Free Maintenance", "3 years"],
+            ["Steel Structure Anti-Rust Warranty", "10 years"],
+            ["Panel Manufacturing Warranty", "25 years"],
+            ["Panel Performance Warranty", "90% for 10 years"],
+            ["Panel Performance Warranty", "80% for 25 years"],
+            ["Inverter Warranty", "2 years"]
+          ],
+          quantities: [
+            ["Pump Capacity", "125 HP"],
+            ["Inverter Capacity", "110 kW (INVT)"],
+            ["Panel Count", "240 panels"],
+            ["Panel Type", "Aiko 650W"],
+            ["System Type", "Solar water pumping"]
           ]
         },
         { 
           id: "150kw",
-          title: "150 kWp", 
-          badge: "High Quality Solutions", 
-          price: "230,000", 
+          title: "150 HP", 
+          badge: "Solar Pumping", 
+          price: "220,000", 
           priceUnit: "SAR", 
-          summary: "Complete solar pumping system installation with 150 kW capacity, 277 panels of 650W, and 150 kW inverter (INVT) with 10 years warranty on inverter and 25 years on panels",
+          summary: "Solar pumping offer for a 150 HP pump with 288 Aiko 650W panels, an INVT 132kW inverter, and an 18-set ZAM structure for high-output agricultural operation.",
           cta: "Order Now",
           components: [
-            ["Solar Panels", "277 panels × 650W", "220,000"],
-            ["Inverter", "INVT 150kW 380V 3PH", "40,000"],
-            ["Steel Structure", "25 steel sets (ZAM)", "40,000"],
-            ["DC + AC Cables", "High-quality cables", "20,000"],
-            ["Installation & Commissioning", "Certified technical team", "10,000"]
+            ["Solar Panels", "Aiko 650W panels, quantity 288, balanced for strong daily pumping production.", "—"],
+            ["Inverter", "INVT 132kW 380V 3PH inverter for three-phase pumping applications.", "—"],
+            ["Steel Structure", "18 ZAM steel sets with wind resistance and long outdoor service life.", "—"],
+            ["DC + AC Cables", "TOP CABLE DC cabling with high-quality AC cable and accessories.", "—"],
+            ["Installation & Commissioning", "Field engineering team for installation, testing, and final system تشغيل.", "—"]
           ],
           warranties: [
-            ["Panel Performance Warranty", "10 years"],
-            ["Inverter Warranty", "10 years"],
-            ["Steel Structure Warranty", "25 years"],
-            ["Installation Warranty", "2 years"]
+            ["Free Maintenance", "3 years"],
+            ["Steel Structure Anti-Rust Warranty", "10 years"],
+            ["Panel Manufacturing Warranty", "25 years"],
+            ["Panel Performance Warranty", "90% for 10 years"],
+            ["Panel Performance Warranty", "80% for 25 years"],
+            ["Inverter Warranty", "2 years"]
           ],
           quantities: [
-            ["Number of Panels", "277 panels"],
-            ["Number of Inverters", "1 inverter"],
-            ["Number of Structure Sets", "25 sets"],
-            ["Number of Cables", "As needed"],
-            ["Installation Team", "1 team"]
+            ["Pump Capacity", "150 HP"],
+            ["Inverter Capacity", "132 kW (INVT)"],
+            ["Panel Count", "288 panels"],
+            ["Panel Type", "Aiko 650W"],
+            ["System Type", "Solar water pumping"]
           ]
         },
         { 
           id: "200kw",
-          title: "200 kWp", 
-          badge: "High Quality Solutions", 
-          price: "320,000", 
+          title: "200 HP", 
+          badge: "Solar Pumping", 
+          price: "300,000", 
           priceUnit: "SAR", 
-          summary: "Complete solar pumping system installation with 200 kW capacity, 369 panels of 650W, and 200 kW inverter (INVT) with 10 years warranty on inverter and 25 years on panels",
+          summary: "Solar pumping offer for a 200 HP pump with 384 Aiko 650W panels, an INVT 200kW inverter, and an 18-set ZAM structure engineered for intensive agricultural pumping.",
           cta: "Order Now",
           components: [
-            ["Solar Panels", "369 panels × 650W", "300,000"],
-            ["Inverter", "INVT 200kW 380V 3PH", "55,000"],
-            ["Steel Structure", "32 steel sets (ZAM)", "55,000"],
-            ["DC + AC Cables", "High-quality cables", "25,000"],
-            ["Installation & Commissioning", "Certified technical team", "15,000"]
+            ["Solar Panels", "Aiko 650W panels, quantity 384, with proven efficiency for large pump duty cycles.", "—"],
+            ["Inverter", "INVT 200kW 380V 3PH inverter with stable industrial performance.", "—"],
+            ["Steel Structure", "18 ZAM steel sets for robust mounting and corrosion resistance.", "—"],
+            ["DC + AC Cables", "TOP CABLE DC cabling with durable AC cable for field installation.", "—"],
+            ["Installation & Commissioning", "Specialized technical crew for full installation and commissioning.", "—"]
           ],
           warranties: [
-            ["Panel Performance Warranty", "10 years"],
-            ["Inverter Warranty", "10 years"],
-            ["Steel Structure Warranty", "25 years"],
-            ["Installation Warranty", "2 years"]
+            ["Free Maintenance", "3 years"],
+            ["Steel Structure Anti-Rust Warranty", "10 years"],
+            ["Panel Manufacturing Warranty", "25 years"],
+            ["Panel Performance Warranty", "90% for 10 years"],
+            ["Panel Performance Warranty", "80% for 25 years"],
+            ["Inverter Warranty", "2 years"]
           ],
           quantities: [
-            ["Number of Panels", "369 panels"],
-            ["Number of Inverters", "1 inverter"],
-            ["Number of Structure Sets", "32 sets"],
-            ["Number of Cables", "As needed"],
-            ["Installation Team", "1 team"]
+            ["Pump Capacity", "200 HP"],
+            ["Inverter Capacity", "200 kW (INVT)"],
+            ["Panel Count", "384 panels"],
+            ["Panel Type", "Aiko 650W"],
+            ["System Type", "Solar water pumping"]
+          ]
+        },
+        { 
+          id: "250hp",
+          title: "250 HP", 
+          badge: "Solar Pumping", 
+          price: "400,000", 
+          priceUnit: "SAR", 
+          summary: "Solar pumping offer for a 250 HP pump with 512 Aiko 659W panels, an INVT 250kW inverter, and 32 ZAM structure sets for large agricultural pumping sites.",
+          cta: "Order Now",
+          components: [
+            ["Solar Panels", "Aiko 659W panels, quantity 512, for high daily pumping yield.", "—"],
+            ["Inverter", "INVT 250kW 380V 3PH inverter with advanced control for large pumps.", "—"],
+            ["Steel Structure", "32 ZAM steel sets built for outdoor stability and corrosion resistance.", "—"],
+            ["DC + AC Cables", "AC and DC cable package sized for the full system installation.", "—"],
+            ["Installation & Commissioning", "Specialized technical team for installation, testing, and startup.", "—"]
+          ],
+          warranties: [
+            ["Free Maintenance", "3 years"],
+            ["Steel Structure Anti-Rust Warranty", "10 years"],
+            ["Panel Manufacturing Warranty", "25 years"],
+            ["Panel Performance Warranty", "90% for 10 years"],
+            ["Panel Performance Warranty", "80% for 25 years"],
+            ["Inverter Warranty", "2 years"]
+          ],
+          quantities: [
+            ["Pump Capacity", "250 HP"],
+            ["Inverter Capacity", "250 kW (INVT)"],
+            ["Panel Count", "512 panels"],
+            ["Panel Type", "Aiko 659W"],
+            ["System Type", "Solar water pumping"]
+          ]
+        },
+        { 
+          id: "300hp",
+          title: "300 HP", 
+          badge: "Solar Pumping", 
+          price: "450,000", 
+          priceUnit: "SAR", 
+          summary: "Solar pumping offer for a 300 HP pump with 576 Aiko 659W panels, an INVT 315kW inverter, and 34 ZAM structure sets for heavy-duty agricultural operation.",
+          cta: "Order Now",
+          components: [
+            ["Solar Panels", "Aiko 659W panels, quantity 576, selected for large-scale pumping output.", "—"],
+            ["Inverter", "INVT 315kW 380V 3PH inverter for high-load solar pumping systems.", "—"],
+            ["Steel Structure", "34 ZAM steel sets engineered for long outdoor service life.", "—"],
+            ["DC + AC Cables", "TOP CABLE DC cable with suitable AC cable and field accessories.", "—"],
+            ["Installation & Commissioning", "Specialized team for installation, testing, operation, and final delivery.", "—"]
+          ],
+          warranties: [
+            ["Free Maintenance", "3 years"],
+            ["Steel Structure Anti-Rust Warranty", "10 years"],
+            ["Panel Manufacturing Warranty", "25 years"],
+            ["Panel Performance Warranty", "90% for 10 years"],
+            ["Panel Performance Warranty", "80% for 25 years"],
+            ["Inverter Warranty", "2 years"]
+          ],
+          quantities: [
+            ["Pump Capacity", "300 HP"],
+            ["Inverter Capacity", "315 kW (INVT)"],
+            ["Panel Count", "576 panels"],
+            ["Panel Type", "Aiko 659W"],
+            ["System Type", "Solar water pumping"]
           ]
         },
         { 
           id: "350kw",
-          title: "350 kWp", 
-          badge: "High Quality Solutions", 
-          price: "550,000", 
+          title: "350 HP", 
+          badge: "Head Operation", 
+          price: "500,000", 
           priceUnit: "SAR", 
-          summary: "Complete solar pumping system installation with 350 kW capacity, 646 panels of 650W, and 350 kW inverter (INVT) with 10 years warranty on inverter and 25 years on panels",
+          summary: "Solar pumping and electric-head operation offer for a 350 HP load with 640 panels of 650W, an INVT 315kW inverter, and 40 ZAM steel structure sets for heavy-duty field performance.",
           cta: "Order Now",
           components: [
-            ["Solar Panels", "646 panels × 650W", "520,000"],
-            ["Inverter", "INVT 350kW 380V 3PH", "90,000"],
-            ["Steel Structure", "55 steel sets (ZAM)", "90,000"],
-            ["DC + AC Cables", "High-quality cables", "40,000"],
-            ["Installation & Commissioning", "Certified technical team", "30,000"]
+            ["Solar Panels", "650W panels, quantity 640, selected for large-scale pumping and head operation.", "—"],
+            ["Inverter", "INVT 315kW 380V 3PH inverter for demanding high-capacity service.", "—"],
+            ["Steel Structure", "40 ZAM steel sets designed for outdoor use, stability, and wind resistance.", "—"],
+            ["DC + AC Cables", "DC and AC cabling package sized for the full field installation.", "—"],
+            ["Installation & Commissioning", "Specialized team for installation, تشغيل, and final client handover.", "—"]
           ],
           warranties: [
-            ["Panel Performance Warranty", "10 years"],
-            ["Inverter Warranty", "10 years"],
-            ["Steel Structure Warranty", "25 years"],
-            ["Installation Warranty", "2 years"]
+            ["Free Maintenance", "3 years"],
+            ["Steel Structure Anti-Rust Warranty", "10 years"],
+            ["Panel Manufacturing Warranty", "25 years"],
+            ["Panel Performance Warranty", "90% for 10 years"],
+            ["Panel Performance Warranty", "80% for 25 years"],
+            ["Inverter Warranty", "2 years"]
           ],
           quantities: [
-            ["Number of Panels", "646 panels"],
-            ["Number of Inverters", "1 inverter"],
-            ["Number of Structure Sets", "55 sets"],
-            ["Number of Cables", "As needed"],
-            ["Installation Team", "1 team"]
+            ["Pump Capacity", "350 HP"],
+            ["Inverter Capacity", "315 kW (INVT)"],
+            ["Panel Count", "640 panels"],
+            ["Panel Type", "650W"],
+            ["System Type", "Solar pumping + electric head operation"]
+          ]
+        },
+        { 
+          id: "750hp",
+          title: "750 HP", 
+          badge: "Head Operation", 
+          price: "1,000,000", 
+          priceUnit: "SAR", 
+          summary: "Solar pumping and electric-head operation offer for a 750 HP load with 1312 panels of 650W, an INVT 630kW inverter, and 82 ZAM steel structure sets for utility-scale field performance.",
+          cta: "Order Now",
+          components: [
+            ["Solar Panels", "650W panels, quantity 1312, configured for high-capacity pumping and head operation.", "—"],
+            ["Inverter", "INVT 630kW 380V 3PH inverter for very large industrial pumping applications.", "—"],
+            ["Steel Structure", "82 ZAM steel sets designed for outdoor stability and wind resistance up to 100 km/h.", "—"],
+            ["DC + AC Cables", "DC cable type C with suitable outdoor AC cable and full routing accessories.", "—"],
+            ["Installation & Commissioning", "Specialized engineering team for installation, testing, startup, and final handover.", "—"]
+          ],
+          warranties: [
+            ["Free Maintenance", "3 years"],
+            ["Steel Structure Anti-Rust Warranty", "10 years"],
+            ["Panel Manufacturing Warranty", "25 years"],
+            ["Panel Performance Warranty", "90% for 10 years"],
+            ["Panel Performance Warranty", "80% for 25 years"],
+            ["Inverter Warranty", "2 years"]
+          ],
+          quantities: [
+            ["Pump Capacity", "750 HP"],
+            ["Inverter Capacity", "630 kW (INVT)"],
+            ["Panel Count", "1312 panels"],
+            ["Panel Type", "650W"],
+            ["System Type", "Solar pumping + electric head operation"]
           ]
         }
       ]
@@ -344,151 +540,347 @@ export const LANDING_COPY = {
       chip: "خدماتنا",
       h2a: "باقاتنا",
       h2b: "",
-      sub: "أنظمة طاقة شمسية بجودة عالية وضمانات شاملة",
+      sub: "تعرف على عروض الطاقة الشمسية المقدمة من جرين أيون.",
       packages: [
         { 
-          id: "50kw",
-          title: "50 kWp", 
-          badge: "حلول عالية الجودة", 
-          price: "80,000", 
+          id: "30hp",
+          title: "30 حصان", 
+          badge: "نظام ضخ شمسي", 
+          price: "50,000", 
           priceUnit: "ريال", 
-          summary: "كائنة تركيب نظام ضخ الطاقة الشمسية بمقدرة 50 كيلو واط مع 92 لوح 650 واط وحمولة 50 كيلو واط (INVT) مع 10 سنوات ضمان على المحول و25 على الألواح",
+          summary: "عرض نظام ضخ شمسي لتشغيل مضخة 30 حصان باستخدام 96 لوحاً بقدرة 650 واط مع محول INVT بقدرة 30 كيلوواط وهيكل ZAM من 4 مجموعات.",
           cta: "اطلب الان",
           components: [
-            ["الألواح الشمسية", "92 لوح × 650 واط", "78,000"],
-            ["المحول (Inverter)", "INVT 50kW 380V 3PH", "15,000"],
-            ["الهيكل الحديدي", "8 مجموعة حديدية (ZAM)", "15,000"],
-            ["كبلات DC + AC", "كبلات عالية الجودة", "8,000"],
-            ["أعمال التركيب والتشغيل", "فريق فني معتمد", "4,000"]
+            ["الألواح الشمسية", "ألواح بقدرة 650 واط بعدد 96 لوحاً لأداء ضخ ثابت وموثوق.", "—"],
+            ["المحول (Inverter)", "محول INVT بقدرة 30 كيلوواط 380V 3PH لأنظمة الضخ الشمسي.", "—"],
+            ["الهيكل المعدني", "4 مجموعات حديد ZAM للتركيب الخارجي ومقاومة التآكل.", "—"],
+            ["الكوابل", "كوابل DC نوع C مع كابل AC مناسب للاستخدام الخارجي.", "—"],
+            ["أعمال التركيب والتشغيل", "فريق هندسي وفني متخصص للتركيب والاختبار والتشغيل.", "—"]
           ],
           warranties: [
-            ["ضمان أداء الألواح", "10 سنوات"],
-            ["ضمان محول الطاقة", "10 سنوات"],
-            ["ضمان هيكل الحديد", "25 سنوات"],
-            ["ضمان على التركيب", "2 سنوات"]
+            ["ضمان صيانة مجاني", "3 سنوات"],
+            ["ضمان الهيكل ضد الصدأ", "10 سنوات"],
+            ["ضمان جودة الألواح من المصنع", "25 سنة"],
+            ["ضمان كفاءة الألواح", "90% لمدة 10 سنوات"],
+            ["ضمان كفاءة الألواح", "80% لمدة 25 سنة"],
+            ["ضمان المحول", "سنتان"]
           ],
           quantities: [
-            ["عدد الألواح", "92 لوح"],
-            ["عدد المحولات", "1 محول"],
-            ["عدد مجموعات الهيكل", "8 مجموعات"],
-            ["عدد الكبلات", "حسب الحاجة"],
-            ["فريق التركيب", "فريق واحد"]
+            ["قدرة المضخة", "30 حصان"],
+            ["قدرة المحول", "30 كيلوواط (INVT)"],
+            ["عدد الألواح", "96 لوح"],
+            ["نوع اللوح", "650W"],
+            ["نوع النظام", "نظام شمسي لضخ المياه"]
+          ]
+        },
+        { 
+          id: "50kw",
+          title: "50 حصان", 
+          badge: "نظام ضخ شمسي", 
+          price: "75,000", 
+          priceUnit: "ريال", 
+          summary: "عرض نظام ضخ شمسي لتشغيل مضخة 50 حصان باستخدام 96 لوح Aiko بقدرة 650 واط مع محول INVT بقدرة 55 كيلوواط وهيكل ZAM مجلفن مناسب للتشغيل الزراعي.",
+          cta: "اطلب الان",
+          components: [
+            ["الألواح الشمسية", "ألواح Aiko بقدرة 650 واط بعدد 96 لوحاً مع كفاءة عالية وأداء ميداني ثابت.", "—"],
+            ["المحول (Inverter)", "محول INVT بقدرة 55 كيلوواط 380V 3PH مناسب لأنظمة الضخ الشمسي.", "—"],
+            ["الهيكل المعدني", "6 مجموعات حديد ZAM للتركيب الخارجي ومقاومة رياح حتى 100 كم/ساعة.", "—"],
+            ["الكوابل", "كوابل DC من TOP CABLE مع كابل AC خارجي وإكسسوارات تنظيم المسار.", "—"],
+            ["أعمال التركيب والتشغيل", "فريق هندسي وفني متخصص للتركيب والاختبار والتشغيل والتسليم.", "—"]
+          ],
+          warranties: [
+            ["ضمان صيانة مجاني", "3 سنوات"],
+            ["ضمان الهيكل ضد الصدأ", "10 سنوات"],
+            ["ضمان جودة الألواح من المصنع", "25 سنة"],
+            ["ضمان كفاءة الألواح", "90% لمدة 10 سنوات"],
+            ["ضمان كفاءة الألواح", "80% لمدة 25 سنة"],
+            ["ضمان المحول", "سنتان"]
+          ],
+          quantities: [
+            ["قدرة المضخة", "50 حصان"],
+            ["قدرة المحول", "55 كيلوواط (INVT)"],
+            ["عدد الألواح", "96 لوح"],
+            ["نوع اللوح", "Aiko 650W"],
+            ["نوع النظام", "نظام شمسي لضخ المياه"]
           ]
         },
         { 
           id: "60kw",
-          title: "60 kWp", 
-          badge: "حلول عالية الجودة", 
-          price: "95,000", 
+          title: "60 حصان", 
+          badge: "نظام ضخ شمسي", 
+          price: "100,000", 
           priceUnit: "ريال", 
-          summary: "كائنة تركيب نظام ضخ الطاقة الشمسية بمقدرة 60 كيلو واط مع 110 لوح 650 واط وحمولة 60 كيلو واط (INVT) مع 10 سنوات ضمان على المحول و25 على الألواح",
+          summary: "عرض نظام ضخ شمسي لتشغيل مضخة 60 حصان باستخدام 128 لوح Aiko بقدرة 650 واط مع محول INVT بقدرة 55 كيلوواط وهيكل ZAM مناسب للتشغيل المستقر.",
           cta: "اطلب الان",
           components: [
-            ["الألواح الشمسية", "110 لوح × 650 واط", "92,000"],
-            ["المحول (Inverter)", "INVT 60kW 380V 3PH", "18,000"],
-            ["الهيكل الحديدي", "10 مجموعة حديدية (ZAM)", "18,000"],
-            ["كبلات DC + AC", "كبلات عالية الجودة", "9,000"],
-            ["أعمال التركيب والتشغيل", "فريق فني معتمد", "4,000"]
+            ["الألواح الشمسية", "ألواح Aiko بقدرة 650 واط بعدد 128 لوحاً لرفع إنتاجية الضخ.", "—"],
+            ["المحول (Inverter)", "محول INVT بقدرة 55 كيلوواط 380V 3PH مع حماية صناعية.", "—"],
+            ["الهيكل المعدني", "8 مجموعات حديد ZAM مقاومة للتآكل ومناسبة للتركيب الخارجي.", "—"],
+            ["الكوابل", "كوابل DC من TOP CABLE مع كابل AC مناسب للاستخدام الخارجي.", "—"],
+            ["أعمال التركيب والتشغيل", "تنفيذ احترافي بواسطة فريق هندسي وفني متخصص.", "—"]
           ],
           warranties: [
-            ["ضمان أداء الألواح", "10 سنوات"],
-            ["ضمان محول الطاقة", "10 سنوات"],
-            ["ضمان هيكل الحديد", "25 سنوات"],
-            ["ضمان على التركيب", "2 سنوات"]
+            ["ضمان صيانة مجاني", "3 سنوات"],
+            ["ضمان الهيكل ضد الصدأ", "10 سنوات"],
+            ["ضمان جودة الألواح من المصنع", "25 سنة"],
+            ["ضمان كفاءة الألواح", "90% لمدة 10 سنوات"],
+            ["ضمان كفاءة الألواح", "80% لمدة 25 سنة"],
+            ["ضمان المحول", "سنتان"]
           ],
           quantities: [
-            ["عدد الألواح", "110 لوح"],
-            ["عدد المحولات", "1 محول"],
-            ["عدد مجموعات الهيكل", "10 مجموعات"],
-            ["عدد الكبلات", "حسب الحاجة"],
-            ["فريق التركيب", "فريق واحد"]
+            ["قدرة المضخة", "60 حصان"],
+            ["قدرة المحول", "55 كيلوواط (INVT)"],
+            ["عدد الألواح", "128 لوح"],
+            ["نوع اللوح", "Aiko 650W"],
+            ["نوع النظام", "نظام شمسي لضخ المياه"]
+          ]
+        },
+        { 
+          id: "100hp",
+          title: "100 حصان", 
+          badge: "نظام ضخ شمسي", 
+          price: "150,000", 
+          priceUnit: "ريال", 
+          summary: "عرض نظام ضخ شمسي لتشغيل مضخة 100 حصان باستخدام 192 لوح Aiko بقدرة 650 واط مع محول INVT بقدرة 90 كيلوواط وهيكل ZAM من 18 مجموعة.",
+          cta: "اطلب الان",
+          components: [
+            ["الألواح الشمسية", "ألواح Aiko بقدرة 650 واط بعدد 192 لوحاً لكفاءة عالية وأداء مستقر.", "—"],
+            ["المحول (Inverter)", "محول INVT بقدرة 90 كيلوواط 380V 3PH بتشغيل صناعي مستقر.", "—"],
+            ["الهيكل المعدني", "18 مجموعة حديد ZAM للتركيب الخارجي ومقاومة الرياح.", "—"],
+            ["الكوابل", "كوابل TOP CABLE DC مع كابل AC مناسب للموقع الزراعي.", "—"],
+            ["أعمال التركيب والتشغيل", "تنفيذ احترافي للتركيب والاختبار والتشغيل والتسليم.", "—"]
+          ],
+          warranties: [
+            ["ضمان صيانة مجاني", "3 سنوات"],
+            ["ضمان الهيكل ضد الصدأ", "10 سنوات"],
+            ["ضمان جودة الألواح من المصنع", "25 سنة"],
+            ["ضمان كفاءة الألواح", "90% لمدة 10 سنوات"],
+            ["ضمان كفاءة الألواح", "80% لمدة 25 سنة"],
+            ["ضمان المحول", "سنتان"]
+          ],
+          quantities: [
+            ["قدرة المضخة", "100 حصان"],
+            ["قدرة المحول", "90 كيلوواط (INVT)"],
+            ["عدد الألواح", "192 لوح"],
+            ["نوع اللوح", "Aiko 650W"],
+            ["نوع النظام", "نظام شمسي لضخ المياه"]
+          ]
+        },
+        { 
+          id: "125hp",
+          title: "125 حصان", 
+          badge: "نظام ضخ شمسي", 
+          price: "185,000", 
+          priceUnit: "ريال", 
+          summary: "عرض نظام ضخ شمسي لتشغيل مضخة 125 حصان باستخدام 240 لوح Aiko بقدرة 650 واط مع محول INVT بقدرة 110 كيلوواط وهيكل ZAM من 18 مجموعة.",
+          cta: "اطلب الان",
+          components: [
+            ["الألواح الشمسية", "ألواح Aiko بقدرة 650 واط بعدد 240 لوحاً لتحقيق إنتاجية قوية.", "—"],
+            ["المحول (Inverter)", "محول INVT بقدرة 110 كيلوواط 380V 3PH لأنظمة الضخ عالية السعة.", "—"],
+            ["الهيكل المعدني", "18 مجموعة حديد ZAM مصممة للثبات الخارجي ومقاومة التآكل.", "—"],
+            ["الكوابل", "كوابل TOP CABLE DC مع كابل AC مناسب للاستخدام الخارجي.", "—"],
+            ["أعمال التركيب والتشغيل", "فريق هندسي متخصص للتركيب والتشغيل والتسليم النهائي.", "—"]
+          ],
+          warranties: [
+            ["ضمان صيانة مجاني", "3 سنوات"],
+            ["ضمان الهيكل ضد الصدأ", "10 سنوات"],
+            ["ضمان جودة الألواح من المصنع", "25 سنة"],
+            ["ضمان كفاءة الألواح", "90% لمدة 10 سنوات"],
+            ["ضمان كفاءة الألواح", "80% لمدة 25 سنة"],
+            ["ضمان المحول", "سنتان"]
+          ],
+          quantities: [
+            ["قدرة المضخة", "125 حصان"],
+            ["قدرة المحول", "110 كيلوواط (INVT)"],
+            ["عدد الألواح", "240 لوح"],
+            ["نوع اللوح", "Aiko 650W"],
+            ["نوع النظام", "نظام شمسي لضخ المياه"]
           ]
         },
         { 
           id: "150kw",
-          title: "150 kWp", 
-          badge: "حلول عالية الجودة", 
-          price: "230,000", 
+          title: "150 حصان", 
+          badge: "نظام ضخ شمسي", 
+          price: "220,000", 
           priceUnit: "ريال", 
-          summary: "كائنة تركيب نظام ضخ الطاقة الشمسية بمقدرة 150 كيلو واط مع 277 لوح 650 واط وحمولة 150 كيلو واط (INVT) مع 10 سنوات ضمان على المحول و25 على الألواح",
+          summary: "عرض نظام ضخ شمسي لتشغيل مضخة 150 حصان باستخدام 288 لوح Aiko بقدرة 650 واط مع محول INVT بقدرة 132 كيلوواط وهيكل ZAM من 18 مجموعة.",
           cta: "اطلب الان",
           components: [
-            ["الألواح الشمسية", "277 لوح × 650 واط", "220,000"],
-            ["المحول (Inverter)", "INVT 150kW 380V 3PH", "40,000"],
-            ["الهيكل الحديدي", "25 مجموعة حديدية (ZAM)", "40,000"],
-            ["كبلات DC + AC", "كبلات عالية الجودة", "20,000"],
-            ["أعمال التركيب والتشغيل", "فريق فني معتمد", "10,000"]
+            ["الألواح الشمسية", "ألواح Aiko بقدرة 650 واط بعدد 288 لوحاً لتحقيق إنتاجية يومية قوية.", "—"],
+            ["المحول (Inverter)", "محول INVT بقدرة 132 كيلوواط 380V 3PH للمضخات ثلاثية الطور.", "—"],
+            ["الهيكل المعدني", "18 مجموعة حديد ZAM بعمر تشغيلي طويل ومقاومة جيدة للعوامل الجوية.", "—"],
+            ["الكوابل", "كوابل DC من TOP CABLE مع كوابل AC عالية الجودة وإكسسوارات الربط.", "—"],
+            ["أعمال التركيب والتشغيل", "فريق هندسي ميداني للتركيب والاختبار والتشغيل وتسليم المشروع.", "—"]
           ],
           warranties: [
-            ["ضمان أداء الألواح", "10 سنوات"],
-            ["ضمان محول الطاقة", "10 سنوات"],
-            ["ضمان هيكل الحديد", "25 سنوات"],
-            ["ضمان على التركيب", "2 سنوات"]
+            ["ضمان صيانة مجاني", "3 سنوات"],
+            ["ضمان الهيكل ضد الصدأ", "10 سنوات"],
+            ["ضمان جودة الألواح من المصنع", "25 سنة"],
+            ["ضمان كفاءة الألواح", "90% لمدة 10 سنوات"],
+            ["ضمان كفاءة الألواح", "80% لمدة 25 سنة"],
+            ["ضمان المحول", "سنتان"]
           ],
           quantities: [
-            ["عدد الألواح", "277 لوح"],
-            ["عدد المحولات", "1 محول"],
-            ["عدد مجموعات الهيكل", "25 مجموعات"],
-            ["عدد الكبلات", "حسب الحاجة"],
-            ["فريق التركيب", "فريق واحد"]
+            ["قدرة المضخة", "150 حصان"],
+            ["قدرة المحول", "132 كيلوواط (INVT)"],
+            ["عدد الألواح", "288 لوح"],
+            ["نوع اللوح", "Aiko 650W"],
+            ["نوع النظام", "نظام شمسي لضخ المياه"]
           ]
         },
         { 
           id: "200kw",
-          title: "200 kWp", 
-          badge: "حلول عالية الجودة", 
-          price: "320,000", 
+          title: "200 حصان", 
+          badge: "نظام ضخ شمسي", 
+          price: "300,000", 
           priceUnit: "ريال", 
-          summary: "كائنة تركيب نظام ضخ الطاقة الشمسية بمقدرة 200 كيلو واط مع 369 لوح 650 واط وحمولة 200 كيلو واط (INVT) مع 10 سنوات ضمان على المحول و25 على الألواح",
+          summary: "عرض نظام ضخ شمسي لتشغيل مضخة 200 حصان باستخدام 384 لوح Aiko بقدرة 650 واط مع محول INVT بقدرة 200 كيلوواط وهيكل ZAM من 18 مجموعة.",
           cta: "اطلب الان",
           components: [
-            ["الألواح الشمسية", "369 لوح × 650 واط", "300,000"],
-            ["المحول (Inverter)", "INVT 200kW 380V 3PH", "55,000"],
-            ["الهيكل الحديدي", "32 مجموعة حديدية (ZAM)", "55,000"],
-            ["كبلات DC + AC", "كبلات عالية الجودة", "25,000"],
-            ["أعمال التركيب والتشغيل", "فريق فني معتمد", "15,000"]
+            ["الألواح الشمسية", "ألواح Aiko بقدرة 650 واط بعدد 384 لوحاً للمشاريع الزراعية الكبيرة.", "—"],
+            ["المحول (Inverter)", "محول INVT بقدرة 200 كيلوواط 380V 3PH بكفاءة تشغيل صناعية مستقرة.", "—"],
+            ["الهيكل المعدني", "18 مجموعة حديد ZAM للتركيب الخارجي ومقاومة التآكل.", "—"],
+            ["الكوابل", "كوابل DC من TOP CABLE مع كوابل AC مناسبة للموقع الزراعي.", "—"],
+            ["أعمال التركيب والتشغيل", "فريق فني متخصص لتنفيذ كامل أعمال التركيب والتشغيل.", "—"]
           ],
           warranties: [
-            ["ضمان أداء الألواح", "10 سنوات"],
-            ["ضمان محول الطاقة", "10 سنوات"],
-            ["ضمان هيكل الحديد", "25 سنوات"],
-            ["ضمان على التركيب", "2 سنوات"]
+            ["ضمان صيانة مجاني", "3 سنوات"],
+            ["ضمان الهيكل ضد الصدأ", "10 سنوات"],
+            ["ضمان جودة الألواح من المصنع", "25 سنة"],
+            ["ضمان كفاءة الألواح", "90% لمدة 10 سنوات"],
+            ["ضمان كفاءة الألواح", "80% لمدة 25 سنة"],
+            ["ضمان المحول", "سنتان"]
           ],
           quantities: [
-            ["عدد الألواح", "369 لوح"],
-            ["عدد المحولات", "1 محول"],
-            ["عدد مجموعات الهيكل", "32 مجموعات"],
-            ["عدد الكبلات", "حسب الحاجة"],
-            ["فريق التركيب", "فريق واحد"]
+            ["قدرة المضخة", "200 حصان"],
+            ["قدرة المحول", "200 كيلوواط (INVT)"],
+            ["عدد الألواح", "384 لوح"],
+            ["نوع اللوح", "Aiko 650W"],
+            ["نوع النظام", "نظام شمسي لضخ المياه"]
+          ]
+        },
+        { 
+          id: "250hp",
+          title: "250 حصان", 
+          badge: "نظام ضخ شمسي", 
+          price: "400,000", 
+          priceUnit: "ريال", 
+          summary: "عرض نظام ضخ شمسي لتشغيل مضخة 250 حصان باستخدام 512 لوح Aiko بقدرة 659 واط مع محول INVT بقدرة 250 كيلوواط وهيكل ZAM من 32 مجموعة.",
+          cta: "اطلب الان",
+          components: [
+            ["الألواح الشمسية", "ألواح Aiko بقدرة 659 واط بعدد 512 لوحاً لإنتاجية ضخ عالية.", "—"],
+            ["المحول (Inverter)", "محول INVT بقدرة 250 كيلوواط 380V 3PH للمضخات الكبيرة.", "—"],
+            ["الهيكل المعدني", "32 مجموعة حديد ZAM للثبات الخارجي ومقاومة التآكل.", "—"],
+            ["الكوابل", "باقة كوابل AC وDC مناسبة للقدرة الكلية للنظام.", "—"],
+            ["أعمال التركيب والتشغيل", "فريق فني متخصص للتركيب والاختبار والتشغيل.", "—"]
+          ],
+          warranties: [
+            ["ضمان صيانة مجاني", "3 سنوات"],
+            ["ضمان الهيكل ضد الصدأ", "10 سنوات"],
+            ["ضمان جودة الألواح من المصنع", "25 سنة"],
+            ["ضمان كفاءة الألواح", "90% لمدة 10 سنوات"],
+            ["ضمان كفاءة الألواح", "80% لمدة 25 سنة"],
+            ["ضمان المحول", "سنتان"]
+          ],
+          quantities: [
+            ["قدرة المضخة", "250 حصان"],
+            ["قدرة المحول", "250 كيلوواط (INVT)"],
+            ["عدد الألواح", "512 لوح"],
+            ["نوع اللوح", "Aiko 659W"],
+            ["نوع النظام", "نظام شمسي لضخ المياه"]
+          ]
+        },
+        { 
+          id: "300hp",
+          title: "300 حصان", 
+          badge: "نظام ضخ شمسي", 
+          price: "450,000", 
+          priceUnit: "ريال", 
+          summary: "عرض نظام ضخ شمسي لتشغيل مضخة 300 حصان باستخدام 576 لوح Aiko بقدرة 659 واط مع محول INVT بقدرة 315 كيلوواط وهيكل ZAM من 34 مجموعة.",
+          cta: "اطلب الان",
+          components: [
+            ["الألواح الشمسية", "ألواح Aiko بقدرة 659 واط بعدد 576 لوحاً للمشاريع الزراعية الكبرى.", "—"],
+            ["المحول (Inverter)", "محول INVT بقدرة 315 كيلوواط 380V 3PH للأحمال العالية.", "—"],
+            ["الهيكل المعدني", "34 مجموعة حديد ZAM بعمر تشغيلي طويل ومقاومة للعوامل الجوية.", "—"],
+            ["الكوابل", "كوابل TOP CABLE DC مع كابل AC مناسب وإكسسوارات ميدانية.", "—"],
+            ["أعمال التركيب والتشغيل", "فريق متخصص للتركيب والاختبار والتشغيل والتسليم.", "—"]
+          ],
+          warranties: [
+            ["ضمان صيانة مجاني", "3 سنوات"],
+            ["ضمان الهيكل ضد الصدأ", "10 سنوات"],
+            ["ضمان جودة الألواح من المصنع", "25 سنة"],
+            ["ضمان كفاءة الألواح", "90% لمدة 10 سنوات"],
+            ["ضمان كفاءة الألواح", "80% لمدة 25 سنة"],
+            ["ضمان المحول", "سنتان"]
+          ],
+          quantities: [
+            ["قدرة المضخة", "300 حصان"],
+            ["قدرة المحول", "315 كيلوواط (INVT)"],
+            ["عدد الألواح", "576 لوح"],
+            ["نوع اللوح", "Aiko 659W"],
+            ["نوع النظام", "نظام شمسي لضخ المياه"]
           ]
         },
         { 
           id: "350kw",
-          title: "350 kWp", 
-          badge: "حلول عالية الجودة", 
-          price: "550,000", 
+          title: "350 حصان", 
+          badge: "تشغيل رأس كهرباء", 
+          price: "500,000", 
           priceUnit: "ريال", 
-          summary: "كائنة تركيب نظام ضخ الطاقة الشمسية بمقدرة 350 كيلو واط مع 646 لوح 650 واط وحمولة 350 كيلو واط (INVT) مع 10 سنوات ضمان على المحول و25 على الألواح",
+          summary: "عرض نظام ضخ شمسي وتشغيل رأس كهرباء بقدرة 350 حصان باستخدام 640 لوحاً بقدرة 650 واط مع محول INVT بقدرة 315 كيلوواط وهيكل ZAM من 40 مجموعة.",
           cta: "اطلب الان",
           components: [
-            ["الألواح الشمسية", "646 لوح × 650 واط", "520,000"],
-            ["المحول (Inverter)", "INVT 350kW 380V 3PH", "90,000"],
-            ["الهيكل الحديدي", "55 مجموعة حديدية (ZAM)", "90,000"],
-            ["كبلات DC + AC", "كبلات عالية الجودة", "40,000"],
-            ["أعمال التركيب والتشغيل", "فريق فني معتمد", "30,000"]
+            ["الألواح الشمسية", "ألواح بقدرة 650 واط بعدد 640 لوحاً للمشاريع ذات الأحمال العالية.", "—"],
+            ["المحول (Inverter)", "محول INVT بقدرة 315 كيلوواط 380V 3PH للتشغيل الثقيل.", "—"],
+            ["الهيكل المعدني", "40 مجموعة حديد ZAM مصممة للثبات ومقاومة العوامل الخارجية.", "—"],
+            ["الكوابل", "حزمة كوابل DC وAC مناسبة للقدرة الكلية للمشروع.", "—"],
+            ["أعمال التركيب والتشغيل", "فريق متخصص للتركيب والتشغيل والاختبار والتسليم النهائي.", "—"]
           ],
           warranties: [
-            ["ضمان أداء الألواح", "10 سنوات"],
-            ["ضمان محول الطاقة", "10 سنوات"],
-            ["ضمان هيكل الحديد", "25 سنوات"],
-            ["ضمان على التركيب", "2 سنوات"]
+            ["ضمان صيانة مجاني", "3 سنوات"],
+            ["ضمان الهيكل ضد الصدأ", "10 سنوات"],
+            ["ضمان جودة الألواح من المصنع", "25 سنة"],
+            ["ضمان كفاءة الألواح", "90% لمدة 10 سنوات"],
+            ["ضمان كفاءة الألواح", "80% لمدة 25 سنة"],
+            ["ضمان المحول", "سنتان"]
           ],
           quantities: [
-            ["عدد الألواح", "646 لوح"],
-            ["عدد المحولات", "1 محول"],
-            ["عدد مجموعات الهيكل", "55 مجموعات"],
-            ["عدد الكبلات", "حسب الحاجة"],
-            ["فريق التركيب", "فريق واحد"]
+            ["قدرة المضخة", "350 حصان"],
+            ["قدرة المحول", "315 كيلوواط (INVT)"],
+            ["عدد الألواح", "640 لوح"],
+            ["نوع اللوح", "650W"],
+            ["نوع النظام", "نظام ضخ شمسي + تشغيل رأس كهرباء"]
+          ]
+        },
+        { 
+          id: "750hp",
+          title: "750 حصان", 
+          badge: "تشغيل رأس كهرباء", 
+          price: "1,000,000", 
+          priceUnit: "ريال", 
+          summary: "عرض نظام ضخ شمسي وتشغيل رأس كهرباء بقدرة 750 حصان باستخدام 1312 لوحاً بقدرة 650 واط مع محول INVT بقدرة 630 كيلوواط وهيكل ZAM من 82 مجموعة.",
+          cta: "اطلب الان",
+          components: [
+            ["الألواح الشمسية", "ألواح بقدرة 650 واط بعدد 1312 لوحاً للمشاريع عالية السعة.", "—"],
+            ["المحول (Inverter)", "محول INVT بقدرة 630 كيلوواط 380V 3PH للتطبيقات الصناعية الكبيرة.", "—"],
+            ["الهيكل المعدني", "82 مجموعة حديد ZAM مصممة للثبات الخارجي ومقاومة الرياح حتى 100 كم/ساعة.", "—"],
+            ["الكوابل", "كابل DC نوع C مع كابل AC مناسب للاستخدام الخارجي وكامل ملحقات المسار.", "—"],
+            ["أعمال التركيب والتشغيل", "فريق هندسي متخصص للتركيب والاختبار والتشغيل والتسليم النهائي.", "—"]
+          ],
+          warranties: [
+            ["ضمان صيانة مجاني", "3 سنوات"],
+            ["ضمان الهيكل ضد الصدأ", "10 سنوات"],
+            ["ضمان جودة الألواح من المصنع", "25 سنة"],
+            ["ضمان كفاءة الألواح", "90% لمدة 10 سنوات"],
+            ["ضمان كفاءة الألواح", "80% لمدة 25 سنة"],
+            ["ضمان المحول", "سنتان"]
+          ],
+          quantities: [
+            ["قدرة المضخة", "750 حصان"],
+            ["قدرة المحول", "630 كيلوواط (INVT)"],
+            ["عدد الألواح", "1312 لوح"],
+            ["نوع اللوح", "650W"],
+            ["نوع النظام", "نظام ضخ شمسي + تشغيل رأس كهرباء"]
           ]
         }
       ]

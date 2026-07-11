@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import logo from "@/app/assets/LOGO_.png";
+import ScrollToTopButton from "@/app/components/ScrollToTopButton";
 import { LANDING_COPY } from "@/app/content/site-copy";
 
 const tk = {
@@ -384,96 +385,70 @@ export default async function ProjectDetailsPage({
             margin: "0 auto",
           }}
         >
-          <div style={{ display: "grid", gap: 20 }}>
-            <div
-              style={{
-                padding: "28px clamp(20px, 3vw, 30px)",
-                borderRadius: 24,
-                background: tk.bgCard,
-                border: `1px solid ${tk.border}`,
-                boxShadow: "0 4px 20px rgba(27,94,32,0.06)",
-              }}
-            >
+          <article className="gi-project-detail-article" style={{ display: "grid", gap: 30, minWidth: 0 }}>
+            <section className="gi-project-detail-section" style={{ paddingBottom: 28, borderBottom: `1px solid ${tk.border}` }}>
               <h2 style={{ margin: "0 0 14px", fontFamily: fHead, fontSize: 28 }}>{copy.summaryTitle}</h2>
-              <p style={{ margin: 0, color: tk.body, lineHeight: 1.9, fontSize: 15.5 }}>{copy.summaryText}</p>
-            </div>
+              <p style={{ margin: 0, color: tk.body, lineHeight: 1.95, fontSize: 16 }}>
+                {copy.summaryText}
+              </p>
+            </section>
 
-            <div
-              style={{
-                padding: "28px clamp(20px, 3vw, 30px)",
-                borderRadius: 24,
-                background: tk.bgCard,
-                border: `1px solid ${tk.border}`,
-                boxShadow: "0 4px 20px rgba(27,94,32,0.06)",
-              }}
-            >
+            <section className="gi-project-detail-section" style={{ paddingBottom: 28, borderBottom: `1px solid ${tk.border}` }}>
               <h2 style={{ margin: "0 0 14px", fontFamily: fHead, fontSize: 28 }}>{copy.aboutTitle}</h2>
-              <p style={{ margin: 0, color: tk.body, lineHeight: 1.9, fontSize: 15.5 }}>{copy.aboutText}</p>
-            </div>
+              <p style={{ margin: 0, color: tk.body, lineHeight: 1.95, fontSize: 16 }}>
+                {copy.aboutText}
+              </p>
+            </section>
 
-            <div
-              style={{
-                padding: "28px clamp(20px, 3vw, 30px)",
-                borderRadius: 24,
-                background: tk.bgCard,
-                border: `1px solid ${tk.border}`,
-                boxShadow: "0 4px 20px rgba(27,94,32,0.06)",
-              }}
-            >
-              <h2 style={{ margin: "0 0 16px", fontFamily: fHead, fontSize: 28 }}>{copy.scopeTitle}</h2>
-              <div style={{ display: "grid", gap: 12 }}>
-                {copy.scope.map((item) => (
-                  <div
+            <section className="gi-project-detail-section">
+              <h2 style={{ margin: "0 0 18px", fontFamily: fHead, fontSize: 28 }}>{copy.scopeTitle}</h2>
+              <div className="gi-project-detail-scope" style={{ display: "grid", gap: 14 }}>
+                {copy.scope.map((item, index) => (
+                  <p
                     key={item}
                     style={{
-                      display: "flex",
-                      alignItems: "flex-start",
-                      gap: 12,
+                      margin: 0,
                       color: tk.body,
-                      fontSize: 15,
-                      lineHeight: 1.8,
+                      fontSize: 15.5,
+                      lineHeight: 1.9,
+                      paddingBottom: index === copy.scope.length - 1 ? 0 : 14,
+                      borderBottom: index === copy.scope.length - 1 ? "none" : `1px solid ${tk.border}`,
                     }}
                   >
-                    <span style={{ color: tk.forestMid, fontWeight: 900 }}>✓</span>
-                    <span>{item}</span>
-                  </div>
+                    {item}
+                  </p>
                 ))}
               </div>
-            </div>
-          </div>
+            </section>
+          </article>
 
-          <aside style={{ display: "grid", gap: 20 }}>
-            <div
-              style={{
-                padding: "24px",
-                borderRadius: 24,
-                background: "linear-gradient(145deg, rgba(27,94,32,0.96), rgba(46,125,50,0.95))",
-                color: tk.white,
-                boxShadow: "0 10px 34px rgba(27,94,32,0.24)",
-              }}
-            >
+          <aside className="gi-project-detail-rail" style={{ display: "grid", gap: 28, minWidth: 0 }}>
+            <section className="gi-project-detail-rail-section" style={{ paddingBottom: 24, borderBottom: `1px solid ${tk.border}` }}>
               <h3 style={{ margin: "0 0 14px", fontFamily: fHead, fontSize: 22 }}>{copy.highlightsTitle}</h3>
-              <div style={{ display: "grid", gap: 14 }}>
+              <div style={{ display: "grid", gap: 16 }}>
                 {copy.highlights.map(([label, value]) => (
-                  <div key={label} style={{ paddingBottom: 14, borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
-                    <div style={{ color: tk.limeLt, fontSize: 11, fontFamily: fMono, letterSpacing: isAr ? 0 : "0.08em" }}>
+                  <div key={label}>
+                    <div
+                      style={{
+                        color: tk.forestMid,
+                        fontSize: 11,
+                        fontFamily: fMono,
+                        letterSpacing: isAr ? 0 : "0.08em",
+                        textTransform: isAr ? "none" : "uppercase",
+                        marginBottom: 6,
+                      }}
+                    >
                       {label}
                     </div>
-                    <div style={{ marginTop: 6, lineHeight: 1.8, fontSize: 14.5 }}>{value}</div>
+                    <p style={{ margin: 0, color: tk.body, lineHeight: 1.85, fontSize: 15 }}>
+                      {value}
+                    </p>
                   </div>
                 ))}
               </div>
-            </div>
+            </section>
 
-            <div
-              style={{
-                padding: "24px",
-                borderRadius: 24,
-                background: tk.bgCard,
-                border: `1px solid ${tk.border}`,
-                boxShadow: "0 4px 20px rgba(27,94,32,0.06)",
-              }}
-            >
+            <section className="gi-project-detail-rail-section" style={{ paddingBottom: 24, borderBottom: `1px solid ${tk.border}` }}>
               <h3 style={{ margin: "0 0 14px", fontFamily: fHead, fontSize: 22 }}>{copy.factsTitle}</h3>
               <div style={{ display: "grid", gap: 12 }}>
                 {copy.facts.map(([label, value]) => (
@@ -493,23 +468,17 @@ export default async function ProjectDetailsPage({
                   </div>
                 ))}
               </div>
-            </div>
+            </section>
 
-            <div
-              style={{
-                padding: "24px",
-                borderRadius: 24,
-                background: tk.bgCard,
-                border: `1px solid ${tk.border}`,
-                boxShadow: "0 4px 20px rgba(27,94,32,0.06)",
-              }}
-            >
+            <section className="gi-project-detail-rail-section">
               <h3 style={{ margin: "0 0 12px", fontFamily: fHead, fontSize: 22 }}>{copy.noteTitle}</h3>
-              <p style={{ margin: 0, color: tk.body, lineHeight: 1.85, fontSize: 14.5 }}>{copy.noteText}</p>
-            </div>
+              <p style={{ margin: 0, color: tk.body, lineHeight: 1.9, fontSize: 15 }}>{copy.noteText}</p>
+            </section>
           </aside>
         </div>
       </section>
+
+      <ScrollToTopButton lang={lang} />
     </main>
   );
 }

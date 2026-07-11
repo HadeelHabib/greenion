@@ -3,33 +3,23 @@ import Image from "next/image";
 import Link from "next/link";
 
 import logo from "@/app/assets/LOGO_.png";
+import ScrollToTopButton from "@/app/components/ScrollToTopButton";
+import SiteNavbar from "@/app/components/SiteNavbar";
 import { LANDING_COPY } from "@/app/content/site-copy";
-import ServicesContent from "./ServicesContent";
-
-export const metadata: Metadata = {
-  title: "Our Services | Green Ion",
-  description:
-    "Explore Green Ion's solar package options for residential, commercial, and industrial projects.",
-};
+import ServicesCatalog from "@/app/services/ServicesCatalog";
 
 const tk = {
   bg: "#F7F9F4",
   bgMid: "#EEF3E8",
   bgCard: "#FFFFFF",
-  bgDark: "#1A3A1A",
   forest: "#1B5E20",
   forestMid: "#2E7D32",
   lime: "#76C442",
-  limeLt: "#A8D96A",
-  limeDim: "#4E8A1E",
-  emerald: "#388E3C",
   ink: "#0F2710",
   body: "#3A4E35",
   muted: "#7A9472",
-  mutedLt: "#A8C0A0",
   border: "rgba(27,94,32,0.12)",
   borderG: "rgba(118,196,66,0.35)",
-  borderDk: "rgba(27,94,32,0.22)",
   white: "#FFFFFF",
   shadow: "0 4px 24px rgba(27,94,32,0.10)",
   shadowLg: "0 8px 48px rgba(27,94,32,0.15)",
@@ -43,7 +33,7 @@ const tk = {
   },
 };
 
-const BrandLogo = ({ width = 176, alt = "Green Ion logo" }) => (
+const BrandLogo = ({ width = 176, alt = "Green Ion logo" }: { width?: number; alt?: string }) => (
   <Image
     src={logo}
     alt={alt}
@@ -55,215 +45,229 @@ const BrandLogo = ({ width = 176, alt = "Green Ion logo" }) => (
   />
 );
 
-const Chip = ({
-  children,
-  isAr,
+export async function generateMetadata({
+  searchParams,
 }: {
-  children: React.ReactNode;
-  isAr: boolean;
-}) => (
-  <span
-    style={{
-      display: "inline-flex",
-      alignItems: "center",
-      gap: 6,
-      fontSize: 11,
-      letterSpacing: isAr ? 0 : "0.1em",
-      textTransform: isAr ? "none" : "uppercase",
-      color: tk.forestMid,
-      padding: "5px 14px",
-      border: `1px solid ${tk.borderG}`,
-      borderRadius: 20,
-      background: "rgba(118,196,66,0.1)",
-      fontWeight: 700,
-    }}
-  >
-    {children}
-  </span>
-);
+  searchParams: Promise<{ lang?: string | string[] | undefined }>;
+}): Promise<Metadata> {
+  const { lang } = await searchParams;
+  const langKey = (lang === "ar" ? "ar" : "en") as "ar" | "en";
 
-const pageCopy = LANDING_COPY;
+  return {
+    title: langKey === "ar" ? "خدماتنا | جرين أيون" : "Our Services | Green Ion",
+    description:
+      langKey === "ar"
+        ? "تعرف على عروض الطاقة الشمسية المقدمة من جرين أيون."
+        : "Green Ion services page with five solar pumping packages built from the attached technical and financial offers.",
+  };
+}
 
-type ServicesLang = keyof typeof pageCopy;
-type SearchParams = Promise<{ lang?: string | string[] | undefined }>;
-
-export default async function ServicesPage({ searchParams }: { searchParams: SearchParams }) {
-  const params = await searchParams;
-  const rawLang = Array.isArray(params.lang) ? params.lang[0] : params.lang;
-  const lang: ServicesLang = rawLang === "en" ? "en" : "ar";
-  const c = pageCopy[lang];
-  const isAr = lang === "ar";
-  const switchHref = `/services?lang=${isAr ? "en" : "ar"}`;
-  const fHead = isAr ? tk.ff.headAr : tk.ff.headEn;
-  const fBody = isAr ? tk.ff.bodyAr : tk.ff.bodyEn;
+export default async function ServicesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ lang?: string | string[] | undefined }>;
+}) {
+  const { lang } = await searchParams;
+  const langKey = (lang === "ar" ? "ar" : "en") as "ar" | "en";
+  const c = LANDING_COPY[langKey];
+  const isAr = langKey === "ar";
+  const fH = isAr ? tk.ff.headAr : tk.ff.headEn;
+  const fB = isAr ? tk.ff.bodyAr : tk.ff.bodyEn;
   const fMono = isAr ? tk.ff.monoAr : tk.ff.monoEn;
 
+  const homeHref = isAr ? "/" : "/?lang=en";
+  const navHrefs = [
+    homeHref,
+    isAr ? "/about?lang=ar" : "/about?lang=en",
+    isAr ? "/services?lang=ar" : "/services?lang=en",
+    isAr ? "/#how-it-works" : "/?lang=en#how-it-works",
+    isAr ? "/#projects" : "/?lang=en#projects",
+    isAr ? "/#calculator" : "/?lang=en#calculator",
+    isAr ? "/#contact" : "/?lang=en#contact",
+  ];
+  const langHref = isAr ? "/services?lang=en" : "/services?lang=ar";
+  const ctaHref = isAr ? "/#contact" : "/?lang=en#contact";
+
   return (
-    <main
-      dir={c.dir}
-      style={{
-        minHeight: "100vh",
-        background: tk.bg,
-        color: tk.ink,
-        fontFamily: fBody,
-      }}
-    >
-      <header
+    <div style={{ minHeight: "100vh", background: tk.bg, color: tk.ink, fontFamily: fB }}>
+      <SiteNavbar
+        lang={langKey}
+        brand={c.brand}
+        navLinks={c.nav.links}
+        navHrefs={navHrefs}
+        langLabel={c.langAlt}
+        langHref={langHref}
+        ctaLabel={c.nav.cta}
+        ctaHref={ctaHref}
+        homeHref={homeHref}
+      />
+
+      <section
         style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 50,
-          padding: "0 clamp(16px, 4vw, 32px)",
-          background: "rgba(247,249,244,0.95)",
-          backdropFilter: "blur(20px)",
-          borderBottom: `1px solid ${tk.border}`,
-          boxShadow: "0 2px 20px rgba(27,94,32,0.08)",
+          padding: "clamp(104px, 14vw, 132px) clamp(16px, 4vw, 32px) clamp(44px, 7vw, 64px)",
+          background: `linear-gradient(180deg, ${tk.bg} 0%, ${tk.bgMid} 100%)`,
         }}
       >
-        <div
-          className="gi-services-header-inner"
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            minHeight: 68,
-            display: "flex",
-            alignItems: "center",
-            gap: 16,
-          }}
-        >
-          <Link
-            href={isAr ? "/" : "/?lang=en"}
+        <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center" }}>
+          <span
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: 12,
-              textDecoration: "none",
-              color: tk.ink,
+              gap: 6,
+              fontSize: 11,
+              letterSpacing: isAr ? 0 : "0.08em",
+              textTransform: isAr ? "none" : "uppercase",
+              color: tk.forestMid,
+              padding: "6px 14px",
+              border: `1px solid ${tk.borderG}`,
+              borderRadius: "10px",
+              background: "rgba(118,196,66,0.08)",
+              fontWeight: 800,
+              fontFamily: fMono,
             }}
           >
-            <BrandLogo width={176} alt={isAr ? "جرين ايون" : "Green Ion"} />
-          </Link>
-
-          <nav
-            className="gi-services-nav-links"
+            {c.services.chip}
+          </span>
+          <h1
             style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 24,
-              flexWrap: "wrap",
-              justifyContent: "center",
+              margin: "18px 0 14px",
+              fontFamily: fH,
+              fontSize: "clamp(34px, 5vw, 58px)",
+              fontWeight: 900,
+              letterSpacing: isAr ? "-0.01em" : "-0.04em",
+              lineHeight: 1.08,
             }}
           >
-            {c.nav.links.map((label, index) => {
-              const navHrefs = [
-                isAr ? "/" : "/?lang=en",
-                isAr ? "/about?lang=ar" : "/about?lang=en",
-                `/services?lang=${lang}`,
-                "#how-it-works",
-                "#projects",
-                "#calculator",
-                "#contact"
-              ];
-              return (
-                <Link
-                  key={label}
-                  href={navHrefs[index]}
-                  style={{
-                    textDecoration: "none",
-                    color: tk.body,
-                    fontWeight: 500,
-                    fontSize: 13.5,
-                    fontFamily: fBody,
-                    transition: "color 0.2s",
-                  }}
-                >
-                  {label}
-                </Link>
-              );
-            })}
-          </nav>
-
-          <div
-            className="gi-services-header-controls"
+            {c.services.h2a}
+            {c.services.h2b ? (
+              <>
+                <br />
+                <span style={{ color: tk.lime }}>{c.services.h2b}</span>
+              </>
+            ) : null}
+          </h1>
+          <p
             style={{
-              marginInlineStart: "auto",
-              display: "flex",
-              alignItems: "center",
-              gap: 10,
+              maxWidth: 760,
+              margin: "0 auto",
+              color: tk.body,
+              fontSize: "clamp(15px, 2vw, 18px)",
+              lineHeight: 1.9,
             }}
           >
-            <Link
-              href={switchHref}
-              className="gi-header-pill"
-              style={{
-                padding: "7px 18px",
-                borderRadius: 20,
-                textDecoration: "none",
-                background: tk.bgMid,
-                border: `1.5px solid ${tk.borderDk}`,
-                color: tk.forest,
-                fontWeight: 800,
-                fontSize: 12,
-                fontFamily: fHead,
-                letterSpacing: isAr ? 0 : "0.06em",
-              }}
-            >
-              {c.langAlt}
-            </Link>
-            <Link
-              href={isAr ? "/#contact" : "/?lang=en#contact"}
-              className="gi-header-pill"
-              style={{
-                padding: "10px 22px",
-                borderRadius: 8,
-                textDecoration: "none",
-                background: tk.forest,
-                color: tk.white,
-                fontWeight: 700,
-                fontSize: 13,
-                fontFamily: fHead,
-                boxShadow: "0 4px 16px rgba(27,94,32,0.3)",
-              }}
-            >
-              {c.nav.cta}
-            </Link>
-          </div>
+            {c.services.sub}
+          </p>
         </div>
-      </header>
+      </section>
 
-      <ServicesContent lang={lang} />
+      <section style={{ padding: "0 clamp(16px, 4vw, 32px) clamp(72px, 9vw, 96px)" }}>
+        <ServicesCatalog lang={langKey} packages={c.services.packages} fH={fH} tk={tk} />
+      </section>
 
-      {/* Footer */}
-      <footer style={{ background: tk.bgDark, borderTop: `1px solid rgba(255,255,255,0.06)`, padding: "clamp(40px,7vw,64px) clamp(16px,4vw,32px) clamp(24px,5vw,36px)", direction: c.dir }}>
+      <footer
+        style={{
+          background: "#0C1F10",
+          borderTop: "1px solid rgba(255,255,255,0.06)",
+          padding: "clamp(40px,7vw,64px) clamp(16px,4vw,32px) clamp(24px,5vw,36px)",
+          direction: c.dir,
+        }}
+      >
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 48, marginBottom: 52 }}>
+          <div
+            className="gi-footer-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+              gap: 48,
+              marginBottom: 52,
+            }}
+          >
             <div style={{ textAlign: isAr ? "right" : "left" }}>
               <div style={{ marginBottom: 16 }}>
                 <BrandLogo width={150} alt={c.brand} />
               </div>
-              <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.5)", fontFamily: fBody, lineHeight: 1.85, maxWidth: 260, margin: "0 0 20px" }}>{c.footer.tagline}</p>
-              <p style={{ fontSize: 12, color: tk.lime, fontFamily: fMono, letterSpacing: "0.06em", opacity: 0.7 }}>{c.footer.locations}</p>
+              <p
+                style={{
+                  fontSize: 13.5,
+                  color: "rgba(255,255,255,0.68)",
+                  fontFamily: fB,
+                  lineHeight: 1.85,
+                  maxWidth: 260,
+                  margin: "0 0 20px",
+                }}
+              >
+                {isAr
+                  ? "نجعل الطاقة الشمسية النظيفة والمعقولة التكلفة متاحةً لكل منزل ومنشأة في المملكة العربية السعودية."
+                  : "Making clean, affordable solar energy accessible to every home and business in Saudi Arabia."}
+              </p>
+              <p
+                style={{
+                  fontSize: 12,
+                  color: tk.lime,
+                  fontFamily: fMono,
+                  letterSpacing: "0.06em",
+                  opacity: 0.85,
+                }}
+              >
+                {isAr ? "الرياض · جدة · الدمام" : "Riyadh · Jeddah · Dammam"}
+              </p>
             </div>
-            {c.footer.cols.map(col => (
+
+            {(isAr
+              ? [
+                  { h: "الشركة", ls: [["من نحن", "/about?lang=ar"], ["المشاريع", "/#projects"]] },
+                  { h: "الدعم", ls: [["تواصل", "/#contact"], ["الخدمات", "/services?lang=ar"]] },
+                ]
+              : [
+                  { h: "Company", ls: [["About Us", "/about?lang=en"], ["Projects", "/?lang=en#projects"]] },
+                  { h: "Support", ls: [["Contact", "/?lang=en#contact"], ["Services", "/services?lang=en"]] },
+                ]).map((col) => (
               <div key={col.h} style={{ textAlign: isAr ? "right" : "left" }}>
-                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.25)", fontFamily: fMono, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 18 }}>{col.h}</div>
-                {col.ls.map(l => (
-                  <div key={l} style={{ marginBottom: 10 }}>
-                    <Link href={l === "About Us" ? "/about?lang=en" : l === "من نحن" ? "/about?lang=ar" : "/#contact"} style={{ fontSize: 13.5, color: "rgba(255,255,255,0.5)", fontFamily: fBody, textDecoration: "none", transition: "color 0.2s" }}>{l}</Link>
+                <div
+                  style={{
+                    fontSize: 11,
+                    color: "rgba(255,255,255,0.35)",
+                    fontFamily: fMono,
+                    letterSpacing: "0.1em",
+                    textTransform: isAr ? "none" : "uppercase",
+                    marginBottom: 18,
+                  }}
+                >
+                  {col.h}
+                </div>
+                {col.ls.map(([label, href]) => (
+                  <div key={label} style={{ marginBottom: 10 }}>
+                    <Link
+                      href={href}
+                      style={{
+                        fontSize: 13.5,
+                        color: "rgba(255,255,255,0.68)",
+                        fontFamily: fB,
+                        textDecoration: "none",
+                      }}
+                    >
+                      {label}
+                    </Link>
                   </div>
                 ))}
               </div>
             ))}
           </div>
-          <div style={{ height: 1, background: `linear-gradient(90deg,transparent,rgba(118,196,66,0.3),transparent)`, margin: "0 0 24px" }} />
+
+          <div style={{ height: 1, background: "linear-gradient(90deg,transparent,rgba(118,196,66,0.3),transparent)", margin: "0 0 24px" }} />
+
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
-            <span style={{ fontSize: 13, color: "rgba(255,255,255,0.25)", fontFamily: fBody }}>{c.footer.copyright}</span>
-            <span style={{ fontSize: 11, color: tk.lime, fontFamily: fMono, letterSpacing: "0.06em", opacity: 0.6 }}>{c.footer.badge}</span>
+            <span style={{ fontSize: 13, color: "rgba(255,255,255,0.38)", fontFamily: fB }}>
+              {isAr ? "© 2026 شركة جرين أيون للطاقة. جميع الحقوق محفوظة." : "© 2026 Green Ion Energy Co. All rights reserved."}
+            </span>
+            <span style={{ fontSize: 11, color: tk.lime, fontFamily: fMono, letterSpacing: "0.06em", opacity: 0.72 }}>
+              {isAr ? "نحو مستقبل مشرق ومستدام بطاقة الشمس" : "POWERING A GREENER FUTURE"}
+            </span>
           </div>
         </div>
       </footer>
-    </main>
+
+      <ScrollToTopButton lang={langKey} />
+    </div>
   );
 }

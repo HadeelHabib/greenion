@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import logo from "@/app/assets/LOGO_.png";
+import ScrollToTopButton from "@/app/components/ScrollToTopButton";
 import { ABOUT_COPY } from "@/app/content/site-copy";
 
 export const metadata: Metadata = {
@@ -199,7 +200,7 @@ export default async function AboutPage({
               {c.nav.langAlt}
             </Link>
             <Link
-              href="/#contact"
+              href={isAr ? "/#contact" : "/?lang=en#contact"}
               className="gi-header-pill"
               style={{
                 padding: "10px 22px",
@@ -328,7 +329,7 @@ export default async function AboutPage({
               {c.ctaSub}
             </p>
             <Link
-              href="/#contact"
+              href={isAr ? "/#contact" : "/?lang=en#contact"}
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -381,6 +382,8 @@ export default async function AboutPage({
           </div>
         </div>
       </footer>
+
+      <ScrollToTopButton lang={lang} />
     </main>
   );
 }

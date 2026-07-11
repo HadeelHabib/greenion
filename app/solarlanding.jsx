@@ -8,6 +8,7 @@ import hero from "@/app/assets/hero.png"
 import bg1 from "@/app/assets/bg1.png"
 import panel650 from "@/app/assets/2u.png"
 import inverterImage from "@/app/assets/inverter.png"
+import ScrollToTopButton from "@/app/components/ScrollToTopButton";
 import { LANDING_COPY } from "@/app/content/site-copy";
 import { PriceWithRiyal, SaudiRiyalIcon, extractMoneyAmount } from "@/app/components/SaudiRiyalIcon";
 /* ═══════════════════════════════════════════════════════════════
@@ -364,15 +365,15 @@ function Nav({ lang, onToggle, c }) {
         {/* Right group */}
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <LangToggle lang={lang} onToggle={onToggle} c={c} />
-          <button className="gi-nav-cta" style={{
+          <a className="gi-nav-cta" href={isAr ? "/#contact" : "/?lang=en#contact"} style={{
             padding: "10px 22px", borderRadius: "10px", background: tk.forest, color: tk.white,
             border: "none", cursor: "pointer", fontSize: 13, fontWeight: 700,
             fontFamily: fHead, boxShadow: `0 4px 16px rgba(27,94,32,0.3)`, transition: "all 0.2s",
+            textDecoration: "none", display: "inline-flex", alignItems: "center", justifyContent: "center",
           }}
-            onClick={() => window.location.hash = "contact"}
             onMouseEnter={e => { e.currentTarget.style.background = tk.forestMid; e.currentTarget.style.boxShadow = `0 6px 24px rgba(27,94,32,0.4)`; e.currentTarget.style.transform = "translateY(-1px)"; }}
             onMouseLeave={e => { e.currentTarget.style.background = tk.forest; e.currentTarget.style.boxShadow = `0 4px 16px rgba(27,94,32,0.3)`; e.currentTarget.style.transform = "translateY(0)"; }}
-          >{c.nav.cta}</button>
+          >{c.nav.cta}</a>
           <button
             type="button"
             className="gi-nav-menu-btn"
@@ -434,9 +435,9 @@ function Nav({ lang, onToggle, c }) {
                 {l}
               </a>
             ))}
-            <button
-              type="button"
-              onClick={() => { setOpen(false); window.location.hash = "contact"; }}
+            <a
+              href={isAr ? "/#contact" : "/?lang=en#contact"}
+              onClick={() => { setOpen(false); }}
               style={{
                 padding: "12px 14px",
                 borderRadius: "10px",
@@ -448,10 +449,14 @@ function Nav({ lang, onToggle, c }) {
                 fontWeight: 800,
                 fontFamily: fHead,
                 boxShadow: `0 6px 24px rgba(27,94,32,0.25)`,
+                textDecoration: "none",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
               {c.nav.cta}
-            </button>
+            </a>
           </div>
         </div>
       )}
@@ -517,13 +522,12 @@ function Hero({ lang, c }) {
             </h1>
             {c.hero.sub ? <p style={{ fontSize: "clamp(15px,2vw,18px)", color: tk.white, lineHeight: 1.9, margin: "0 0 44px", maxWidth: 540, fontFamily: fBody, opacity: on ? 1 : 0, transform: on ? "translateY(0)" : "translateY(18px)", transition: `all 0.7s ${tk.ease} 0.16s` }}>{c.hero.sub}</p> : null}
             <div className="gi-hero-actions" style={{ opacity: on ? 1 : 0, transform: on ? "translateY(0)" : "translateY(14px)", transition: `all 0.7s ${tk.ease} 0.24s` }}>
-              <button style={{ padding: "15px 34px", borderRadius: "10px", background: tk.forest, color: tk.white, border: "none", cursor: "pointer", fontSize: 14, fontWeight: 700, fontFamily: fHead, boxShadow: `0 6px 28px rgba(27,94,32,0.35)`, display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center", gap: 8, transition: "all 0.2s" }}
-                onClick={() => window.location.hash = "contact"}
+              <a href={isAr ? "/#contact" : "/?lang=en#contact"} style={{ padding: "15px 34px", borderRadius: "10px", background: tk.forest, color: tk.white, border: "none", cursor: "pointer", fontSize: 14, fontWeight: 700, fontFamily: fHead, boxShadow: `0 6px 28px rgba(27,94,32,0.35)`, display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center", gap: 8, transition: "all 0.2s", textDecoration: "none" }}
                 onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = `0 10px 36px rgba(27,94,32,0.45)`; }}
                 onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = `0 6px 28px rgba(27,94,32,0.35)`; }}
               >
                 {c.hero.cta1} <Arrow dir={c.dir} color={tk.white} />
-              </button>
+              </a>
               <button style={{ padding: "15px 26px", borderRadius: "10px", background: tk.white, color: tk.forest, border: `1.5px solid ${tk.borderDk}`, cursor: "pointer", fontSize: 14, fontFamily: fBody, fontWeight: 500, boxShadow: tk.shadow, transition: "all 0.2s", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center" }}
                 onClick={() => window.location.hash = "how-it-works"}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = tk.lime; e.currentTarget.style.color = tk.forestMid; }}
@@ -1477,6 +1481,7 @@ export default function GreenIonSite() {
         {sectionsEnabled.contact && <Contact key={lang} lang={lang} c={c} />}
         {sectionsEnabled.footer && <Footer lang={lang} c={c} />}
       </div>
+      <ScrollToTopButton lang={lang} />
     </div>
   );
 }

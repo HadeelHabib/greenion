@@ -4,6 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import logo from "@/app/assets/LOGO_.png";
+import ScrollToTopButton from "@/app/components/ScrollToTopButton";
+import SiteNavbar from "@/app/components/SiteNavbar";
 import { SaudiRiyalIcon } from "@/app/components/SaudiRiyalIcon";
 import { LANDING_COPY } from "@/app/content/site-copy";
 
@@ -100,129 +102,67 @@ export default async function ServiceDetail({
   const isAr = langKey === "ar";
   const fH = isAr ? tk.ff.headAr : tk.ff.headEn;
   const fB = isAr ? tk.ff.bodyAr : tk.ff.bodyEn;
+  const fMono = isAr ? tk.ff.monoAr : tk.ff.monoEn;
 
   const pkg = c.services?.packages.find((p) => p.id === id);
   if (!pkg) notFound();
 
+  const qtyHeadA = isAr ? "البند" : "Item";
+  const qtyHeadB = isAr ? "الكمية" : "Quantity";
+  const warHeadA = isAr ? "الضمان" : "Warranty";
+  const warHeadB = isAr ? "المدة" : "Coverage";
+
+  const componentIntro = isAr
+    ? "يشمل العرض مكونات أساسية مرتبة لضمان سهولة المراجعة:"
+    : "The package is summarized into key components for clear review:";
+  const componentGroupLabel = isAr ? "الكوابل والتركيب" : "Cabling & Installation";
+  const componentPoints = (() => {
+    const items = pkg.components ?? [];
+    if (items.length <= 4) return items.map(([title, desc]) => ({ title, desc }));
+    const first = items.slice(0, 3).map(([title, desc]) => ({ title, desc }));
+    const rest = items.slice(3);
+    const restText = rest.map(([title, desc]) => `${title}: ${desc}`).join(isAr ? "، " : " · ");
+    return [...first, { title: componentGroupLabel, desc: restText }];
+  })();
+  const homeHref = isAr ? "/" : "/?lang=en";
+  const navHrefs = [
+    homeHref,
+    isAr ? "/about?lang=ar" : "/about?lang=en",
+    isAr ? "/services?lang=ar" : "/services?lang=en",
+    isAr ? "/#how-it-works" : "/?lang=en#how-it-works",
+    isAr ? "/#projects" : "/?lang=en#projects",
+    isAr ? "/#calculator" : "/?lang=en#calculator",
+    isAr ? "/#contact" : "/?lang=en#contact",
+  ];
+  const langHref = isAr ? `/services/${id}?lang=en` : `/services/${id}?lang=ar`;
+  const ctaHref = isAr ? "/#contact" : "/?lang=en#contact";
+
   return (
     <div style={{ background: tk.bg, minHeight: "100vh", fontFamily: fB }}>
-      {/* Header/ Nav */}
-      <header style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 20,
-        padding: "0 clamp(16px, 4vw, 32px)",
-        background: "rgba(247,249,244,0.95)",
-        backdropFilter: "blur(20px)",
-        borderBottom: `1px solid ${tk.border}`,
-        boxShadow: "0 2px 20px rgba(27,94,32,0.08)",
-      }}>
-        <div style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          display: "flex",
-          alignItems: "center",
-          gap: 16,
-          minHeight: 68,
-        }}>
-          <Link href={isAr ? "/" : "/?lang=en"} style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 12,
-            textDecoration: "none",
-            color: tk.ink,
-          }}>
-            <BrandLogo width={176} alt={isAr ? "جرين ايون" : "Green Ion"} />
-          </Link>
-
-          <nav style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 24,
-            flexWrap: "wrap",
-            justifyContent: "center",
-          }}>
-            {[
-              { label: isAr ? "الرئيسية" : "Home", href: isAr ? "/" : "/?lang=en" },
-              { label: isAr ? "من نحن" : "About Us", href: isAr ? "/about?lang=ar" : "/about?lang=en" },
-              { label: isAr ? "خدماتنا" : "Our Services", href: isAr ? "/services?lang=ar" : "/services?lang=en" },
-              { label: isAr ? "كيف نعمل" : "How It Works", href: isAr ? "/#how-it-works" : "/?lang=en#how-it-works" },
-              { label: isAr ? "المشاريع" : "Projects", href: isAr ? "/#projects" : "/?lang=en#projects" },
-              { label: isAr ? "الحاسبة" : "Calculator", href: isAr ? "/#calculator" : "/?lang=en#calculator" },
-              { label: isAr ? "تواصل" : "Contact", href: isAr ? "/#contact" : "/?lang=en#contact" },
-            ].map((item, index) => (
-              <Link key={item.label} href={item.href} style={{
-                textDecoration: "none",
-                color: tk.body,
-                fontWeight: 500,
-                fontSize: 13.5,
-                fontFamily: fB,
-                transition: "color 0.2s",
-              }}>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div style={{
-            marginInlineStart: "auto",
-            display: "flex",
-            alignItems: "center",
-            gap: 10,
-          }}>
-            <Link href={isAr ? `/services/${id}?lang=en` : `/services/${id}?lang=ar`} style={{
-              padding: "7px 18px",
-              borderRadius: 20,
-              textDecoration: "none",
-              background: tk.bgMid,
-              border: `1.5px solid ${tk.borderDk}`,
-              color: tk.forest,
-              fontWeight: 800,
-              fontSize: 12,
-              fontFamily: fH,
-              letterSpacing: isAr ? 0 : "0.06em",
-            }}>
-              {isAr ? "English" : "العربية"}
-            </Link>
-            <Link href={isAr ? "/?lang=ar" : "/?lang=en"} style={{
-              padding: "10px 22px",
-              borderRadius: 8,
-              textDecoration: "none",
-              background: tk.forest,
-              color: tk.white,
-              fontWeight: 700,
-              fontSize: 13,
-              fontFamily: fH,
-              boxShadow: "0 4px 16px rgba(27,94,32,0.3)",
-            }}>
-              {isAr ? "الصفحة الرئيسية" : "Back Home"}
-            </Link>
-          </div>
-        </div>
-      </header>
+      <SiteNavbar
+        lang={langKey}
+        brand={c.brand}
+        navLinks={c.nav.links}
+        navHrefs={navHrefs}
+        langLabel={isAr ? "English" : "العربية"}
+        langHref={langHref}
+        ctaLabel={c.nav.cta}
+        ctaHref={ctaHref}
+        homeHref={homeHref}
+      />
 
       {/* Hero Section */}
       <section style={{
-        paddingTop: "120px",
+        paddingTop: "clamp(96px, 14vw, 120px)",
         paddingBottom: "clamp(48px, 8vw, 80px)",
         paddingLeft: "clamp(16px, 4vw, 32px)",
         paddingRight: "clamp(16px, 4vw, 32px)",
-        maxWidth: 1160,
-        margin: "0 auto",
-        textAlign: isAr ? "right" : "left"
+        textAlign: isAr ? "right" : "left",
+        background: `linear-gradient(145deg, ${tk.forest}, ${tk.forestMid})`,
+        color: tk.white
       }}>
-        <div style={{
-          background: `linear-gradient(145deg, ${tk.forest}, ${tk.forestMid})`,
-          borderRadius: 24,
-          padding: "clamp(32px, 6vw, 56px)",
-          color: tk.white,
-          boxShadow: tk.shadowLg,
-          overflow: "hidden",
-          position: "relative"
-        }}>
-          <div style={{ position: "relative", zIndex: 2, maxWidth: 720 }}>
+        <div style={{ maxWidth: 1160, margin: "0 auto" }}>
+          <div style={{ maxWidth: 720 }}>
             <Chip style={{
               background: "rgba(118,196,66,0.15)",
               border: "1px solid rgba(118,196,66,0.4)",
@@ -264,16 +204,11 @@ export default async function ServiceDetail({
         margin: "0 auto",
         direction: isAr ? "rtl" : "ltr"
       }}>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "1.3fr 0.7fr",
-          gap: 28,
-          alignItems: "flex-start"
-        }}>
+        <div className="gi-service-detail-grid" style={{ display: "grid", gridTemplateColumns: "minmax(0, 1.3fr) minmax(280px, 0.7fr)", gap: 28, alignItems: "flex-start" }}>
           {/* Left Column - Main details */}
-          <div>
+          <div style={{ minWidth: 0 }}>
             {/* System Components */}
-            {pkg.components && pkg.components.length > 0 && (
+            {componentPoints.length > 0 && (
               <div style={{ marginBottom: 32 }}>
                 <h2 style={{
                   fontFamily: fH,
@@ -284,38 +219,26 @@ export default async function ServiceDetail({
                 }}>
                   {isAr ? "مكونات النظام" : "System Components"}
                 </h2>
-                <div style={{
-                  background: tk.white,
-                  borderRadius: 16,
-                  padding: 24,
-                  border: `1.5px solid ${tk.border}`,
-                  boxShadow: tk.shadow
-                }}>
-                  <ul style={{
-                    listStyle: "none",
-                    padding: 0,
-                    margin: 0,
-                    display: "grid",
-                    gap: 12
-                  }}>
-                    {pkg.components.map((comp, idx) => (
-                      <li key={idx} style={{
+                <p style={{ margin: "0 0 14px", fontFamily: fB, fontSize: 15, color: tk.body, lineHeight: 1.95 }}>
+                  {componentIntro}
+                </p>
+                <ul className="gi-service-points" style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 12 }}>
+                  {componentPoints.map((point) => (
+                    <li
+                      key={`${pkg.id}-${point.title}`}
+                      style={{
                         display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        padding: "14px 0",
-                        borderBottom: idx < pkg.components.length - 1 ? `1px solid ${tk.border}` : "none"
-                      }}>
-                        <span style={{ fontFamily: fB, fontSize: 15, color: tk.body }}>
-                          {comp[0]}
-                        </span>
-                        <span style={{ fontFamily: fB, fontSize: 15, color: tk.ink, fontWeight: 600 }}>
-                          {comp[1]}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                        flexDirection: "column",
+                        gap: 4,
+                        padding: "12px 0",
+                        borderBottom: `1px solid ${tk.border}`,
+                      }}
+                    >
+                      <div style={{ fontFamily: fH, fontSize: 15, fontWeight: 800, color: tk.ink }}>{point.title}</div>
+                      <div style={{ fontFamily: fB, fontSize: 14, color: tk.body, lineHeight: 1.9 }}>{point.desc}</div>
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
 
@@ -331,37 +254,23 @@ export default async function ServiceDetail({
                 }}>
                   {isAr ? "جدول التكميات" : "Quantity Table"}
                 </h2>
-                <div style={{
-                  background: tk.white,
-                  borderRadius: 16,
-                  padding: 24,
-                  border: `1.5px solid ${tk.border}`,
-                  boxShadow: tk.shadow
-                }}>
-                  <ul style={{
-                    listStyle: "none",
-                    padding: 0,
-                    margin: 0,
-                    display: "grid",
-                    gap: 12
-                  }}>
-                    {pkg.quantities.map((qty, idx) => (
-                      <li key={idx} style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        padding: "14px 0",
-                        borderBottom: idx < pkg.quantities.length - 1 ? `1px solid ${tk.border}` : "none"
-                      }}>
-                        <span style={{ fontFamily: fB, fontSize: 15, color: tk.body }}>
-                          {qty[0]}
-                        </span>
-                        <span style={{ fontFamily: fB, fontSize: 15, color: tk.ink, fontWeight: 600 }}>
-                          {qty[1]}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="gi-qty-wrap" style={{ overflowX: "auto" }}>
+                  <table className="gi-qty-table" style={{ width: "100%", borderCollapse: "collapse", minWidth: 420 }}>
+                    <thead>
+                      <tr>
+                        <th style={{ textAlign: isAr ? "right" : "left" }}>{qtyHeadA}</th>
+                        <th style={{ textAlign: isAr ? "right" : "left" }}>{qtyHeadB}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {pkg.quantities.map((qty) => (
+                        <tr key={`${pkg.id}-${qty[0]}`}>
+                          <td data-label={qtyHeadA}>{qty[0]}</td>
+                          <td data-label={qtyHeadB}>{qty[1]}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             )}
@@ -378,58 +287,31 @@ export default async function ServiceDetail({
                 }}>
                   {isAr ? "الضمانات" : "Warranties"}
                 </h2>
-                <div style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-                  gap: 14
-                }}>
-                  {pkg.warranties.map((w, idx) => (
-                    <div key={idx} style={{
-                      background: tk.white,
-                      borderRadius: 16,
-                      padding: 20,
-                      border: `1.5px solid ${tk.border}`,
-                      boxShadow: tk.shadow
-                    }}>
-                      <div style={{
-                        width: 40,
-                        height: 40,
-                        borderRadius: 10,
-                        background: `rgba(118,196,66,0.12)`,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        marginBottom: 12,
-                        color: tk.lime,
-                        fontSize: 20
-                      }}>
-                        ✓
-                      </div>
-                      <p style={{ fontFamily: fH, fontSize: 16, fontWeight: 700, color: tk.ink, margin: 0 }}>
-                        {w[0]}
-                      </p>
-                      <p style={{ fontFamily: fB, fontSize: 13, color: tk.muted, margin: "4px 0 0" }}>
-                        {w[1]}
-                      </p>
-                    </div>
-                  ))}
+                <div className="gi-qty-wrap" style={{ overflowX: "auto" }}>
+                  <table className="gi-qty-table" style={{ width: "100%", borderCollapse: "collapse", minWidth: 420 }}>
+                    <thead>
+                      <tr>
+                        <th style={{ textAlign: isAr ? "right" : "left" }}>{warHeadA}</th>
+                        <th style={{ textAlign: isAr ? "right" : "left" }}>{warHeadB}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {pkg.warranties.map((w) => (
+                        <tr key={`${pkg.id}-${w[0]}`}>
+                          <td data-label={warHeadA}>{w[0]}</td>
+                          <td data-label={warHeadB}>{w[1]}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             )}
           </div>
 
           {/* Right Column - Sticky CTA / Price */}
-          <div style={{
-            position: "sticky",
-            top: 100
-          }}>
-            <div style={{
-              background: tk.white,
-              borderRadius: 16,
-              padding: 24,
-              border: `1.5px solid ${tk.border}`,
-              boxShadow: tk.shadowLg
-            }}>
+          <div className="gi-service-sticky" style={{ position: "sticky", top: 96 }}>
+            <div style={{ paddingTop: 18, borderTop: `1px solid ${tk.border}`, minWidth: 0 }}>
               <h3 style={{
                 fontFamily: fH,
                 fontSize: 14,
@@ -473,7 +355,7 @@ export default async function ServiceDetail({
                 display: "block",
                 textAlign: "center",
                 padding: "16px 24px",
-                borderRadius: 12,
+                borderRadius: 0,
                 background: tk.forest,
                 color: tk.white,
                 border: "none",
@@ -506,20 +388,21 @@ export default async function ServiceDetail({
             </div>
           </div>
         </div>
+
       </section>
 
       {/* Footer */}
-      <footer style={{ background: tk.bgMid, borderTop: `1px solid rgba(255,255,255,0.06)`, padding: "clamp(40px,7vw,64px) clamp(16px,4vw,32px) clamp(24px,5vw,36px)", direction: c.dir }}>
+      <footer style={{ background: "#0C1F10", borderTop: `1px solid rgba(255,255,255,0.06)`, padding: "clamp(40px,7vw,64px) clamp(16px,4vw,32px) clamp(24px,5vw,36px)", direction: c.dir }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 48, marginBottom: 52 }}>
+          <div className="gi-footer-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 48, marginBottom: 52 }}>
             <div style={{ textAlign: isAr ? "right" : "left" }}>
               <div style={{ marginBottom: 16 }}>
                 <BrandLogo width={150} alt={c.brand} />
               </div>
-              <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.5)", fontFamily: fB, lineHeight: 1.85, maxWidth: 260, margin: "0 0 20px" }}>
+              <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.68)", fontFamily: fB, lineHeight: 1.85, maxWidth: 260, margin: "0 0 20px" }}>
                 {isAr ? "نجعل الطاقة الشمسية النظيفة والمعقولة التكلفة متاحةً لكل منزل ومنشأة في المملكة العربية السعودية." : "Making clean, affordable solar energy accessible to every home and business in Saudi Arabia."}
               </p>
-              <p style={{ fontSize: 12, color: tk.lime, fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn, letterSpacing: "0.06em", opacity: 0.7 }}>
+              <p style={{ fontSize: 12, color: tk.lime, fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn, letterSpacing: "0.06em", opacity: 0.85 }}>
                 {isAr ? "الرياض · جدة · الدمام" : "Riyadh · Jeddah · Dammam"}
               </p>
             </div>
@@ -531,10 +414,10 @@ export default async function ServiceDetail({
               { h: "Support", ls: ["FAQ"] }
             ]).map(col => (
               <div key={col.h} style={{ textAlign: isAr ? "right" : "left" }}>
-                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.25)", fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 18 }}>{col.h}</div>
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 18 }}>{col.h}</div>
                 {col.ls.map(l => (
                   <div key={l} style={{ marginBottom: 10 }}>
-                    <Link href={l === "About Us" ? "/about?lang=en" : l === "من نحن" ? "/about?lang=ar" : "/#contact"} style={{ fontSize: 13.5, color: "rgba(255,255,255,0.5)", fontFamily: fB, textDecoration: "none", transition: "color 0.2s" }}>{l}</Link>
+                    <Link href={l === "About Us" ? "/about?lang=en" : l === "من نحن" ? "/about?lang=ar" : l === "Projects" ? "/?lang=en#projects" : l === "المشاريع" ? "/#projects" : isAr ? "/#contact" : "/?lang=en#contact"} style={{ fontSize: 13.5, color: "rgba(255,255,255,0.68)", fontFamily: fB, textDecoration: "none", transition: "color 0.2s" }}>{l}</Link>
                   </div>
                 ))}
               </div>
@@ -542,13 +425,15 @@ export default async function ServiceDetail({
           </div>
           <div style={{ height: 1, background: `linear-gradient(90deg,transparent,rgba(118,196,66,0.3),transparent)`, margin: "0 0 24px" }} />
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
-            <span style={{ fontSize: 13, color: "rgba(255,255,255,0.25)", fontFamily: fB }}>{isAr ? "© 2026 شركة جرين أيون للطاقة. جميع الحقوق محفوظة." : "© 2026 Green Ion Energy Co. All rights reserved."}</span>
-            <span style={{ fontSize: 11, color: tk.lime, fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn, letterSpacing: "0.06em", opacity: 0.6 }}>
+            <span style={{ fontSize: 13, color: "rgba(255,255,255,0.38)", fontFamily: fB }}>{isAr ? "© 2026 شركة جرين أيون للطاقة. جميع الحقوق محفوظة." : "© 2026 Green Ion Energy Co. All rights reserved."}</span>
+            <span style={{ fontSize: 11, color: tk.lime, fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn, letterSpacing: "0.06em", opacity: 0.72 }}>
               {isAr ? "نحو مستقبل مشرق ومستدام بطاقة الشمس" : "⚡ POWERING A GREENER FUTURE"}
             </span>
           </div>
         </div>
       </footer>
+
+      <ScrollToTopButton lang={langKey} />
     </div>
   );
 }
