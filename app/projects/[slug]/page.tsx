@@ -276,7 +276,7 @@ export default async function ProjectDetailsPage({
             <video
               src={project.video}
               controls
-              preload="metadata"
+              preload="none"
               playsInline
               style={{
                 width: "100%",

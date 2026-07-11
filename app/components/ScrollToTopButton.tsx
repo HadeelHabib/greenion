@@ -11,10 +11,22 @@ export default function ScrollToTopButton({ lang = "en" }: ScrollToTopButtonProp
   const isAr = lang === "ar";
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 280);
+    let ticking = false;
 
-    onScroll();
-    window.addEventListener("scroll", onScroll);
+    const updateVisible = () => {
+      const nextVisible = window.scrollY > 280;
+      setVisible((prev) => (prev === nextVisible ? prev : nextVisible));
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(updateVisible);
+    };
+
+    updateVisible();
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 

@@ -234,7 +234,7 @@ export default async function AboutPage({
             muted
             loop
             controls
-            preload="metadata"
+            preload="none"
             playsInline
             poster=""
             className="gi-about-video"
