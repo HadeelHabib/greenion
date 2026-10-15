@@ -40,7 +40,7 @@ export const LANDING_COPY = {
       chip: "Our Services",
       h2a: "Our Packages",
       h2b: "",
-      sub: "Five ready solar pumping offers built from the attached technical and financial sheets.",
+      sub: "Ready-to-install solar water pumping packages for farms and agricultural projects across Saudi Arabia, with clear specs, quantities, warranties, and VAT-inclusive pricing.",
       packages: [
         { 
           id: "30hp",

@@ -7,6 +7,7 @@ import ScrollToTopButton from "@/app/components/ScrollToTopButton";
 import SiteNavbar from "@/app/components/SiteNavbar";
 import { LANDING_COPY } from "@/app/content/site-copy";
 import ServicesCatalog from "@/app/services/ServicesCatalog";
+import { absoluteUrl, breadcrumbSchema, buildPageMetadata, jsonLd, localizedPaths } from "@/lib/seo";
 
 const tk = {
   bg: "#F7F9F4",
@@ -53,13 +54,15 @@ export async function generateMetadata({
   const { lang } = await searchParams;
   const langKey = (lang === "ar" ? "ar" : "en") as "ar" | "en";
 
-  return {
-    title: langKey === "ar" ? "خدماتنا | جرين أيون" : "Our Services | Green Ion",
+  return buildPageMetadata({
+    lang: langKey,
+    path: "/services",
+    title: langKey === "ar" ? "خدماتنا وعروض ضخ المياه بالطاقة الشمسية" : "Solar Water Pumping Packages & Services",
     description:
       langKey === "ar"
-        ? "تعرف على عروض الطاقة الشمسية المقدمة من جرين أيون."
-        : "Green Ion services page with five solar pumping packages built from the attached technical and financial offers.",
-  };
+        ? "عروض جرين أيون لأنظمة ضخ المياه بالطاقة الشمسية من 30 إلى 750 حصان: ألواح 650 واط، عواكس INVT، هياكل ZAM مقاومة للصدأ، تركيب وتشغيل وضمانات حتى 25 سنة، بأسعار شاملة الضريبة."
+        : "Green Ion solar water pumping packages from 30 HP to 750 HP: 650W panels, INVT inverters, ZAM steel structures, installation, commissioning, and warranties up to 25 years. VAT-inclusive pricing.",
+  });
 }
 
 export default async function ServicesPage({
@@ -88,8 +91,27 @@ export default async function ServicesPage({
   const langHref = isAr ? "/services?lang=en" : "/services?lang=ar";
   const ctaHref = isAr ? "/#contact" : "/?lang=en#contact";
 
+  const structuredData = [
+    breadcrumbSchema([
+      { name: isAr ? "الرئيسية" : "Home", path: localizedPaths("/")[langKey] },
+      { name: isAr ? "خدماتنا" : "Our Services", path: localizedPaths("/services")[langKey] },
+    ]),
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: isAr ? "عروض ضخ المياه بالطاقة الشمسية" : "Solar water pumping packages",
+      itemListElement: c.services.packages.map((pkg, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: pkg.title,
+        url: absoluteUrl(localizedPaths(`/services/${pkg.id}`)[langKey]),
+      })),
+    },
+  ];
+
   return (
     <div style={{ minHeight: "100vh", background: tk.bg, color: tk.ink, fontFamily: fB }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(structuredData)} />
       <SiteNavbar
         lang={langKey}
         brand={c.brand}

@@ -8,6 +8,7 @@ import ScrollToTopButton from "@/app/components/ScrollToTopButton";
 import SiteNavbar from "@/app/components/SiteNavbar";
 import { SaudiRiyalIcon } from "@/app/components/SaudiRiyalIcon";
 import { LANDING_COPY } from "@/app/content/site-copy";
+import { absoluteUrl, breadcrumbSchema, buildPageMetadata, jsonLd, localizedPaths } from "@/lib/seo";
 
 const tk = {
   bg: "#F7F9F4",
@@ -80,12 +81,24 @@ export async function generateMetadata({
   const c = LANDING_COPY[langKey];
 
   const pkg = c.services?.packages.find((p) => p.id === id);
-  if (!pkg) return { title: "Service not found | Green Ion" };
+  if (!pkg) return { title: "Service not found | Green Ion", robots: { index: false } };
 
-  return {
-    title: `${pkg.title} | Green Ion`,
+  return buildPageMetadata({
+    lang: langKey,
+    path: `/services/${pkg.id}`,
+    title: packageSeoTitle(pkg.title, langKey),
     description: pkg.summary,
-  };
+  });
+}
+
+function packageSeoTitle(title: string, lang: "ar" | "en") {
+  return lang === "ar"
+    ? `منظومة ضخ مياه بالطاقة الشمسية ${title}`
+    : `${title} Solar Water Pumping System`;
+}
+
+export async function generateStaticParams() {
+  return LANDING_COPY.en.services.packages.map((p) => ({ id: p.id }));
 }
 
 export default async function ServiceDetail({
@@ -137,8 +150,35 @@ export default async function ServiceDetail({
   const langHref = isAr ? `/services/${id}?lang=en` : `/services/${id}?lang=ar`;
   const ctaHref = isAr ? "/#contact" : "/?lang=en#contact";
 
+  const pageUrl = absoluteUrl(localizedPaths(`/services/${pkg.id}`)[langKey]);
+  const structuredData = [
+    breadcrumbSchema([
+      { name: isAr ? "الرئيسية" : "Home", path: localizedPaths("/")[langKey] },
+      { name: isAr ? "خدماتنا" : "Our Services", path: localizedPaths("/services")[langKey] },
+      { name: pkg.title, path: localizedPaths(`/services/${pkg.id}`)[langKey] },
+    ]),
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: packageSeoTitle(pkg.title, langKey),
+      description: pkg.summary,
+      category: isAr ? "أنظمة ضخ المياه بالطاقة الشمسية" : "Solar water pumping systems",
+      url: pageUrl,
+      brand: { "@type": "Brand", name: "Green Ion" },
+      offers: {
+        "@type": "Offer",
+        price: pkg.price.replace(/[^\d.]/g, ""),
+        priceCurrency: "SAR",
+        availability: "https://schema.org/InStock",
+        url: pageUrl,
+        seller: { "@type": "Organization", name: "Green Ion" },
+      },
+    },
+  ];
+
   return (
     <div style={{ background: tk.bg, minHeight: "100vh", fontFamily: fB }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(structuredData)} />
       <SiteNavbar
         lang={langKey}
         brand={c.brand}

@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import logo from "@/app/assets/LOGO_.png";
 import ScrollToTopButton from "@/app/components/ScrollToTopButton";
 import { LANDING_COPY } from "@/app/content/site-copy";
+import { breadcrumbSchema, buildPageMetadata, jsonLd, localizedPaths, PROJECT_PAGES_INDEXABLE } from "@/lib/seo";
 
 const tk = {
   bg: "#F7F9F4",
@@ -151,16 +152,21 @@ export async function generateMetadata({
   if (!project) {
     return {
       title: "Project Details | Green Ion",
+      robots: { index: false },
     };
   }
 
-  return {
-    title: `${project.title} | Green Ion`,
+  return buildPageMetadata({
+    lang,
+    path: `/projects/${slug}`,
+    title: `${project.title} - ${project.type}`,
     description:
       lang === "ar"
-        ? `صفحة تفاصيل ${project.title} مع فيديو المشروع ومحتوى قابل للتعديل لاحقاً.`
-        : `${project.title} details page with the project video and editable placeholder content.`,
-  };
+        ? `${project.title}: مشروع ${project.type} نفذته جرين أيون في ${project.loc} يشمل الرفع الموقعي والتصميم والتركيب والربط الكهربائي وتسليم نظام المراقبة.`
+        : `${project.title}: a ${project.type.toLowerCase()} project delivered by Green Ion in ${project.loc}, covering site survey, design, installation, electrical integration, and monitoring handover.`,
+    type: "article",
+    noindex: !PROJECT_PAGES_INDEXABLE,
+  });
 }
 
 export default async function ProjectDetailsPage({
@@ -184,6 +190,10 @@ export default async function ProjectDetailsPage({
   const fMono = isAr ? tk.ff.monoAr : tk.ff.monoEn;
   const switchHref = isAr ? `/projects/${slug}?lang=en` : `/projects/${slug}`;
   const homeHref = isAr ? "/#projects" : "/?lang=en#projects";
+  const breadcrumbs = breadcrumbSchema([
+    { name: isAr ? "الرئيسية" : "Home", path: localizedPaths("/")[lang] },
+    { name: project.title, path: localizedPaths(`/projects/${slug}`)[lang] },
+  ]);
 
   return (
     <main
@@ -195,6 +205,7 @@ export default async function ProjectDetailsPage({
         fontFamily: fBody,
       }}
     >
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(breadcrumbs)} />
       <header
         style={{
           position: "sticky",

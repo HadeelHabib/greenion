@@ -5,12 +5,25 @@ import Link from "next/link";
 import logo from "@/app/assets/LOGO_.png";
 import ScrollToTopButton from "@/app/components/ScrollToTopButton";
 import { ABOUT_COPY } from "@/app/content/site-copy";
+import { breadcrumbSchema, buildPageMetadata, jsonLd, localizedPaths, parseLang } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About Us | Green Ion",
-  description:
-    "Learn more about Green Ion, a Saudi renewable energy company delivering EPC solar solutions across utility, commercial, industrial, and residential sectors.",
-};
+const ABOUT_META = {
+  en: {
+    title: "About Us",
+    description:
+      "Learn more about Green Ion, a Saudi renewable energy company delivering EPC solar solutions across utility, commercial, industrial, agricultural, and residential sectors.",
+  },
+  ar: {
+    title: "من نحن",
+    description:
+      "تعرّف على جرين أيون، شركة سعودية للطاقة المتجددة تقدم حلول الطاقة الشمسية المتكاملة (EPC) لقطاعات المرافق والتجارة والصناعة والزراعة والمنازل.",
+  },
+} as const;
+
+export async function generateMetadata({ searchParams }: { searchParams: SearchParams }): Promise<Metadata> {
+  const lang = parseLang((await searchParams).lang);
+  return buildPageMetadata({ lang, path: "/about", ...ABOUT_META[lang] });
+}
 
 const tk = {
   bg: "#F7F9F4",
@@ -95,6 +108,10 @@ export default async function AboutPage({
   const switchHref = `/about?lang=${isAr ? "en" : "ar"}`;
   const fHead = isAr ? tk.ff.headAr : tk.ff.headEn;
   const fBody = isAr ? tk.ff.bodyAr : tk.ff.bodyEn;
+  const breadcrumbs = breadcrumbSchema([
+    { name: isAr ? "الرئيسية" : "Home", path: localizedPaths("/")[lang] },
+    { name: ABOUT_META[lang].title, path: localizedPaths("/about")[lang] },
+  ]);
 
   return (
     <main
@@ -106,6 +123,7 @@ export default async function AboutPage({
         fontFamily: fBody,
       }}
     >
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(breadcrumbs)} />
       <header
         style={{
           position: "fixed",
@@ -252,7 +270,7 @@ export default async function AboutPage({
         <div style={{ maxWidth: 1040, margin: "0 auto" }}>
           <div style={{ borderBottom: `1px solid ${tk.border}`, paddingBottom: 28, marginBottom: 28 }}>
             <Chip isAr={isAr}>{c.sectionChip}</Chip>
-            <h2
+            <h1
               style={{
                 margin: "16px 0 14px",
                 fontSize: "clamp(30px, 4vw, 46px)",
@@ -262,7 +280,7 @@ export default async function AboutPage({
               }}
             >
               {c.sectionTitle}
-            </h2>
+            </h1>
             <p style={{ margin: "0 0 18px", lineHeight: isAr ? 2 : 1.9, color: tk.body, fontSize: 15.5 }}>
               {c.heroSub}
             </p>
