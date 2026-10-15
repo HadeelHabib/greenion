@@ -3,15 +3,15 @@ import Link from "next/link";
 
 import SiteNavbar from "@/app/components/SiteNavbar";
 import ScrollToTopButton from "@/app/components/ScrollToTopButton";
-import { PriceWithRiyal, SaudiRiyalIcon, extractMoneyAmount } from "@/app/components/SaudiRiyalIcon";
+import { PriceWithRiyal, extractMoneyAmount } from "@/app/components/SaudiRiyalIcon";
 import HomeCalculatorClient from "@/app/home/HomeCalculatorClient";
 import HomeContactClient from "@/app/home/HomeContactClient";
 import HomeFaqClient from "@/app/home/HomeFaqClient";
 import HomeHeroClient from "@/app/home/HomeHeroClient";
+import HomeOffersClient from "@/app/home/HomeOffersClient";
 import HomeProjectsClient from "@/app/home/HomeProjectsClient";
 import HomeTestimonialsClient from "@/app/home/HomeTestimonialsClient";
 import {
-  Arrow,
   BrandLogo,
   Chip,
   DEFAULT_LAYOUT,
@@ -81,7 +81,6 @@ export default function GreenIonHome({ lang }: { lang: HomeLang }) {
   const homeHref = isAr ? "/" : "/?lang=en";
   const langHref = isAr ? "/?lang=en" : "/";
   const ctaHref = isAr ? "/#contact" : "/?lang=en#contact";
-  const displayedPackages = c.services.packages.slice(0, 3);
 
   return (
     <div style={{ background: tk.bg, minHeight: "100vh", overflowX: "hidden", fontFamily: isAr ? tk.ff.bodyAr : tk.ff.bodyEn }}>
@@ -100,50 +99,7 @@ export default function GreenIonHome({ lang }: { lang: HomeLang }) {
       <HomeHeroClient lang={lang} copy={c} />
 
       <div style={{ position: "relative", zIndex: 1, background: tk.bg }}>
-        <section id="services" style={{ background: tk.bg, padding: "clamp(64px,10vw,100px) clamp(16px,4vw,32px)", direction: c.dir, position: "relative", zIndex: 1 }}>
-          <div style={{ maxWidth: 1240, margin: "0 auto" }}>
-            <div style={{ marginBottom: 64, display: "flex", flexDirection: "column", gap: 14, alignItems: "center", textAlign: "center" }}>
-              <Chip>{c.services.chip}</Chip>
-              <h2 style={{ fontFamily: fH, fontSize: "clamp(30px,5vw,54px)", fontWeight: 900, color: tk.ink, margin: 0, letterSpacing: isAr ? "-0.01em" : "-0.04em", lineHeight: 1.1, textAlign: "center" }}>
-                {c.services.h2a}
-                <br />
-                <span style={{ color: tk.lime }}>{c.services.h2b}</span>
-              </h2>
-              {c.services.sub ? <p style={{ fontSize: 16, color: tk.muted, fontFamily: fB, lineHeight: 1.85, maxWidth: 600, margin: "8px 0 0", textAlign: "center" }}>{c.services.sub}</p> : null}
-            </div>
-
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
-              {displayedPackages.map((pkg) => {
-                const detailsHref = isAr ? `/services/${pkg.id}?lang=ar` : `/services/${pkg.id}?lang=en`;
-                return (
-                  <div key={pkg.id} style={{ background: tk.white, borderRadius: "10px", border: `1.5px solid ${tk.border}`, padding: "28px 24px", boxShadow: tk.shadow, display: "flex", flexDirection: "column", gap: 14, textAlign: isAr ? "right" : "left" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8, gap: 12 }}>
-                      <h3 style={{ fontFamily: fH, fontSize: "clamp(20px, 2.1vw, 26px)", fontWeight: 900, color: tk.ink, margin: 0 }}>{pkg.title}</h3>
-                      {pkg.badge ? <span style={{ fontSize: 11, padding: "4px 12px", borderRadius: "10px", background: "rgba(118,196,66,0.12)", color: tk.forestMid, fontFamily: isAr ? tk.ff.monoAr : tk.ff.monoEn, textTransform: "uppercase", letterSpacing: "0.06em", border: `1px solid ${tk.borderG}` }}>{pkg.badge}</span> : null}
-                    </div>
-                    <p style={{ fontSize: 14, color: tk.body, fontFamily: fB, lineHeight: 1.75, margin: 0 }}>{pkg.summary}</p>
-                    <div style={{ marginTop: "auto", paddingTop: 16, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                      <div style={{ display: "flex", flexDirection: "column", alignItems: isAr ? "flex-end" : "flex-start" }}>
-                        <span style={{ fontSize: 28, fontWeight: 900, color: tk.forest, fontFamily: fH }}>{pkg.price}</span>
-                        <span style={{ fontSize: 12, color: tk.muted, fontFamily: fB }}><SaudiRiyalIcon size={12} color={tk.muted} title={isAr ? "ريال سعودي" : "Saudi Riyal"} /></span>
-                      </div>
-                      <div style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: isAr ? "flex-start" : "flex-end" }}>
-                        <Link href={detailsHref} style={{ padding: "12px 18px", borderRadius: "10px", background: tk.forest, color: tk.white, fontSize: 13, fontWeight: 700, fontFamily: fH, boxShadow: "0 4px 16px rgba(27,94,32,0.25)", textDecoration: "none" }}>{isAr ? "التفاصيل" : "Details"}</Link>
-                        <Link href={ctaHref} style={{ padding: "12px 18px", borderRadius: "10px", background: "transparent", color: tk.forest, border: `1.5px solid ${tk.borderDk}`, fontSize: 13, fontWeight: 700, fontFamily: fH, textDecoration: "none" }}>{pkg.cta}</Link>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div style={{ marginTop: 48, textAlign: "center" }}>
-              <Link href={isAr ? "/services?lang=ar" : "/services?lang=en"} style={{ padding: 0, background: "transparent", color: tk.forest, border: "none", fontSize: 16, fontWeight: 800, fontFamily: fH, display: "inline-flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
-                {isAr ? "عرض المزيد" : "View More"} <Arrow dir={c.dir} color={tk.forest} />
-              </Link>
-            </div>
-          </div>
-        </section>
+        <HomeOffersClient lang={lang} copy={c} />
 
         <section id="how-it-works" style={{ background: tk.bgMid, padding: "clamp(64px,10vw,100px) clamp(16px,4vw,32px)", direction: c.dir, position: "relative", overflow: "hidden" }}>
           <div className="gi-section-bg" style={{ position: "absolute", inset: 0, opacity: 0.3, pointerEvents: "none" }}>
